@@ -17,8 +17,16 @@ Bei diesen sind noch einige Fragen offen, welche im Rahmen der Bachelor-Arbeit a
 ## Mögliche Aufgabenstellungen:
 Im Algorithmus in [1] wird eine vereinfachte Annahme gemacht, ohne welche das Problem NP-schwer ist. 
 
-2.1) Herausarbeiten, unter welchen Annahmen der polynomielle Algorithmus funktioniert.
+1) Herausarbeiten, unter welchen Annahmen der polynomielle Algorithmus funktioniert.
 
-2.2) Die NP-Schwerheit ohne die Annahme formal zeigen.
+2) Die NP-Schwerheit ohne die Annahme formal zeigen. (Eine Skizze dazu wird nachgereicht)
+
+## Zeitplan
+
+- 06/23 - 07/23: Einarbeitung (Komplexitätstheorie, Referenz-Paper, ...)
+- 08/23 - 10/23: Ausarbeitung und Formalisierung der Ergebnisse
+- 10/23: Vortrag der Ergebnisse im Oberseminar
+- 11/23: Abgabe
+
 
 
