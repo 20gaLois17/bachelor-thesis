@@ -1,0 +1,326 @@
+% Notwendige Start-Codezeile
+\documentclass[a4paper, 12pt, twoside]{article}
+
+% Präambel
+
+% Pakete
+\usepackage[left=3cm,right=2.5cm,bottom=3.5cm,top=2.5cm]{geometry} % Ok die Seitenrändereinstellungen passen so.
+\usepackage{amsfonts}
+\usepackage[utf8]{inputenc} % Kodierung
+\usepackage[ngerman]{babel} % Sprache
+\usepackage{amssymb}        % Mathematische Symbole wie z.b ganze Zahlen, reelle Zahlen etc.
+\usepackage{amsmath}        % Um diverse mathematische Symbole nutzen zu können.
+\usepackage{amsthm}         % Um Definitionen, Theoreme, Bemerkungen, Beispiele machen zu können.
+\usepackage{mathtools}      % Dieses Paket liefert nützliche Werkzeuge, z.B "defined as equal" - sign uvm.
+\usepackage{enumitem}       % Um individuelle Listen zu bauen.
+\usepackage{xcolor}         % Um farbigen Text machen zu können. Diesen kann ich nutzen um wichtige persönliche Notizen hervorzuheben.
+\usepackage{fancyhdr}       % Um saubere Kopf und Fußzeilen sowie Seitenzahlen zu erzeugen.
+\usepackage{setspace}       % Damit kann ich Leerzeilen im Dokument einfügen.
+\usepackage{graphicx}       % Einbinden von externen Bildern
+% insbesondere beim Inhaltsverzeichnis nötig, da dieses sonst zu
+% gequetscht aussieht.
+
+
+% Symbolverzeichnis
+%\usepackage{nomencl}
+%\makenomenclature
+%\renewcommand{\nomname}{Symbolverzeichnis}
+
+
+% Globale Festlegungen
+\setlength{\topsep}{4ex plus0.5ex minus0.5ex} % Festlegung: Größe der Absätze nach Definition, Theorem, etc.
+\setlength\parindent{0pt} % Festlegung: Kein Einschub nach rechts.
+\setstretch{1.2} % Festlegung: Zeilenabstand ist 1.2 statt 1.
+\raggedbottom % twoside sorgt dafür, dass der Platz, der durch \\ und einer Leerzeile erzeugt wird sehr groß ist und nicht nur eine Leerzeile, was ich nämlich erzielen möchte.
+              % Dieses Kommando sorgt dafür, dass dies wiederhergestellt wird und twoside trotzdem wirkt.
+
+% Vorlagen
+% 1) [before = \leavevmode\vspace{-\baselineskip}]
+% // Um bei Theoremen mit Listen zu starten.
+
+% Eigene Befehle
+
+\newcommand\logeq{\mathrel{\vcentcolon\Longleftrightarrow}} % Dieser Befehl realisiert mittels "\logeq" ein "defnierendes Äquivalenzzeichen".
+\newcommand{\ts}{\thinspace} % Damit ich nicht so viel schreiben muss, wenn ich kleine Leerzeilen hinzufügen möchte. Was ich oft tue bei Mengendefinitionen, da mir der Platz dort zu klein ist.
+
+% Eigene Theoremstyles
+% Format 1
+\newtheoremstyle{Format1}
+{\topsep}   % ABOVESPACE
+{\topsep}   % BELOWSPACE
+{\normalfont}  % BODYFONT
+{0pt}       % INDENT (empty value is the same as 0pt)  % Das rückt den Kopf nach rechts ein
+{\bfseries} % HEADFONT
+{\newline}  % HEADPUNCT
+{5pt plus 1pt minus 1pt} % HEADSPACE
+{}          % CUSTOM-HEAD-SPEC
+
+
+% Eigene Theorem-Umgebungen
+\theoremstyle{Format1} % Alle Theoremumgebungen hierunter folgen den Spezifikationen vom "Format 1" - Theoremstil
+\newtheorem{Def}{Definition}[section]       % Definition
+\newtheorem*{Definition}{Definition}        % Definition (unnummeriert)
+\newtheorem{Bsp}[Def]{Beispiel}             % Beispiel
+\newtheorem{Bem}[Def]{Bemerkung}            % Bemerkung
+\newtheorem{Satz}[Def]{Satz}                % Satz
+\newtheorem*{Bez}{Bezeichnung}              % Bezeichnung (unnummeriert)
+\newtheorem{Folg}[Def]{Folgerung}           % Folgerung
+\newtheorem*{Folgerung}{Folgerung}          % Folgerung (unnummeriert)
+\newtheorem{Lem}[Def]{Lemma}                % Lemma
+\newtheorem*{Grundmodell}{Grundmodell}
+\newtheorem*{Aussage}{Aussage}
+\newtheorem*{Herleitung}{Herleitung}
+
+% Code aus Stackexchange, welcher bei Nutzen von Norm oder Betrag automatisch passende Betragsgrößen generiert, also die Beträge dem Ausdruck entsprechend vergrößert:
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+% Code aus Stackexchange: Sorgt dafür, dass die Abstände zwischen Zeilen in Allign Umgebungen etwas größer sind, also normal. Die Standardabstände sind mir zu gering.
+
+\addtolength{\jot}{0.5em}
+
+
+% Beginn des Dokumentes
+\begin{document}
+
+\newgeometry{} % Damit die Titelseite nicht von den Einstellungen des geometry packages beeinflusst wird.
+% Titelblatt der Arbeit
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+
+		\Huge
+		\textbf{Bachelorarbeit}
+
+		\vspace{0.5cm}
+		\LARGE
+		Optimale Zuordnungen auf Geometrischen Graphen
+
+		\vspace{1.5cm}
+		\large Sebastian Koletzko\\
+
+		\vspace{1cm}
+		Datum: 17.12.23
+
+		\vfill
+
+		\vspace{5cm}
+
+		%\includegraphics[width=0.4\textwidth]{RuhrU}
+
+		\large
+		Fakultät für Mathematik
+		\\
+		Ruhr-Universität Bochum
+		\\
+		\vspace{0.5cm}
+		Prof. Dr. Maike Buchin
+		\\
+		PD Dr. Daniela Kacso
+
+	\end{center}
+\end{titlepage}
+
+\restoregeometry % Damit die Titelseite nicht vom geoemtry-package beeinflusst wird - Endcodezeile.
+
+\newpage\null\thispagestyle{empty}\newpage % Nach der Titelseite kommt immer eine leere Seite, denn die nachfolgende Seite, ist die Rückseite der Titelseite. Und ich möchte nicht auf der Rückseite direkt anfangen.
+
+\thispagestyle{empty} % Damit keine Seitenzahl auf der Erklärung-Seite auftaucht.
+
+\textbf{Eigenständigkeitserklärung:}
+\\
+Hiermit erkläre ich, dass ich die heute eingereichte Bachelorarbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt sowie Zitate kenntlich gemacht habe.
+Bei der vorliegenden Bachelorarbeit handelt es sich um in Wort und Bild völlig übereinstimmende Exemplare. Ich erkläre weiterhin, dass die vorliegende Arbeit noch nicht im Rahmen eines anderen Prüfungsverfahrens eingereicht wurde.
+\\
+\\
+Witten, den 17.12.23
+\\
+\\
+Sebastian Koletzko
+
+\newpage
+abstract:
+In dieser Arbeit werden wir ein in [1] vorgestelltes Abstandsmaß auf geometrischen Graphen - den sogenannten \textit{min-sum graph distance} - untersuchen.
+Dafür wird einleitend das notwendige mathematische Grundgerüst aus [2] formuliert und - darauf aufbauend - ein in Algorithmus
+dargestellt, welcher den \textit{min-sum graph distance} zweier Bäume unter einer Einschränkung in der der Abbildung in Polynomialzeit berechnet.
+Darüber hinaus zeigen wir die NP-Schwerheit der \textit{min-sum graph distance} für Graphen ohne die besagte Einschränkung in der Abbildung.
+
+
+% Inhaltsverzeichnis. (Dieses wird nach Sektionen geordnet)
+\newpage
+\tableofcontents
+\newpage\null\thispagestyle{empty}\newpage % Eine Leerseite nach dem Inhaltsverzeichnis.
+\section{Einleitung}
+
+Wir betrachten im Allgemeinen endliche, ungerichtete Graphen, welche in den euklidischen Raum eingebettet werden.
+
+Dadurch werden Knoten zu Punkten im $ \mathbb{R}^n $ und Kanten zu Pfaden Punktmengen ihrer
+Dabei wird die Knotenmenge des Graphen als (endliche) Teilmenge des $ \mathbb{R}^n $ realisiert.
+
+
+Geometrische Graphen sind ... (das könnte man vllt. später erläutern)
+Daher eignen sich geometrische Graphen insbesonders um, um Netzwerke (z.B. von Straßen, Schienen) zu beschreiben.
+
+Für eingebettete Graphen existieren viele bekannte Anwendungsfälle (wie z.B. Straßennetzwerke) im Falle einer Einbettung in die Ebene.
+Eine zentrale Fragestellung dabei ist, wie man Abstandsmaße auf geometrischen Graphen definiert und unter welchen Bedingungen sich dieses Maß effizient berechnen lässt.
+
+Um die Ählichkeit zweier eingebetter Graphen zu beschreiben, haben Akitaya et al. \cite{Akitaya} neue Abstandsmaße eingeführt, die sogennannte "directed graph distance" bzw. "directed weak graph distance" und gezeigt,
+dass sich diese unter bestimmten Anforderungen an die Graphen in Polynomialzeit berechnen lassen.
+
+Besonderheit bei diesen Abstandmaßen ist, dass sie auf einer stetigen Zuordnung zwischen den zu vergleichenden Graphen basieren und somit auch die Topologie der Graphen berücksichtigen.
+Das resultierende Maß beschreibt eine sogenannte "bottleneck-distance".
+
+Darauf aufbauend haben \cite{Buchin} Buchin et al. ein weiteres Abstandsmaß definiert, den sogenannten "min-sum graph distance".
+Vor dem Hintergrund, dass die "directed (weak) graph distance" eine bottle-neck distance beschreibt, wird bei der min-sum graph distance das Ziel verfolgt, lokale Abstände zu berücksichtigen.
+[Ein kleiner Text über den Stand der Wissenschaft]
+
+In dieser Arbeit werden wir uns mit der min-sum graph distance beschäftigen.
+
+- worum geht es bei Abstandsmaßen auf geometrischen Graphen?
+\newpage
+
+TODO: Allgemein sollten wir eine Einbettung beschreiben.
+
+\begin{Def}
+	Geradlinig eingebetteter Graph
+	Wir bezeichnen einen Graphen $ G=(V, E) $ als gradlinig eingebettet, falls:
+    	\begin{enumerate}
+		\item[1)] Jeder Knoten $v \in V $ auf einen eindeutigen Punkt in $ \mathbb{R}^n $ abgebildet wird.
+		\item[2)] Jede Kante ${u,v} \in E$ durch das eindeutige Geradenstück der Punkte im $ \mathbb{R}^n. $ abgebildet wird.
+    	\end{enumerate}
+
+\end{Def}
+
+\begin{Def}
+	Einfacher Pfad
+\end{Def}
+
+Seien $ G_1=(V_1, E_1) $ und $ G_2=(V_2, E_2) $ gradlinig eingebettete Graphen.
+\begin{Def}
+	Graph-Zuordnung (engl. graph mapping)
+	Wir nennen eine Abbildung $s: G_1 \to G_2 $ eine \textit{Graph-Zuordnung}, falls
+    	\begin{enumerate}
+		\item[1)] s jeden Knoten $ v \in V_1 $ auf einen Punkt einer Kante von $ G_2 $ abbildet und
+		\item[2)] s alle Kanten $ {u,v} \in E_1 $ auf einen einfachen Pfad in $G_2$ mit dem Startpunkt $s(u)$ und dem Endpunkt $s(v)$ abbildet.
+    	\end{enumerate}
+
+	Eine Graph-Zuordnung s definiert somit auf gewisser Weise eine stetige Abbildung von $ G_1 $ nach $ G_2 $.\\
+	Bemerkung: Eine Graph-Zuordnung ist im Allgemeinen weder injektiv noch surjektiv.
+	$ G_1 $ und $ G_2 $ müssen daher insbesondere nicht homeomorph sein.
+
+\end{Def}
+
+TODO: Hier wäre ein Beispiel angebracht
+
+\begin{Def}
+	Fréchet-Abstand (engl. fréchet distance)
+	Für zwei Kurven $ f, g: [0,1] \to \mathbb{R}^n $ definieren wir den \textit{Fréchet-Abstand} von $f$ und $g$ als
+	$$ \delta_F(f,g) =  \inf_{\sigma:[0,1] \to [0,1]} \; \max_{t \in [0,1]} \lVert f(t)-(g(\sigma(t)) \rVert, $$
+	wobei sich $\sigma $ über alle orientierungserhaltenen Homeomorphismen erstreckt.
+	\\
+	\\
+	Wir definieren den \textit{schwachen Fréchet-Abstand} von $f$ und $g$ als
+	$$\delta_{wF}(f,g) =\inf_{\alpha , \beta :[0,1] \to [0,1]} \; \max_{t \in [0,1]} \lVert f(\alpha(t))-(g(\sigma(t)) \rVert,$$
+	wobei sich $\alpha$ und $\beta$ über alle stetigen Abbildungen erstrecken, welche die Endpunkte fixieren, also $\alpha(0) = \beta(0) = 0$
+	und $\alpha(1) = \beta(1) = 1$.
+	\\
+	Die Notation $ \delta_{(w)F} $ benutzen wir nachfolgend im Kontext, wenn wir uns simultan auf den Fréchet-Abstand sowie den schwachen Fréchet-Abstand beziehen.
+	\\
+	\\
+	Anschaulich können wir uns den Fréchet-Abstand wie folgt vorstellen:
+
+\end{Def}
+\begin{Def}
+	Abstände auf Graphen
+	Wir definieren den \textit{gerichteten Graph-Abstand} $ \vec{\delta}_G $ als
+	$$ \vec{\delta}_G(G_1,G_2) = \inf_{s: G_1 \to G_2} \: \max_{e \in E_1} \delta_F(e, s(e)) $$
+	und den \textit{gerichteten schwachen Graph-Abstand} $ \vec{\delta}_{wG} $ als
+	$$  \vec{\delta}_{wG}(G_1,G_2) = \inf_{s: G_1 \to G_2} \: \max_{e \in E_1} \vec{\delta}_{wF}(e, s(e)), $$
+	wobei s sich über alle Graph-Zuordnungen erstreckt.
+	\\
+	\\
+	TODO: Etwas über den Flaschenhals schreiben.
+
+\end{Def}
+
+\begin{Def}
+	Epsilon-Platzierung (engl. epsilon placement)
+\end{Def}
+
+TODO: Wir müssen irgendwo den Begriff des geometrischen Graphen einführen.
+Wir müssen darüber hinaus entscheiden, ab welchem Punkt wir nur noch von geometrischen Graphen ausgehen.
+
+TODO: Wir müssen den Begriff des Min-Sum-Graph-Abstands definieren
+
+\newpage
+Nun haben wir ausreichend Grundlagen, um uns dem min-sum graph distance widmen zu können.
+\begin{Def}
+	Min-Sum-Graph-Abstand (engl. min-sum graph distance)
+
+	Allgemein bezei
+
+\end{Def}
+Im weiteren Verlauf werden wir, wenn nicht anders ausgewiesen, für den min-sum graph distance die (weak) Fréchet Distance als Abstandsmaß implizieren.
+
+\newpage
+NP-Schwerheit des min-sum Graph-Abstands
+
+Bevor wir uns mit dem erwähnten Polynomialzeit-Algorithmus beschäftigen, wollen wir die NP-Schwerheit der min-sum graph distance für allgemeine Graphen zeigen.
+Wir nutzen einen ähnlichen Ansatz wie bei dem Beweis der NP-Schwerheit der graph distance für allgemeine Graphen in \cite{Akitaya}
+durch eine Reduktion von \textit{Binary Constraint Satifaction Problem (CSP)}.
+
+\begin{Def}
+	Binary Constraint Satisfaction Problem
+
+\end{Def}
+
+Seien $G1=(V_1, E_1)$ und $G2=(V_2, E_2)$ eingebettete Graphen und sei $s$ eine Graph-Zuordnung.
+\begin{Satz}
+	Theorem: Das Entscheidungsproblem  min-sum graph distance $(G_1, G_2)  \leq  \epsilon $ ist NP-Schwer
+\end{Satz}
+
+Sei $<X,D,C>$ eine beliebige Instanz des CSP.
+
+Wir repräsentieren jede Variable $x_i$ durch einen Knoten $v_i$ in $G_1$.
+
+
+\newpage\null\thispagestyle{empty}\newpage
+%   Eventuell eine Leerseite vor der Literaturangabe, falls diese sonst auf einer Rückseite angegeben würde. (Seitennummer muss ungerade sein!)
+
+\begin{thebibliography}{4}
+	\bibitem{Buchin}
+		Maike Buchin, Bernhard Kilgus. Distance Measures for Embedded Graphs - Optimal Graph Mappings.
+		\textit{European Workshop on Computational Gemoetry,} 2020.
+
+	\bibitem{Akitaya}
+		Hugo Akitaya, Maike Buchin, Bernhard Kilgus, Stef Sijben, Carola Wenk. Distance measures for embedded graphs
+		\textit{Computational Geometry,} Volume 95, 2021.
+
+	\bibitem{Alt}
+		Hemlut Alt, Michael Godau. Computing the Fréchet distance between two polygonal curves.
+		\textit{Int. Journal of Computational Geometry and Applications,} 5:75-91, 1995.
+
+	\bibitem{Rote}
+		Günter Rote, Lexicographic Fréchet distance.
+		\textit{European Workshop on Computational Gemoetry,} 2014.
+
+\end{thebibliography}
+
+% Symbolverzeichnis definieren
+%\nomenclature{$c$}{Speed of light in a vacuum inertial frame}
+%\nomenclature{$h$}{Planck constant}
+
+%\printnomenclature
+\end{document}
