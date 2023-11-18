@@ -14,11 +14,20 @@ Bisher gezeigt wurde dabei, dass dieses unter bestimmten Bedingungen an die Grap
 
 Bei diesen sind noch einige Fragen offen, welche im Rahmen der Bachelor-Arbeit ausgearbeitet werden.
 
-## Mögliche Aufgabenstellungen:
-Im Algorithmus in [1] wird eine vereinfachte Annahme gemacht, ohne welche das Problem NP-schwer ist. 
+## Aufgabenstellungen:
 
-2.1) Herausarbeiten, unter welchen Annahmen der polynomielle Algorithmus funktioniert.
+1) Detaillierte Darstellung des Algorithmus für den min-sum Graph Abstand auf Bäumen mit der Einschränkung, dass Knoten auf den nächsten Punkt im epsilon-Placement abgebildet werden
+2) Beweis der NP-Schwerheit des min-sum Graph Abstands auf Graphen
+3) optional: Anpassung des Algorithmus, wenn der Fréchet Abstand auf Kanten durch den summierten diskreten Fréchet Abstrand (bzw. Dynamic Time Warping) ersetzt wird
 
-2.2) Die NP-Schwerheit ohne die Annahme formal zeigen.
+
+## Zeitplan
+
+- 06/23 - 07/23: Einarbeitung (Komplexitätstheorie, Referenz-Paper, ...)
+- 08/23 - 10/23: Ausarbeitung und Formalisierung der Ergebnisse
+- 11/04 - Anmeldung der Bachelorarbeit
+- 11/23: Vortrag der Ergebnisse im Oberseminar
+- 12/29: Abgabefrist
+
 
 
