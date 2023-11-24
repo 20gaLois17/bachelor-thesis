@@ -164,24 +164,24 @@ Darüber hinaus zeigen wir die NP-Schwerheit der \textit{min-sum graph distance}
 \newpage\null\thispagestyle{empty}\newpage % Eine Leerseite nach dem Inhaltsverzeichnis.
 \section{Einleitung}
 
+Die geometrische Graphentheorie beschäftigt sich ...
+
 Wir betrachten im Allgemeinen endliche, ungerichtete Graphen, welche in den euklidischen Raum eingebettet werden.
 
-Dadurch werden Knoten zu Punkten im $ \mathbb{R}^n $ und Kanten zu Pfaden Punktmengen ihrer
+Dadurch werden Knoten zu Punkten im $ \mathbb{R}^n $ und Kanten allg. zu Strecken (mit ihren jeweiligen Knoten als Start - und Endpunkt)
 Dabei wird die Knotenmenge des Graphen als (endliche) Teilmenge des $ \mathbb{R}^n $ realisiert.
-
 
 Geometrische Graphen sind ... (das könnte man vllt. später erläutern)
 Daher eignen sich geometrische Graphen insbesonders um, um Netzwerke (z.B. von Straßen, Schienen) zu beschreiben.
-
+\\
 Für eingebettete Graphen existieren viele bekannte Anwendungsfälle (wie z.B. Straßennetzwerke) im Falle einer Einbettung in die Ebene.
 Eine zentrale Fragestellung dabei ist, wie man Abstandsmaße auf geometrischen Graphen definiert und unter welchen Bedingungen sich dieses Maß effizient berechnen lässt.
-
-Um die Ählichkeit zweier eingebetter Graphen zu beschreiben, haben Akitaya et al. \cite{Akitaya} neue Abstandsmaße eingeführt, die sogennannte "directed graph distance" bzw. "directed weak graph distance" und gezeigt,
-dass sich diese unter bestimmten Anforderungen an die Graphen in Polynomialzeit berechnen lassen.
-
+\\
+Um die Ählichkeit zweier eingebetter Graphen zu beschreiben, haben Akitaya et al. \cite{Akitaya} neue Abstandsmaße eingeführt und ihre Eigenschaften untersucht.
+\\
 Besonderheit bei diesen Abstandmaßen ist, dass sie auf einer stetigen Zuordnung zwischen den zu vergleichenden Graphen basieren und somit auch die Topologie der Graphen berücksichtigen.
 Das resultierende Maß beschreibt eine sogenannte "bottleneck-distance".
-
+\\
 Darauf aufbauend haben \cite{Buchin} Buchin et al. ein weiteres Abstandsmaß definiert, den sogenannten "min-sum graph distance".
 Vor dem Hintergrund, dass die "directed (weak) graph distance" eine bottle-neck distance beschreibt, wird bei der min-sum graph distance das Ziel verfolgt, lokale Abstände zu berücksichtigen.
 [Ein kleiner Text über den Stand der Wissenschaft]
@@ -194,17 +194,24 @@ In dieser Arbeit werden wir uns mit der min-sum graph distance beschäftigen.
 TODO: Allgemein sollten wir eine Einbettung beschreiben.
 
 \begin{Def}
-	Geradlinig eingebetteter Graph
-	Wir bezeichnen einen Graphen $ G=(V, E) $ als gradlinig eingebettet, falls:
-    	\begin{enumerate}
-		\item[1)] Jeder Knoten $v \in V $ auf einen eindeutigen Punkt in $ \mathbb{R}^n $ abgebildet wird.
-		\item[2)] Jede Kante ${u,v} \in E$ durch das eindeutige Geradenstück der Punkte im $ \mathbb{R}^n. $ abgebildet wird.
-    	\end{enumerate}
-
+	Eingebetter Graph
 \end{Def}
 
 \begin{Def}
-	Einfacher Pfad
+	Geometrischer Graph
+	Unter einem geometrischen Graphen verstehen wir einen abstrakten Graphen $G=(V, E)$ zusammen mit einer Einbettung $ \omega $
+    	\begin{enumerate}
+		\item[1)] Jeder Knoten $v \in V $ auf einen eindeutigen Punkt in $ \mathbb{R}^n $ repräsentiert wird.
+		\item[2)] Jede Kante ${u,v} \in E$ durch das eindeutige Geradenstück der Punkte im $ \mathbb{R}^n. $ repräsentiert wird.
+    	\end{enumerate}
+	Wenn wir im weiteren Verlauf von einem geometrischen Graphen $G$ sprechen, so unterscheiden wir grundsätzlich nicht zwischen seiner Konnektivität -
+	welche durch die abstrakte Beschreibung des Graphen gegeben ist - und seiner konkreten Repräsentation als Teilmenge des euklidischen Raums.
+\end{Def}
+
+\begin{Def}
+	Einfacher Weg in einem Geometrischen Graphen
+	Ein \textit{einfacher Weg} in einem geometrischen Graphen $G$ ist eine stetige Abbildung $ \phi: [0, 1] \rightarrow G$, welche keinen Knoten
+	von $G$ mehr als einmal besucht.
 \end{Def}
 
 Seien $ G_1=(V_1, E_1) $ und $ G_2=(V_2, E_2) $ gradlinig eingebettete Graphen.
@@ -213,10 +220,10 @@ Seien $ G_1=(V_1, E_1) $ und $ G_2=(V_2, E_2) $ gradlinig eingebettete Graphen.
 	Wir nennen eine Abbildung $s: G_1 \to G_2 $ eine \textit{Graph-Zuordnung}, falls
     	\begin{enumerate}
 		\item[1)] s jeden Knoten $ v \in V_1 $ auf einen Punkt einer Kante von $ G_2 $ abbildet und
-		\item[2)] s alle Kanten $ {u,v} \in E_1 $ auf einen einfachen Pfad in $G_2$ mit dem Startpunkt $s(u)$ und dem Endpunkt $s(v)$ abbildet.
+		\item[2)] s alle Kanten $ {u,v} \in E_1 $ auf einen einfachen Weg in $G_2$ mit dem Startpunkt $s(u)$ und dem Endpunkt $s(v)$ abbildet.
     	\end{enumerate}
 
-	Eine Graph-Zuordnung s definiert somit auf gewisser Weise eine stetige Abbildung von $ G_1 $ nach $ G_2 $.\\
+	Eine Graph-Zuordnung s definiert somit stetige Abbildung von $ G_1 $ nach $ G_2 $.\\
 	Bemerkung: Eine Graph-Zuordnung ist im Allgemeinen weder injektiv noch surjektiv.
 	$ G_1 $ und $ G_2 $ müssen daher insbesondere nicht homeomorph sein.
 
@@ -236,12 +243,26 @@ TODO: Hier wäre ein Beispiel angebracht
 	wobei sich $\alpha$ und $\beta$ über alle stetigen Abbildungen erstrecken, welche die Endpunkte fixieren, also $\alpha(0) = \beta(0) = 0$
 	und $\alpha(1) = \beta(1) = 1$.
 	\\
-	Die Notation $ \delta_{(w)F} $ benutzen wir nachfolgend im Kontext, wenn wir uns simultan auf den Fréchet-Abstand sowie den schwachen Fréchet-Abstand beziehen.
+	\\
+	Die Notation $ \delta_{(w)F} $ benutzen wir zugunsten der Kompaktheit nachfolgend, wenn wir im Kontext den Fréchet-Abstand sowie den schwachen Fréchet-Abstand zugleich -
+	wir schreiben in diesem Fall auch \textit{(schwacher) Fréchet-Abstand} - adressieren wollen.
 	\\
 	\\
-	Anschaulich können wir uns den Fréchet-Abstand wie folgt vorstellen:
+	Zur Anschauung stelle man sich $f$ und $g$ als Kurven im $\mathbb{R}^2$ vor. Der euklidische Abstand zwischen zwischen $f$ und $g$ zum Zeitpunkt $t_0 \in [0,1]$ entspricht genau der Länge der Strecke
+	mit den Endpunkten $f(t_0)$ und $g(t_0)$. Bei dem Fréchet-Abstand dürfen wir eine Kurve reparametrisieren, um den maximal angenommenen euklidischen Abstand zwischen $f$ und $g$ zu minimieren.
+	Wir werden so einen maximal angenommen Abstand sinngemäß auch als \textit{Flaschenhals-Abstand} bezeichnen.\\
 
+	In der Literator TODO: REFERENZ findet man hierzu oft das Beispiel eines Mannes, der seinen Hund an einer Leine spazieren führt. (Siehe Skizze)
+	Beide starten jeweils am Punkt $f(0)$ bzw. $g(0)$ und enden jeweils am Punkt $f(1)$ bzw. $g(1)$.
+
+	Für den Fréchet-Abstand darf einer von beiden auf seinem festgelegten Weg - welcher der Spur der Kurve entspricht - zu jedem Zeitpunkt beliebig beschleunigen oder sogar stehenbleiben, aber nicht die Richtung wechseln.
+	Dies mit dem Ziel, die dabei maximal angenommene Länge der Leine möglichst zu minimieren.
+	Für den schwachen Fréchet-Abstand dürfen der Mann sowie sein Hund auf ihrem Weg beliebig beschleunigen und auch die Richtung ändern.
+	TODO: Beispiel Illustration anfügen
+	\\
+	Da der Fréchet-Abstand symmetrisch ist !TODO: REFERENZ oder beweisen!, spielt es hierbei keine Rolle, welche der beiden Kurven wir reparametrisieren.
 \end{Def}
+
 \begin{Def}
 	Abstände auf Graphen
 	Wir definieren den \textit{gerichteten Graph-Abstand} $ \vec{\delta}_G $ als
@@ -250,13 +271,23 @@ TODO: Hier wäre ein Beispiel angebracht
 	$$  \vec{\delta}_{wG}(G_1,G_2) = \inf_{s: G_1 \to G_2} \: \max_{e \in E_1} \vec{\delta}_{wF}(e, s(e)), $$
 	wobei s sich über alle Graph-Zuordnungen erstreckt.
 	\\
-	\\
-	TODO: Etwas über den Flaschenhals schreiben.
-
+	\\The connectivity of a graph is an important measure of its resilience as a network.
 \end{Def}
 
 \begin{Def}
-	Epsilon-Platzierung (engl. epsilon placement)
+	$\varepsilon$-Platzierung (engl. $\varepsilon$-Placement)
+	Eine \textit{$\varepsilon$-Platzierung eines Knotens $v \in V_1$} ist eine maximal zusammenhängende Komponente von $G_2$ eingeschränkt auf $B_{\varepsilon}(v)$.
+	Eine \textit{$\varepsilon$-Platzierung einer Kante $e = \{u,v\} \in E_1$} ist ein Weg $P$ in $G_2$, welcher eine Platzierung $C_u$ von $u$ mit einer Platzierung $C_v$ von $v$
+	so verbindet, dass $\delta_F(e, P) \leq \varepsilon$.
+	\\
+	In diesem Fall nennen wir $C_u$ und $C_v$ \textit{voneinander erreichbar}.
+	\\
+	\\
+	Eine schwache $\varepsilon$-Platzierung einer Kante $e = \{u,v\} \in E_1$ ist ein Weg $P$ in $G_2$, welcher eine Platzierung $C_u$ von $u$ mit einer Platzierung $C_v$ von $v$
+	so verbindet, dass $\delta_{wF}(e, P) \leq \varepsilon$.
+	\\
+	In diesem Fall nennen wir $C_u$ und $C_v$ \textit{schwach voneinander erreichbar}.
+
 \end{Def}
 
 TODO: Wir müssen irgendwo den Begriff des geometrischen Graphen einführen.
@@ -275,25 +306,146 @@ Nun haben wir ausreichend Grundlagen, um uns dem min-sum graph distance widmen z
 Im weiteren Verlauf werden wir, wenn nicht anders ausgewiesen, für den min-sum graph distance die (weak) Fréchet Distance als Abstandsmaß implizieren.
 
 \newpage
-NP-Schwerheit des min-sum Graph-Abstands
+NP-Schwerheit des Min-Sum Graph-Abstands
 
 Bevor wir uns mit dem erwähnten Polynomialzeit-Algorithmus beschäftigen, wollen wir die NP-Schwerheit der min-sum graph distance für allgemeine Graphen zeigen.
-Wir nutzen einen ähnlichen Ansatz wie bei dem Beweis der NP-Schwerheit der graph distance für allgemeine Graphen in \cite{Akitaya}
-durch eine Reduktion von \textit{Binary Constraint Satifaction Problem (CSP)}.
+Ein ähnliches Setting finden wir in [2] (Seite). Hier wird die NP-Schwerheit des Graph-Abstands für allgemeine Graphen über eine Reduktion von
+\textit{Binary Constraint Satifaction Problem (CSP)} gezeigt. In unserem Beweis für NP-Schwerheit orientieren wir uns zu wesentlichen Teilen an der Konstruktion in [2].
 
 \begin{Def}
 	Binary Constraint Satisfaction Problem
+	Ein \textit{Binary Constraint Satisfaction Problem} beschreibt folgendes Entscheidungsproblem:
+	\\
+	Gegeben eine Instanz $\langle X,D,C \rangle$ bestehend aus
+	$$ \text{einer Menge von \textit{Variablen }}X = \{x_1, x_2, ..., x_n\},$$
+	$$ \text{einer Menge von \textit{Domänen }}D = \{D_1, D_2, ..., D_n\} $$
+	$$ \text{und einer Menge von \textit{Bedingungen }}C = \{C_1, C_2, ..., C_k\}. $$
+	Für jede Variable $ x_i \in X$ beschreibt die Domäne $ D_i \in D$ die Menge ihrer möglichen Wertzuweisungen.
+	Eine Bedingung $C_{i,j} \in C$ spezifiert für je zwei unterschiedliche Variablen $x_i, x_j \in X$ eine Relation $R_{C_{i,j}}$ $\subseteq D_v \times D_w$.
+	Wir nennen ein Wertepaar $(d_i, d_j) \in D_i \times D_j$ für eine vorhandene Bedingung $C_{i,j}$ an die Variablen $x_i,x_j$ \textit{zulässig}, wenn $(d_i,d_j) \in R_{C_{i,j}}$,
+	ansonsten \textit{verletzt} das Wertepaar $(d_i, d_j)$ die Bedingung $C_{i,j}$ und wir nennen $(d_i,d_j)$ \textit{unzulässig}.
+	\\
+	Die Fragestellung ist nun, ob alle Variablen einem Wert aus ihrer Domäne zugewiesen werden können, so dass keine Bedingung verletzt wird?
+	\\
+	\\
+	TODO: Referenz, dass CSP NP-Schwer ist
 
 \end{Def}
 
-Seien $G1=(V_1, E_1)$ und $G2=(V_2, E_2)$ eingebettete Graphen und sei $s$ eine Graph-Zuordnung.
 \begin{Satz}
-	Theorem: Das Entscheidungsproblem  min-sum graph distance $(G_1, G_2)  \leq  \epsilon $ ist NP-Schwer
+	Theorem: Sei $\varepsilon \geq 0$. Das Entscheidungsproblem \textit{Min-Sum-Graph-Abstand}$_{(w)F}(G_1, G_2)  \leq  \varepsilon, $ ist NP-Schwer.
 \end{Satz}
 
-Sei $<X,D,C>$ eine beliebige Instanz des CSP.
+Sei $\langle X,D,C \rangle$ ein beliebiges Binary Constraint Satisfaction Problem.
+\\
+\\
+Wir repräsentieren jede Variable $x_i \in X$ durch einen Knoten $v_i \in V_1$ in $G_1$ und für jede Bedingung $C_{i,j}$ an die Variablen $x_i, x_j$
+hat $G_1$ die Kante $\{v_i, v_j\}$. Wir setzen $\varepsilon = |E_1|$.
+\\
+Sei $B_1(v_k)$ der Ball mit dem Radius $r=1$ um einen Knoten $v_k$.
+Wir betten $G_1$ so in die euklidische Ebene ein, dass sich für je zwei Knoten $x_i,x_j$ ihre $\varepsilon$ Bälle nicht berühren und
+der $\varepsilon$-Schlauch zwischen $x_i$ und $x_j$ keinen $\varepsilon$-Ball eines anderen Knoten überlappt.
+\\
+\\
+Dies lässt sich z.B. realisieren, indem wir die Knoten in $G_1$ (gleichmäßig) auf einem Kreis mit entsprechend großem Radius verteilen.
 
-Wir repräsentieren jede Variable $x_i$ durch einen Knoten $v_i$ in $G_1$.
+Jeden Wert $d_{i,a} \in D_i$ repräsentieren wir durch einen Knoten $u_{i,a}$ in $G_2$, welchen wir innerhalb des Balles $B_1(v_i)$ einbetten.
+Für jedes Wertepaar $d_{i,a} \in D_i, d_{j,b} \in D_j$ enthält $G_2$ genau dann die Kante $\{u_{i,a},u_{j,b}\}$, wenn die Wertekombination
+durch eine Bedingung an die Variablen $x_i$ und $x_j$ erlaubt ist.
+\\
+Alle einzubettenen Kanten ergeben sich direkt (als Strecken) zwischen den jeweiligen Knoten-Einbettungen.
+Insgesamt lässt sich die oben beschriebene Einbettung von $G_1$ und $G_2$ in Polynomialzeit berechnen.
+\\
+\\
+TODO: Figure XX zeigt die Konstruktion anhand eines kleinen Beispiels
+\\
+\\
+Sei $T_1(v_i,v_j)$  TODO: Röhre der Strecke definieren...
+\\
+\\
+Wir wollen nun zeigen, dass
+$$ \min_{s: G_1 \to G_2} \sum_{e \in E_1} \delta_{(w)F}(e, s(e)) \leq |E_1| * \tilde{\varepsilon} \iff \langle X,D,C \rangle \text{ ist lösbar}$$
+"$\Leftarrow$":
+Sei $\langle X,D,C \rangle$ lösbar.
+\\
+Dann existiert eine Wertezuweisung $(\tilde{d_1},\tilde{d_2},...,\tilde{d_n}) \in {D_1 \times D_2 \times ... \times D_n},$ welche keine der Bedingungen verletzt.
+\\\\
+Wir definieren eine Abbildung $\tilde{s}:G_1 \to G_2$ mit $\tilde{s}(x_i) = \tilde{d_i}$.
+\\
+\\
+Da jeder Knoten $x_i$ in $G_1$ durch $\tilde{s}$ auf einen Knoten $G_2$ abgebildet wird, liegt offensichtlich $\tilde{s}(x_i)$ in $G_2$.
+\\
+Zusätzlich impliziert eine Kante $\{v_i, v_j\}$ in $G_1$ eine Bedingung $C_{i,j}$ an die Variablen $x_i$ und $x_j$ in $\langle X,D,C \rangle$
+Da $(\tilde{d_1},\tilde{d_2},...,\tilde{d_n})$ keine Bedingung verletzt, ist $(d_i,d_j) \in R_{C_{i,j}}$ und damit existiert per Konstruktion
+die Kante ${\tilde{d_i}, \tilde{d_j}}$ in $G_2$.
+Insgesamt ist damit $\tilde{s}$ eine Graph-Zuordnung.
+\\
+\\
+Da $\tilde{s}$ Kanten in $G_1$ auf Kanten in $G_2$ abbildet, ist für jede Kante $\{x_i, x_j\}$ in $G_1$ ihr Bild $\tilde{s}(\{x_i,x_j\})$ per Konstruktion
+von $G_1$ und $G_2$ eine $\tilde{\varepsilon}$-Kanten-Platzierung, damit gilt
+$$\delta_{(w)F}(\{x_i,x_j\}, \tilde{s}({x_i,x_j})) \leq \tilde{\varepsilon}.$$
+\\
+Daraus folgt weiter, dass $$\sum_{e \in E_1} \delta_{(w)F}(e, s(e)) \leq |E_1| * \tilde{\varepsilon}. (i) $$
+\\
+Über die Identität $$\min_{s: G_1 \to G_2} \sum_{e \in E_1} \delta_{(w)F}(e, s(e)) \leq \sum_{e \in E_1} \delta_{(w)F}(e,\tilde{s}(e)) $$
+und (i) erhalten wir
+$$\min_{s: G_1 \to G_2} \sum_{e \in E_1} \delta_{(w)F}(e, s(e)) \leq |E_1| * \tilde{\varepsilon}$$
+\\
+"$\Rightarrow$":
+\\
+Sei $$\min_{s: G_1 \to G_2} \sum_{e \in E_1} \delta_{(w)F}(e, s(e)) \leq {\varepsilon}.$$
+\\
+\\
+So ist $s(e)$ für alle $e \in E_1$ eine (schwache) $\varepsilon$-Platzierung von $e$,
+da ansonsten $\delta{(w)F}(\tilde{e}, s(\tilde{e})) > \varepsilon$ für ein $\tilde{e} \in E_1$ und damit insbesondere $\sum_{{e}\in E_1} \delta_{(w)F}(e, s(e)) > \varepsilon$.
+(*)
+\\
+\\
+Zusätzlich wollen wir argumentieren, dass $s(e)$ für alle $e \in E_1$ eine (schwache) 1-Platzierung von $e$ ist.
+\\
+Angenommen, für eine Kante $\{v_i,v_j\} \in E_1$ sei $s(\{v_i, v_j\})$ keine (schwache) 1-Platzierung von $\{v_i,v_j\}$.
+So ist per Definition $\delta_{(w)F}(\{v_i,v_j\}, s(\{v_i, v_j\})) > 1$ und es trifft genau einer von 3 Fällen zu:
+\begin{enumerate}
+	\item[1)] $s(v_i) \notin B_1(v_i)$ und $s(v_j) \in B_1(v_j)$
+	\item[2)] $s(v_i) \in B_1(v_i)$ und $s(v_j) \notin B_1(v_j)$
+	\item[3)] $s(v_i) \notin B_1(v_i)$ und $s(v_j) \notin B_1(v_j)$
+\end{enumerate}
+\\
+Wir betrachten zunächst Fall 1:
+\\
+Wegen (*) liegt $s(v_i)$ innerhalb von  einer $\varepsilon$-Platzierung von $v_i$, die wir mit $C_i$ bezeichnen.
+Per Konstruktion hat $C_i$ eine Teilkomponente, welche in $B_1(v_i)$ liegt und gerade der zugehörigen $1$-Platzierung von $v_i$ entspricht und die wir mit $\tilde{C_i}$ bezeichnen.
+"\\
+\\
+Wir defninieren $\tilde{s}: G_1 \rightarrow G_2$ wie folgt:
+\begin{enumerate}
+	\item[(i)] $\tilde{s}$ bildet $v_i$ auf einen beliebigen Punkt innherhalb von $\tilde{C_1}$ ab.
+	\item[(ii)] Für alle anderen Knoten $v \in V_1$ ist $\tilde{s}(v)=s(v)$.
+\end{enumerate}
+\\
+$\tilde{s}$ ist eine Graph-Abbildung, da $s$ nach Vorraussetzung eine Graph-Abbildung ist und es sich bei $\tilde{s}(v_i)$ lediglich um eine Verschiebung
+des Bildpunktes von $s(v_i)$ entlang einer zusammenhängenden Komponente von $G_2$ handelt.
+\\
+Ferner gilt:
+\begin{enumerate}
+	\item[] $\delta_{(w)F}(e, \tilde{s}(e)) \leq \delta_{(w)F}(e, s(e))$, falls $v_i$ ein Knoten von $e$ ist, insbesondere ist
+	\item[] $\delta_{(w)F}(e, \tilde{s}(e)) < \delta_{(w)F}(e, s(e))$, falls $e = \{v_i, v_j\}$ und in allen anderen Fällen gilt
+	\item[] $\delta_{(w)F}(e, \tilde{s}(e)) = \delta_{(w)F}(e, s(e))$.
+\end{enumerate}
+Insgesamt folgt, dass
+$$\sum_{{e}\in E_1} \delta_{(w)F}(e, \tilde{s}(e)) < \sum_{{e}\in E_1} \delta_{(w)F}(e, s(e)),$$
+was im Widerspruch zu der Annahme steht, dass $s$ eine $\text{Min-Sum-Graph-Zuordnung}_{(w)F}$ ist.
+\\
+Die Argumentation für Fall 2 verläuft analog wie für Fall 1.
+Für Fall 3 kombinieren wir die Argumentationen von Fall 1 und Fall 2, in welcher die scharfe Ungleichung im Allgemeinen allerdings erst gilt,
+nachdem beide Bildpunkte $s(v_i)$ und $s(v_j)$ entsprechend versetzt wurden.
+\\
+\\
+Damit ist für eine Kante $\{v_i, v_j\} \in E_1$ ihr Bild $s(\{(v_i, v_j)\})$ stets eine 1-Platzierung von $\{v_i, v_j\}$. (**)
+\\
+\\
+Im Falle des Fréchet-Abstands gilt damit, dass ein $\text{Min-Sum-Graph-Mapping}_F$ $s: G_1 \to G_2$
+
 
 
 \newpage\null\thispagestyle{empty}\newpage
