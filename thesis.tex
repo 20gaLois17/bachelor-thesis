@@ -128,7 +128,7 @@
 		\vspace{0.5cm}
 		Prof. Dr. Maike Buchin
 		\\
-		PD Dr. Daniela Kacso
+		Dr. Daniela Kacso
 
 	\end{center}
 \end{titlepage}
@@ -168,13 +168,9 @@ Die geometrische Graphentheorie beschäftigt sich ...
 
 Wir betrachten im Allgemeinen endliche, ungerichtete Graphen, welche in den euklidischen Raum eingebettet werden.
 
-Dadurch werden Knoten zu Punkten im $ \mathbb{R}^n $ und Kanten allg. zu Strecken (mit ihren jeweiligen Knoten als Start - und Endpunkt)
-Dabei wird die Knotenmenge des Graphen als (endliche) Teilmenge des $ \mathbb{R}^n $ realisiert.
-
-Geometrische Graphen sind ... (das könnte man vllt. später erläutern)
-Daher eignen sich geometrische Graphen insbesonders um, um Netzwerke (z.B. von Straßen, Schienen) zu beschreiben.
+Geometrische Graphen in der euklidischen Ebene eignen sich in der Anwendung z.B. zur Approximation bzw. Rekonstruktion eines konkreten Netzwerkes.
+Dabei interessieren wir uns für den Vergleich mehrerer solcher Darstellungen eines Netzwerks (wie z.B. eines Straßennetztes) unter dem Aspekt ihrer Güte bezüglich der Rekonstruktion.
 \\
-Für eingebettete Graphen existieren viele bekannte Anwendungsfälle (wie z.B. Straßennetzwerke) im Falle einer Einbettung in die Ebene.
 Eine zentrale Fragestellung dabei ist, wie man Abstandsmaße auf geometrischen Graphen definiert und unter welchen Bedingungen sich dieses Maß effizient berechnen lässt.
 \\
 Um die Ählichkeit zweier eingebetter Graphen zu beschreiben, haben Akitaya et al. \cite{Akitaya} neue Abstandsmaße eingeführt und ihre Eigenschaften untersucht.
@@ -182,13 +178,16 @@ Um die Ählichkeit zweier eingebetter Graphen zu beschreiben, haben Akitaya et a
 Besonderheit bei diesen Abstandmaßen ist, dass sie auf einer stetigen Zuordnung zwischen den zu vergleichenden Graphen basieren und somit auch die Topologie der Graphen berücksichtigen.
 Das resultierende Maß beschreibt eine sogenannte "bottleneck-distance".
 \\
-Darauf aufbauend haben \cite{Buchin} Buchin et al. ein weiteres Abstandsmaß definiert, den sogenannten "min-sum graph distance".
+Darauf aufbauend haben \cite{Buchin} Buchin et al. ein weiteres Abstandsmaß definiert, welches mögliche lokale Optimierungen miteinbezieht.
 Vor dem Hintergrund, dass die "directed (weak) graph distance" eine bottle-neck distance beschreibt, wird bei der min-sum graph distance das Ziel verfolgt, lokale Abstände zu berücksichtigen.
 [Ein kleiner Text über den Stand der Wissenschaft]
 
-In dieser Arbeit werden wir uns mit der min-sum graph distance beschäftigen.
+Mit diesem Abstandsmaß wollen wir uns in dieser Arbeit hauptsächlich beschäftigen.
+In Kapitel 2 fassen wir dazu zunächst die Notation und die zentralen Begriffe aus [2] zusammen, welche den Grundstein für die Auseinandersetzung mit dem Min-Sum-Graph-Abstand bilden.
+In Kapitel 3 werden wir den Min-Sum-Graph-Abstand motivieren und einführen.
 
-- worum geht es bei Abstandsmaßen auf geometrischen Graphen?
+Zur Berechnung des Min-Sum-Graph-Abstands haben Buchin et al haben in [1] einen Algorithmus beschrieben, welcher unter gewissen Einschränkungen in Polynomialzeit läuft.
+Bevor wir uns abschließend diesem Algorithmus widmen, werden wir die NP-Schwerheit des Min-Sum-Graph-Abstands für allgemeine Graphen beweisen.
 \newpage
 
 TODO: Allgemein sollten wir eine Einbettung beschreiben.
@@ -198,19 +197,30 @@ TODO: Allgemein sollten wir eine Einbettung beschreiben.
 \end{Def}
 
 \begin{Def}
-	Geometrischer Graph
-	Unter einem geometrischen Graphen verstehen wir einen abstrakten Graphen $G=(V, E)$ zusammen mit einer Einbettung $ \omega $
+	Grundbegriffe
+	Unter einem \textit{geometrischen Graphen} verstehen wir einen (abstrakten) Graphen $G=(V, E)$ zusammen mit seiner Einbettung als Teilmenge des $ \mathbb{R}^n $, wobei
     	\begin{enumerate}
-		\item[1)] Jeder Knoten $v \in V $ auf einen eindeutigen Punkt in $ \mathbb{R}^n $ repräsentiert wird.
-		\item[2)] Jede Kante ${u,v} \in E$ durch das eindeutige Geradenstück der Punkte im $ \mathbb{R}^n. $ repräsentiert wird.
+		\item[1)] jeder Knoten $v \in V $ durch einen Punkt in $ \mathbb{R}^n $ repräsentiert wird und
+		\item[2)] jede Kante ${u,v} \in E$ durch die Strecke der Punkte im $ \mathbb{R}^n $ repräsentiert wird.
     	\end{enumerate}
-	Wenn wir im weiteren Verlauf von einem geometrischen Graphen $G$ sprechen, so unterscheiden wir grundsätzlich nicht zwischen seiner Konnektivität -
-	welche durch die abstrakte Beschreibung des Graphen gegeben ist - und seiner konkreten Repräsentation als Teilmenge des euklidischen Raums.
+
+	Wir betrachten den $ \mathbb{R}^n $ hier grundsätzlich als metrischen Raum versehen mit der euklidischen Norm.
+	\\
+	Wenn wir im weiteren Verlauf von einem geometrischen Graphen $G$ sprechen, so unterscheiden wir nicht explizit zwischen der abstrakten
+	Beschreibung und der konkreten Einbettung von $G$ als Teilmenge des euklidischen Raums.
+	\\
+	\\
+	Für einen Knoten $v \in V$ definieren wir den \textit{$\varepsilon$-Ball} $B_{\varepsilon}(v)$ als die Menge
+	$\{x \in \mathbb{R}^n.: \|v-x\| \leq \varepsilon\}$
+	und für eine Kante $e \in E$ definieren wir den \textit{$\varepsilon$-Schlauch} $T_{\varepsilon}(e)$ als die Menge
+	\\
+	$\{x \in \mathbb{R}^n: \min_{a \in e}\|a-x\| \leq \varepsilon\}$
+
 \end{Def}
 
 \begin{Def}
 	Einfacher Weg in einem Geometrischen Graphen
-	Ein \textit{einfacher Weg} in einem geometrischen Graphen $G$ ist eine stetige Abbildung $ \phi: [0, 1] \rightarrow G$, welche keinen Knoten
+	Ein \textit{einfacher Weg} in einem geometrischen Graphen $G$ ist eine stetige Abbildung $ \phi: [0, 1] \to G$, welche keinen Knoten
 	von $G$ mehr als einmal besucht.
 \end{Def}
 
@@ -287,7 +297,6 @@ TODO: Hier wäre ein Beispiel angebracht
 	so verbindet, dass $\delta_{wF}(e, P) \leq \varepsilon$.
 	\\
 	In diesem Fall nennen wir $C_u$ und $C_v$ \textit{schwach voneinander erreichbar}.
-
 \end{Def}
 
 TODO: Wir müssen irgendwo den Begriff des geometrischen Graphen einführen.
@@ -353,14 +362,14 @@ Jeden Wert $d_{i,a} \in D_i$ repräsentieren wir durch einen Knoten $u_{i,a}$ in
 Für jedes Wertepaar $d_{i,a} \in D_i, d_{j,b} \in D_j$ enthält $G_2$ genau dann die Kante $\{u_{i,a},u_{j,b}\}$, wenn die Wertekombination
 durch eine Bedingung an die Variablen $x_i$ und $x_j$ erlaubt ist.
 \\
-Alle einzubettenen Kanten ergeben sich direkt (als Strecken) zwischen den jeweiligen Knoten-Einbettungen.
-Insgesamt lässt sich die oben beschriebene Einbettung von $G_1$ und $G_2$ in Polynomialzeit berechnen.
+Alle einzubettenen Kanten ergeben sich direkt (als Strecken) zwischen den jeweiligen Knoten-Einbettungen und
+damit behaupten wir, dass sich die oben beschriebene Einbettung von $G_1$ und $G_2$ in Polynomialzeit berechnen lässt.
 \\
 \\
 TODO: Figure XX zeigt die Konstruktion anhand eines kleinen Beispiels
 \\
 \\
-Sei $T_1(v_i,v_j)$  TODO: Röhre der Strecke definieren...
+Sei $T_1(v_i,v_j)$  TODO: Schlauch der Strecke definieren...
 \\
 \\
 Wir wollen nun zeigen, dass
@@ -373,11 +382,11 @@ Dann existiert eine Wertezuweisung $(\tilde{d_1},\tilde{d_2},...,\tilde{d_n}) \i
 Wir definieren eine Abbildung $\tilde{s}:G_1 \to G_2$ mit $\tilde{s}(x_i) = \tilde{d_i}$.
 \\
 \\
-Da jeder Knoten $x_i$ in $G_1$ durch $\tilde{s}$ auf einen Knoten $G_2$ abgebildet wird, liegt offensichtlich $\tilde{s}(x_i)$ in $G_2$.
+Da jeder Knoten $x_i \in V_1$ durch $\tilde{s}$ auf einen Knoten in $G_2$ abgebildet wird, liegt $\tilde{s}(x_i)$ in $G_2$.
 \\
-Zusätzlich impliziert eine Kante $\{v_i, v_j\}$ in $G_1$ eine Bedingung $C_{i,j}$ an die Variablen $x_i$ und $x_j$ in $\langle X,D,C \rangle$
+Zusätzlich impliziert eine Kante $\{v_i, v_j\} \in E_1$ eine Bedingung $C_{i,j}$ an die Variablen $x_i$ und $x_j$ in $\langle X,D,C \rangle$
 Da $(\tilde{d_1},\tilde{d_2},...,\tilde{d_n})$ keine Bedingung verletzt, ist $(d_i,d_j) \in R_{C_{i,j}}$ und damit existiert per Konstruktion
-die Kante ${\tilde{d_i}, \tilde{d_j}}$ in $G_2$.
+die Kante $\{u_{\tilde{d_i}}, u_{\tilde{d_j}}\} \in E_2$.
 Insgesamt ist damit $\tilde{s}$ eine Graph-Zuordnung.
 \\
 \\
@@ -444,9 +453,55 @@ nachdem beide Bildpunkte $s(v_i)$ und $s(v_j)$ entsprechend versetzt wurden.
 Damit ist für eine Kante $\{v_i, v_j\} \in E_1$ ihr Bild $s(\{(v_i, v_j)\})$ stets eine 1-Platzierung von $\{v_i, v_j\}$. (**)
 \\
 \\
-Im Falle des Fréchet-Abstands gilt damit, dass ein $\text{Min-Sum-Graph-Mapping}_F$ $s: G_1 \to G_2$
+Im Falle des Fréchet-Abstands gilt damit, dass wir durch eine $\text{Min-Sum-Graph-Zuordnung}_F$ $s: G_1 \to G_2$ das Bild Kante unter s
+$s(\{v_i, v_j\})$ eindeutig mit einer Kante $\{u_{i,a}, u_{j,b}\} \in E_2$ identifizieren können. Dabei handelt es sich nämlich genau um die Kante, welche
+die entsprechenden 1-Platzierungen der Knoten $v_i$ und $v_j$ verbindet und in $T_1(\{v_i, v_j\})$ liegt.
+Durch (**) ist aufgrund der Konstruktion stets gewährleistet, dass für die Kante $\{u_{i,a}, u_{j,b}\} \in E_2$, ihren assoziierten Wertezuweisungen $(d_{i,a}, d_{j,b}) \in D_i \times D_j$
+und die Bedingung $C_{i,j} \in C$ an die Variablen $x_i, x_j$ gilt:
+$$(d_{i,a},d_{j,b}) \in R_{C_{i,j}}$$
+Damit ist (im Falle des Fréchet-Abstands) $\langle X,D,C \rangle$ erfüllbar.
+\\
+\\
+Für den schwachen Fréchet-Abstand gilt das Argument, dass wir das Bild einer Kante in $E_1$ unter $s$ eindeutig mit einer Kante in $E_2$ identifizieren können, allgemein nicht.
 
-
+Dies liegt daran, dass grundsätzlich jedes beliebige Knotenpaar $u_{i,a}, u_{i,b} \in V_2$ mit $u_{i,a} \in B_1(v_i)$, $u_{i,b} \in B_1(v_j)$ eine Kante in $E_2$ haben kann.
+\\
+So existieren potentielle Kantenzüge bestehend aus mindestens 3 Kanten innerhalb von $T_1(\{v_i, v_j\}$ mit Startpunkt in $B_1(v_i)$ und Endpunkt in $B_1(v_j)$.
+Ein solcher Kantenzug $P$ ist dabei stets auch eine 1-Platzierung der Kante $\{v_i, v_j\}$, also ist
+$$ \delta_{wF}(\{v_i, v_j\}, P) \leq 1.$$
+\\
+\\
+TODO: Skizze
+\\
+\\
+Um dies zu umgehen, fügen wir mittig auf jeder Kante $\{v_i, v_j\} \in E_1$ einen zusätzlichen Knoten $v_{ij}$ in $G_1$ ein,
+so dass $B_1(v_{ij}) \cap B_1(v_i) = B_1(v_{ij}) \cap B_1(v_j) = \emptyset$.
+\\
+\\
+Hinweis: Hierfür können wir initial $\varepsilon = \max \{m_1, 4\}$ setzen.
+\\
+\\
+Die Kante $\{v_i, v_j\}$ zerfällt dabei in die zwei Kanten $\{v_i, v_{ij}\}$, $\{v_{ij},v_j\}$ und
+jede 1-Platzierung von $\{v_i, v_j\}$ zerfällt dabei zwei 1-Platzierungen der Kanten $\{v_i, v_{ij}\}$ und $\{v_{ij}, v_j$\}.
+\\
+\\
+TODO: Skizze
+\\
+\\
+TODO: Einleuchtende Erklärung, warum das Problem jetzt gelöst ist.
+\\
+\\
+Wir bezeichnen mit $\tilde{G_1}=(\tilde{V_1}, \tilde{E_1})$ den Graphen, den wir durch die oben beschriebene Transormation erhalten.
+\\
+Gilt nun
+$$ \min_{s: \tilde{G_1} \to G_2} \sum_{e \in E_1} \delta_{wF}(e, s(e)) \leq 2m_1, $$
+so erhalten wir für jede Kante $\{v_i, v_j\} \in E_1$ und ihre Zerlegung $\{v_i, v_{ij}\},\{v_{ij}, v_j\} \in \tilde{E_2}$
+über $s(\{v_i, v_{ij}\},\{v_{ij}, v_j\})$ eine eindeutig assoziierte Kante $\{u_{i,a}, u_{i,b}\} \in E_2$.
+Die mit $\{u_{i,a}, u_{i,b}\} \in E_2$ assoziierte Wertezuweisung verletzt dabei nicht die Bedinung an Variablen $x_i, x_j$.
+\\
+\\
+Damit ist $\langle X,D,C \rangle$ lösbar \qed
+\\
 
 \newpage\null\thispagestyle{empty}\newpage
 %   Eventuell eine Leerseite vor der Literaturangabe, falls diese sonst auf einer Rückseite angegeben würde. (Seitennummer muss ungerade sein!)
