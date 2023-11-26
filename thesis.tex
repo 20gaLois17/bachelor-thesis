@@ -192,7 +192,6 @@ Bevor wir uns abschließend diesem Algorithmus widmen, werden wir die NP-Schwerh
 
 \section{Grundlagen}
 
-\subsection{Grundbegriffe der (geometrischen) Graphentheorie}
 \begin{Def}
 	Grundbegriffe
 	Unter einem \textit{geometrischen Graphen} verstehen wir einen ungerichteten Graphen $G=(V, E)$ zusammen mit seiner Einbettung als Teilmenge des $ \mathbb{R}^n $, wobei
@@ -438,12 +437,13 @@ Zusätzlich wollen wir argumentieren, dass $s(e)$ für alle $e \in E_1$ eine (sc
 Angenommen, für eine Kante $\{v_i,v_j\} \in E_1$ sei $s(\{v_i, v_j\})$ keine (schwache) 1-Platzierung von $\{v_i,v_j\}$.
 So ist per Definition $\delta_{(w)F}(\{v_i,v_j\}, s(\{v_i, v_j\})) > 1$
 und es trifft genau einer von 3 Fällen zu:
+
 \begin{enumerate}
 	\item[1)] $s(v_i) \notin B_1(v_i)$ und $s(v_j) \in B_1(v_j)$
 	\item[2)] $s(v_i) \in B_1(v_i)$ und $s(v_j) \notin B_1(v_j)$
 	\item[3)] $s(v_i) \notin B_1(v_i)$ und $s(v_j) \notin B_1(v_j)$
 \end{enumerate}
-\\
+
 Wir betrachten zunächst Fall 1:
 \\
 Wegen (*) liegt $s(v_i)$ innerhalb von  einer $\varepsilon$-Platzierung von $v_i$, die wir mit $C_i$ bezeichnen.
@@ -455,7 +455,7 @@ Wir defninieren $\tilde{s}: G_1 \rightarrow G_2$ wie folgt:
 	\item[(i)] $\tilde{s}$ bildet $v_i$ auf einen beliebigen Punkt innherhalb von $\tilde{C_1}$ ab.
 	\item[(ii)] Für alle anderen Knoten $v \in V_1$ ist $\tilde{s}(v)=s(v)$.
 \end{enumerate}
-\\
+
 $\tilde{s}$ ist eine Graph-Abbildung, da $s$ nach Vorraussetzung eine Graph-Abbildung ist und es sich bei $\tilde{s}(v_i)$ lediglich um eine Verschiebung
 des Bildpunktes von $s(v_i)$ entlang einer zusammenhängenden Komponente von $G_2$ handelt.
 \\
@@ -490,8 +490,8 @@ Für den schwachen Fréchet-Abstand gilt das Argument, dass wir das Bild einer K
 
 Dies liegt daran, dass grundsätzlich jedes beliebige Knotenpaar $u_{i,a}, u_{i,b} \in V_2$ mit $u_{i,a} \in B_1(v_i)$, $u_{i,b} \in B_1(v_j)$ eine Kante in $E_2$ haben kann.
 \\
-So existieren potentielle Kantenzüge bestehend aus mindestens 3 Kanten innerhalb von $T_1(\{v_i, v_j\}$ mit Startpunkt in $B_1(v_i)$ und Endpunkt in $B_1(v_j)$.
-Ein solcher Kantenzug $P$ ist dabei stets auch eine (schwache) 1-Platzierung der Kante $\{v_i, v_j\}$, also ist
+So existieren potentielle Kantenzüge bestehend aus mindestens 3 Kanten innerhalb von $T_1(\{v_i, v_j\}$, deren Startpunkt in $B_1(v_i)$ und deren Endpunkt in $B_1(v_j)$ liegt.
+Ein solcher Kantenzug $P$ ist dabei stets auch eine schwache 1-Platzierung der Kante $\{v_i, v_j\}$, dass heißt
 $$ \delta_{wF}(\{v_i, v_j\}, P) \leq 1.$$
 \\
 \\
@@ -502,7 +502,7 @@ Um dies zu umgehen, fügen wir mittig auf jeder Kante $\{v_i, v_j\} \in E_1$ ein
 so dass $B_1(v_{ij}) \cap B_1(v_i) = B_1(v_{ij}) \cap B_1(v_j) = \emptyset$.
 \\
 \\
-Hinweis: Hierfür können wir initial $\varepsilon = \max \{m_1, 4\}$ setzen.
+Hinweis: Hierfür können wir initial auch $\varepsilon = \max \{m_1, 4\}$ fordern.
 \\
 \\
 Die Kante $\{v_i, v_j\}$ zerfällt dabei in die zwei Kanten $\{v_i, v_{ij}\}$, $\{v_{ij},v_j\}$ und
@@ -512,10 +512,10 @@ jede 1-Platzierung von $\{v_i, v_j\}$ zerfällt dabei zwei 1-Platzierungen der K
 TODO: Skizze
 \\
 \\
-TODO: Einleuchtende Erklärung, warum das Problem jetzt gelöst ist.
+TODO: Ergänze Erklärung, warum das Problem jetzt gelöst ist.
 \\
 \\
-Wir bezeichnen mit $\tilde{G_1}=(\tilde{V_1}, \tilde{E_1})$ den Graphen, den wir durch die oben beschriebene Transormation erhalten.
+Wir bezeichnen mit $\tilde{G_1}=(\tilde{V_1}, \tilde{E_1})$ den Graphen, den wir durch die oben beschriebene Transformation erhalten.
 \\
 Gilt nun
 $$ \min_{s: \tilde{G_1} \to G_2} \sum_{e \in E_1} \delta_{wF}(e, s(e)) \leq 2m_1, $$
@@ -529,7 +529,7 @@ Damit ist $\langle X,D,C \rangle$ lösbar. \qed
 \\
 \section{Ein polynomieller Laufzeit-Algorithmus}
 
-Im Nachfolgenden werden wir den Algorithmus aus [1] beschreiben und diesen anhand eines kleinen Beispiels ausführen.
+Im Nachfolgenden werden wir den Algorithmus aus [1] beschreiben und diesen anhand eines anschaulichen Beispiels ausführen.
 Wir setzen nun voraus, dass $G_1$ ein Baum ist.
 \\
 \section{Ausblick}
@@ -538,7 +538,7 @@ Min-Sum-Graph-Abstand$_{(w)F}$ beschäftigt. Dabei haben wir die Frage der NP-Sc
 Graphen geklärt und einen Polynomialzeit-Algorithmus zur Berechnung dieses Abstandsmaßes beschrieben.
 Buchin et al. weisen darauf hin, dass sich der Min-Sum-Graph-Abstand$_{(w)F}$ auch auf planaren Graphen und
 auf Bäumen (ohne die im Algorithmus beschriebene Einschränkung) nicht effizient berechnen lässt.
-Ein Formaler Beweis dieser Annahmen steht dabei noch aus.
+Formale Beweise dieser Annahmen stehen dabei noch aus.
 \\
 \\
 Allgemein beschreibt der Min-Sum-Graph-Abstand eine ganze Klasse von Abstandsmaßen auf Graphen, deren Mitglieder sich durch die Wahl
