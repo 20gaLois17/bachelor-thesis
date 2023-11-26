@@ -190,24 +190,21 @@ Zur Berechnung des Min-Sum-Graph-Abstands haben Buchin et al haben in [1] einen 
 Bevor wir uns abschließend diesem Algorithmus widmen, werden wir die NP-Schwerheit des Min-Sum-Graph-Abstands für allgemeine Graphen beweisen.
 \newpage
 
-TODO: Allgemein sollten wir eine Einbettung beschreiben.
+\section{Grundlagen}
 
-\begin{Def}
-	Eingebetter Graph
-\end{Def}
-
+\subsection{Grundbegriffe der (geometrischen) Graphentheorie}
 \begin{Def}
 	Grundbegriffe
-	Unter einem \textit{geometrischen Graphen} verstehen wir einen (abstrakten) Graphen $G=(V, E)$ zusammen mit seiner Einbettung als Teilmenge des $ \mathbb{R}^n $, wobei
+	Unter einem \textit{geometrischen Graphen} verstehen wir einen ungerichteten Graphen $G=(V, E)$ zusammen mit seiner Einbettung als Teilmenge des $ \mathbb{R}^n $, wobei
     	\begin{enumerate}
 		\item[1)] jeder Knoten $v \in V $ durch einen Punkt in $ \mathbb{R}^n $ repräsentiert wird und
 		\item[2)] jede Kante ${u,v} \in E$ durch die Strecke der Punkte im $ \mathbb{R}^n $ repräsentiert wird.
     	\end{enumerate}
 
-	Wir betrachten den $ \mathbb{R}^n $ hier grundsätzlich als metrischen Raum versehen mit der euklidischen Norm.
+	Wir betrachten den $ \mathbb{R}^n $ hier grundsätzlich als metrischen Raum, versehen mit der euklidischen Norm.
 	\\
-	Wenn wir im weiteren Verlauf von einem geometrischen Graphen $G$ sprechen, so unterscheiden wir nicht explizit zwischen der abstrakten
-	Beschreibung und der konkreten Einbettung von $G$ als Teilmenge des euklidischen Raums.
+	Wenn wir im weiteren Verlauf von einem geometrischen Graphen $G$ sprechen, so unterscheiden wir nicht explizit zwischen seiner abstrakten
+	Beschreibung und seiner konkreten Einbettung als Teilmenge des euklidischen Raums.
 	\\
 	\\
 	Für einen Knoten $v \in V$ definieren wir den \textit{$\varepsilon$-Ball} $B_{\varepsilon}(v)$ als die Menge
@@ -215,14 +212,14 @@ TODO: Allgemein sollten wir eine Einbettung beschreiben.
 	und für eine Kante $e \in E$ definieren wir den \textit{$\varepsilon$-Schlauch} $T_{\varepsilon}(e)$ als die Menge
 	\\
 	$\{x \in \mathbb{R}^n: \min_{a \in e}\|a-x\| \leq \varepsilon\}$
-
 \end{Def}
 
 \begin{Def}
 	Einfacher Weg in einem Geometrischen Graphen
-	Ein \textit{einfacher Weg} in einem geometrischen Graphen $G$ ist eine stetige Abbildung $ \phi: [0, 1] \to G$, welche keinen Knoten
-	von $G$ mehr als einmal besucht.
+	Ein \textit{einfacher Weg} in einem geometrischen Graphen $G$ ist eine stetige und injektive Abbildung $ \phi: [0, 1] \to G$.
 \end{Def}
+
+\subsection{Abstände zwischen geometrischen Graphen}
 
 Seien $ G_1=(V_1, E_1) $ und $ G_2=(V_2, E_2) $ gradlinig eingebettete Graphen.
 \begin{Def}
@@ -258,7 +255,7 @@ TODO: Hier wäre ein Beispiel angebracht
 	wir schreiben in diesem Fall auch \textit{(schwacher) Fréchet-Abstand} - adressieren wollen.
 	\\
 	\\
-	Zur Anschauung stelle man sich $f$ und $g$ als Kurven im $\mathbb{R}^2$ vor. Der euklidische Abstand zwischen zwischen $f$ und $g$ zum Zeitpunkt $t_0 \in [0,1]$ entspricht genau der Länge der Strecke
+	Zur Anschauung des Fréchet-Abstands stelle man sich $f$ und $g$ als Kurven im $\mathbb{R}^2$ vor. Der (euklidische) Abstand zwischen $f$ und $g$ zum Zeitpunkt $t_0 \in [0,1]$ entspricht gerade der Länge der Strecke
 	mit den Endpunkten $f(t_0)$ und $g(t_0)$. Bei dem Fréchet-Abstand dürfen wir eine Kurve reparametrisieren, um den maximal angenommenen euklidischen Abstand zwischen $f$ und $g$ zu minimieren.
 	Wir werden so einen maximal angenommen Abstand sinngemäß auch als \textit{Flaschenhals-Abstand} bezeichnen.\\
 
@@ -273,6 +270,7 @@ TODO: Hier wäre ein Beispiel angebracht
 	Da der Fréchet-Abstand symmetrisch ist !TODO: REFERENZ oder beweisen!, spielt es hierbei keine Rolle, welche der beiden Kurven wir reparametrisieren.
 \end{Def}
 
+
 \begin{Def}
 	Abstände auf Graphen
 	Wir definieren den \textit{gerichteten Graph-Abstand} $ \vec{\delta}_G $ als
@@ -280,8 +278,6 @@ TODO: Hier wäre ein Beispiel angebracht
 	und den \textit{gerichteten schwachen Graph-Abstand} $ \vec{\delta}_{wG} $ als
 	$$  \vec{\delta}_{wG}(G_1,G_2) = \inf_{s: G_1 \to G_2} \: \max_{e \in E_1} \vec{\delta}_{wF}(e, s(e)), $$
 	wobei s sich über alle Graph-Zuordnungen erstreckt.
-	\\
-	\\The connectivity of a graph is an important measure of its resilience as a network.
 \end{Def}
 
 \begin{Def}
@@ -299,27 +295,58 @@ TODO: Hier wäre ein Beispiel angebracht
 	In diesem Fall nennen wir $C_u$ und $C_v$ \textit{schwach voneinander erreichbar}.
 \end{Def}
 
-TODO: Wir müssen irgendwo den Begriff des geometrischen Graphen einführen.
-Wir müssen darüber hinaus entscheiden, ab welchem Punkt wir nur noch von geometrischen Graphen ausgehen.
+\subsection{Lokale Optimierungen von Graph-Abbildungen}
 
-TODO: Wir müssen den Begriff des Min-Sum-Graph-Abstands definieren
+Grundsätzlich können viele Graph-Zuordnungen $s: G_1 \to G_2$ existieren, welche den gerichteten (schwachen) Graph-Abstand einhalten.
+Aufgrund der inherenten Eigenschaft des gerichteten (schwachen) Graph-Abstands, ebenfalls einen Flaschenhals-Abstand zu beschreiben, gibt uns dieses Maß im
+Allgemeinen relativ wenig Aufschluss über die Güte einzelner Zuordnungen der Kanten in $G_1$ bezüglich der Graph-Zuordnung $s$.
+\\
+\\
+Im Anwendungsfall kann man sich z.B. auch mehrere Rekonstruktionen $G_{1,1}, ..., G_{1,n}$ eines Netzwerkes $G_2$ vorstellen.
+Naheliegend wäre dabei die Frage, welche der Rekonstruktionen dem urpsprünglichen Netzwerk $G_2$ am ähnlichsten ist.
+Der gerichtete (schwache) Graph-Abstand zwischen einem $G_{1i}$ $(i \in \{1,...,n\})$ und $G_2$ gibt uns dabei relativ wenig Aufschluss.
+Im schlimmsten Fall haben evlt. sogar alle $G_{1i}$ denselben Flaschenhals-Abstand zu $G_2$, da sie denselben (entscheidend) großen Fehler bei der Rekonstruktion von $G_2$ haben.
+\\
+\\
+Dies motiviert die Einführung eines weiteren Abstandsmaßes auf Graphen, welches auch lokale Optimierungen der Zuordnungen von Kanten in Betracht zieht.
+\\
+\\
+Wir merken jedoch an dieser Stelle an, dass im Allgemeinen eine Graph-Zuordnung $\tilde{s}: G_1 \to G_2$, die jede Kante $e \in E_1$ optimal bezüglich des (schwachen)
+Fréchet-Abstands auf $G_2$ abbildet, so dass $\delta_{(w)F}(e, \tilde{s}(e)) \leq \delta_{(w)F}(e, s(e))$, nicht existiert (siehe dazu [2], Seite xx).
+\\
+\\
+Als Alternative bietet es sich an, die Summe der Abstände zwischen den Kanten in $G_1$ und ihren Bildern in $G_2$ unter der Graph-Abbildung als Optimalitätskriterum zu betrachten.
 
-\newpage
-Nun haben wir ausreichend Grundlagen, um uns dem min-sum graph distance widmen zu können.
+\section{Der Min-Sum-Graph-Abstand}
+
 \begin{Def}
 	Min-Sum-Graph-Abstand (engl. min-sum graph distance)
 
-	Allgemein bezei
-
+	Für $G_1$ und $G_2$ definieren wir definieren ihren \textit{Min-Sum-Graph-Abstand}$_{dist}(G_1, G_2)$ als
+	$$\min_{s: G_1 \to G_2} \sum_{e \in E_1} dist(e, s(e))$$
+	wobei sich $s$ über alle Graph-Abbildungen zwischen $G_1$ und $G_2$ erstreckt und $dist$ ein beliebiges Abstandsmaß zwischen Kurven im euklidischen Raum repräsentiert.
+	\\
+	\\
+	Verwenden wir den (schwachen) Fréchet-Abstand als Abstandsmaß zwischen Kurven, so bezeichnen wir entsprechend den \textit{Min-Sum-Graph-Abstand}$_{(w)F}(G_1, G_2)$ als
+	$$\min_{s: G_1 \to G_2} \sum_{e \in E_1} \delta_{(w)F}(e, s(e)).$$
+	\\
+	\\
+	Prinzipiell fordern wir nicht, dass $s$ dabei den (schwachen) gerichteten Graph-Abstand zwischen $G_1$ und $G_2$ einhält.
+	Es macht im Einzelfall jedoch durchaus Sinn, sich bei der Bestimmung des \textit{Min-Sum-Graph-Abstands} lediglich auf die Graph-Abbildungen zu beschränken,
+	welche den gerichteten (schwachen) Graph-Abstand einhalten.
 \end{Def}
-Im weiteren Verlauf werden wir, wenn nicht anders ausgewiesen, für den min-sum graph distance die (weak) Fréchet Distance als Abstandsmaß implizieren.
 
-\newpage
-NP-Schwerheit des Min-Sum Graph-Abstands
+TODO: Etwas zur Symmetrie schreiben.
+\\
+\\
+\textit{Min-Sum-Graph-Abstand}$_{(w)F}(G_1, G_2)$ ist im Allgemeinen nicht symmetrisch.
+\\
+\\
+\subsection{NP-Schwerheit des Min-Sum Graph-Abstands}
 
 Bevor wir uns mit dem erwähnten Polynomialzeit-Algorithmus beschäftigen, wollen wir die NP-Schwerheit der min-sum graph distance für allgemeine Graphen zeigen.
 Ein ähnliches Setting finden wir in [2] (Seite). Hier wird die NP-Schwerheit des Graph-Abstands für allgemeine Graphen über eine Reduktion von
-\textit{Binary Constraint Satifaction Problem (CSP)} gezeigt. In unserem Beweis für NP-Schwerheit orientieren wir uns zu wesentlichen Teilen an der Konstruktion in [2].
+\textit{Binary Constraint Satifaction Problem (CSP)} gezeigt. In unserem Beweis für NP-Schwerheit orientieren wir uns im Wesentlichen an dieser Konstruktion.
 
 \begin{Def}
 	Binary Constraint Satisfaction Problem
@@ -338,7 +365,6 @@ Ein ähnliches Setting finden wir in [2] (Seite). Hier wird die NP-Schwerheit de
 	\\
 	\\
 	TODO: Referenz, dass CSP NP-Schwer ist
-
 \end{Def}
 
 \begin{Satz}
@@ -367,9 +393,6 @@ damit behaupten wir, dass sich die oben beschriebene Einbettung von $G_1$ und $G
 \\
 \\
 TODO: Figure XX zeigt die Konstruktion anhand eines kleinen Beispiels
-\\
-\\
-Sei $T_1(v_i,v_j)$  TODO: Schlauch der Strecke definieren...
 \\
 \\
 Wir wollen nun zeigen, dass
@@ -406,14 +429,15 @@ Sei $$\min_{s: G_1 \to G_2} \sum_{e \in E_1} \delta_{(w)F}(e, s(e)) \leq {\varep
 \\
 \\
 So ist $s(e)$ für alle $e \in E_1$ eine (schwache) $\varepsilon$-Platzierung von $e$,
-da ansonsten $\delta{(w)F}(\tilde{e}, s(\tilde{e})) > \varepsilon$ für ein $\tilde{e} \in E_1$ und damit insbesondere $\sum_{{e}\in E_1} \delta_{(w)F}(e, s(e)) > \varepsilon$.
+da ansonsten $\delta_{(w)F}(\tilde{e}, s(\tilde{e})) > \varepsilon$ für ein $\tilde{e} \in E_1$ und damit insbesondere $\sum_{{e}\in E_1} \delta_{(w)F}(e, s(e)) > \varepsilon$.
 (*)
 \\
 \\
 Zusätzlich wollen wir argumentieren, dass $s(e)$ für alle $e \in E_1$ eine (schwache) 1-Platzierung von $e$ ist.
 \\
 Angenommen, für eine Kante $\{v_i,v_j\} \in E_1$ sei $s(\{v_i, v_j\})$ keine (schwache) 1-Platzierung von $\{v_i,v_j\}$.
-So ist per Definition $\delta_{(w)F}(\{v_i,v_j\}, s(\{v_i, v_j\})) > 1$ und es trifft genau einer von 3 Fällen zu:
+So ist per Definition $\delta_{(w)F}(\{v_i,v_j\}, s(\{v_i, v_j\})) > 1$
+und es trifft genau einer von 3 Fällen zu:
 \begin{enumerate}
 	\item[1)] $s(v_i) \notin B_1(v_i)$ und $s(v_j) \in B_1(v_j)$
 	\item[2)] $s(v_i) \in B_1(v_i)$ und $s(v_j) \notin B_1(v_j)$
@@ -424,7 +448,7 @@ Wir betrachten zunächst Fall 1:
 \\
 Wegen (*) liegt $s(v_i)$ innerhalb von  einer $\varepsilon$-Platzierung von $v_i$, die wir mit $C_i$ bezeichnen.
 Per Konstruktion hat $C_i$ eine Teilkomponente, welche in $B_1(v_i)$ liegt und gerade der zugehörigen $1$-Platzierung von $v_i$ entspricht und die wir mit $\tilde{C_i}$ bezeichnen.
-"\\
+\\
 \\
 Wir defninieren $\tilde{s}: G_1 \rightarrow G_2$ wie folgt:
 \begin{enumerate}
@@ -437,9 +461,9 @@ des Bildpunktes von $s(v_i)$ entlang einer zusammenhängenden Komponente von $G_
 \\
 Ferner gilt:
 \begin{enumerate}
-	\item[] $\delta_{(w)F}(e, \tilde{s}(e)) \leq \delta_{(w)F}(e, s(e))$, falls $v_i$ ein Knoten von $e$ ist, insbesondere ist
-	\item[] $\delta_{(w)F}(e, \tilde{s}(e)) < \delta_{(w)F}(e, s(e))$, falls $e = \{v_i, v_j\}$ und in allen anderen Fällen gilt
-	\item[] $\delta_{(w)F}(e, \tilde{s}(e)) = \delta_{(w)F}(e, s(e))$.
+	\item[1] $\delta_{(w)F}(e, \tilde{s}(e)) \leq \delta_{(w)F}(e, s(e))$, falls $v_i$ ein Knoten von $e$ ist, insbesondere ist
+	\item[2] $\delta_{(w)F}(e, \tilde{s}(e)) < \delta_{(w)F}(e, s(e))$, falls $e = \{v_i, v_j\}$ und in allen anderen Fällen gilt
+	\item[3] $\delta_{(w)F}(e, \tilde{s}(e)) = \delta_{(w)F}(e, s(e))$.
 \end{enumerate}
 Insgesamt folgt, dass
 $$\sum_{{e}\in E_1} \delta_{(w)F}(e, \tilde{s}(e)) < \sum_{{e}\in E_1} \delta_{(w)F}(e, s(e)),$$
@@ -467,7 +491,7 @@ Für den schwachen Fréchet-Abstand gilt das Argument, dass wir das Bild einer K
 Dies liegt daran, dass grundsätzlich jedes beliebige Knotenpaar $u_{i,a}, u_{i,b} \in V_2$ mit $u_{i,a} \in B_1(v_i)$, $u_{i,b} \in B_1(v_j)$ eine Kante in $E_2$ haben kann.
 \\
 So existieren potentielle Kantenzüge bestehend aus mindestens 3 Kanten innerhalb von $T_1(\{v_i, v_j\}$ mit Startpunkt in $B_1(v_i)$ und Endpunkt in $B_1(v_j)$.
-Ein solcher Kantenzug $P$ ist dabei stets auch eine 1-Platzierung der Kante $\{v_i, v_j\}$, also ist
+Ein solcher Kantenzug $P$ ist dabei stets auch eine (schwache) 1-Platzierung der Kante $\{v_i, v_j\}$, also ist
 $$ \delta_{wF}(\{v_i, v_j\}, P) \leq 1.$$
 \\
 \\
@@ -497,12 +521,30 @@ Gilt nun
 $$ \min_{s: \tilde{G_1} \to G_2} \sum_{e \in E_1} \delta_{wF}(e, s(e)) \leq 2m_1, $$
 so erhalten wir für jede Kante $\{v_i, v_j\} \in E_1$ und ihre Zerlegung $\{v_i, v_{ij}\},\{v_{ij}, v_j\} \in \tilde{E_2}$
 über $s(\{v_i, v_{ij}\},\{v_{ij}, v_j\})$ eine eindeutig assoziierte Kante $\{u_{i,a}, u_{i,b}\} \in E_2$.
-Die mit $\{u_{i,a}, u_{i,b}\} \in E_2$ assoziierte Wertezuweisung verletzt dabei nicht die Bedinung an Variablen $x_i, x_j$.
+Die mit $\{u_{i,a}, u_{j,b}\} \in E_2$ assoziierte Wertezuweisung $(d_{i,a}, d_{j,b}$ verletzt dabei nicht die Bedinung an die Variablen $x_i, x_j$.
+Daraus ergibt sich insgesamt eine Wertezuweisung, welche keine Bedingung verletzt.
 \\
 \\
-Damit ist $\langle X,D,C \rangle$ lösbar \qed
+Damit ist $\langle X,D,C \rangle$ lösbar. \qed
 \\
+\section{Ein polynomieller Laufzeit-Algorithmus}
 
+Im Nachfolgenden werden wir den Algorithmus aus [1] beschreiben und diesen anhand eines kleinen Beispiels ausführen.
+Wir setzen nun voraus, dass $G_1$ ein Baum ist.
+\\
+\section{Ausblick}
+In dieser Arbeit haben wir uns, motiviert durch die Eigenschaften des (schwachen) gerichteten Graph-Abstands, mit dem
+Min-Sum-Graph-Abstand$_{(w)F}$ beschäftigt. Dabei haben wir die Frage der NP-Schwerheit des Min-Sum-Graph-Abstands$_{(w)F}$ für allgemeine
+Graphen geklärt und einen Polynomialzeit-Algorithmus zur Berechnung dieses Abstandsmaßes beschrieben.
+Buchin et al. weisen darauf hin, dass sich der Min-Sum-Graph-Abstand$_{(w)F}$ auch auf planaren Graphen und
+auf Bäumen (ohne die im Algorithmus beschriebene Einschränkung) nicht effizient berechnen lässt.
+Ein Formaler Beweis dieser Annahmen steht dabei noch aus.
+\\
+\\
+Allgemein beschreibt der Min-Sum-Graph-Abstand eine ganze Klasse von Abstandsmaßen auf Graphen, deren Mitglieder sich durch die Wahl
+eines geeigneten Abstandsmaßes auf Kurven zu erkennen geben.
+Wir haben unter Betrachtung des diskreten Fréchet-Abstands ein weiteres Mitglied dieser oben beschriebenen Klasse kennengelern.
+Dabei gehen wir allerdings davon aus, nur einen kleinen Blick über den Tellerrand der noch offenen Möglichkeiten gegeben zu haben.
 \newpage\null\thispagestyle{empty}\newpage
 %   Eventuell eine Leerseite vor der Literaturangabe, falls diese sonst auf einer Rückseite angegeben würde. (Seitennummer muss ungerade sein!)
 
