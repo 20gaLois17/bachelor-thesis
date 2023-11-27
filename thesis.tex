@@ -194,7 +194,7 @@ Bevor wir uns abschließend diesem Algorithmus widmen, werden wir die NP-Schwerh
 
 \begin{Def}
 	Grundbegriffe
-	Unter einem \textit{geometrischen Graphen} verstehen wir einen ungerichteten Graphen $G=(V, E)$ zusammen mit seiner Einbettung als Teilmenge des $ \mathbb{R}^n $, wobei
+	Unter einem \textit{geometrischen Graphen} verstehen wir einen endlichen, ungerichteten Graphen $G=(V, E)$ zusammen mit seiner Einbettung als Teilmenge des $ \mathbb{R}^n $, wobei
     	\begin{enumerate}
 		\item[1)] jeder Knoten $v \in V $ durch einen Punkt in $ \mathbb{R}^n $ repräsentiert wird und
 		\item[2)] jede Kante ${u,v} \in E$ durch die Strecke der Punkte im $ \mathbb{R}^n $ repräsentiert wird.
@@ -209,8 +209,7 @@ Bevor wir uns abschließend diesem Algorithmus widmen, werden wir die NP-Schwerh
 	Für einen Knoten $v \in V$ definieren wir den \textit{$\varepsilon$-Ball} $B_{\varepsilon}(v)$ als die Menge
 	$\{x \in \mathbb{R}^n.: \|v-x\| \leq \varepsilon\}$
 	und für eine Kante $e \in E$ definieren wir den \textit{$\varepsilon$-Schlauch} $T_{\varepsilon}(e)$ als die Menge
-	\\
-	$\{x \in \mathbb{R}^n: \min_{a \in e}\|a-x\| \leq \varepsilon\}$
+	$\{x \in \mathbb{R}^n: \min_{a \in e}\|a-x\| \leq \varepsilon\}$.
 \end{Def}
 
 \begin{Def}
@@ -220,7 +219,8 @@ Bevor wir uns abschließend diesem Algorithmus widmen, werden wir die NP-Schwerh
 
 \subsection{Abstände zwischen geometrischen Graphen}
 
-Seien $ G_1=(V_1, E_1) $ und $ G_2=(V_2, E_2) $ gradlinig eingebettete Graphen.
+Seien $ G_1=(V_1, E_1) $ und $ G_2=(V_2, E_2) $ für den weiteren Verlauf geometrische Graphen mit
+$n_1 = |V_1|, m_1 = |E_1|, n_2 = |V_2|$ und $m_2 = |E_2|$.
 \begin{Def}
 	Graph-Zuordnung (engl. graph mapping)
 	Wir nennen eine Abbildung $s: G_1 \to G_2 $ eine \textit{Graph-Zuordnung}, falls
@@ -540,10 +540,14 @@ TODO: Eine Bemerkung zur der Verallgemeinerung des Beweises?
 \section{Ein polynomieller Laufzeit-Algorithmus}
 
 Im Nachfolgenden werden wir zur Berechnung des Min-Sum-Graph-Abstands$_{(w)F}$ den Algorithmus aus [1] beschreiben und diesen anhand eines konkreten Beispiels ausführen.
-Dabei setzen nun voraus, dass $G_1$ ein Baum - also ein kreisfreier und zusammenhängender Graph - ist.
+Sei $G_1$ von nun an ein Baum, also kreisfrei und zusammenhängend.
 
 \subsection{Einschränkungen an die Graph-Abbildung}
-TODO: Optionale Einschränkung, dass wir nur alle $s$ betrachten, die einen Flaschenhals-Abstand einhalten.
+In der Definition des Min-Sum-Graph-Abstands$_{(w)F}(G_1, G_2)$ ziehen wir stets alle Graph-Abbildungen $s: G_1 \to G_2$ in Betracht.
+
+Die Menge aller Graph-Abbildungen zwischen $G_1$ und $G_2$ werden wir mit zwei Einschränkungen versehen.
+Die erste Einschränkung ist dabei optional und die zweite Einschränkung ist notwendig für die Polynomialzeit des Algorithmus.
+\\
 \\
 Da wir hier zur Berechnung der Abstände zwischen einer Kante $\{u,v\} \in E_1$ und ihrem Bild $s(\{u,v\})$ unter einer Graph-Zuordnung $s$ den (schwachen) Fréchet-Abstand verwenden,
 hat die Wahl der Bilder $s(u)$ und $s(v)$, innerhalb der entsprechenden $\varepsilon$-Platzierungen von $u$ und $v$, eine direkte Auswirkung auf die summierten Abstände.
@@ -555,20 +559,22 @@ TODO: Skizze
 \\
 \\
 Erklärung zu der Skizze
-Für einen Baum wie in Skizze xx. haben wir eine Vorauswahl von möglichen Knoten-Bildern unter einer Graph-Abbildung getroffen, welche auch eine
-$\varepsilon$-Platzierung zwischen dem Baum und dem in rot gezeichneten Graphen ist.
+Für einen Baum wie in Skizze xx. haben wir eine Vorauswahl von möglichen Knoten-Bildern unter einer unter einer $\varepsilon$-Platzierung zwischen den skizzierten Graphen getroffen.
+Entsprechend soll der in blau gezeichnete Graph auf den in rot gezeichneten Graphen abgebildet werden.
 \\
 \\
 Um dies zu umgehen, werden wir für jede
-
 
 \subsection{Allgemeine Beschreibung des Algorithmus}
 Nehmen wir nun an, dass wir für jede $\varepsilon$-Platzierung eines Knotens in $G_1$ die Anzahl der möglichen
 
 Das Kernproblem bei der Konstruktion einer Graph-Zuordnung, welche den Min-Sum-Graph-Abstands$_{(w)F}$ einhält ist, dass eine Kante $\{u,v\} \in E_1$
-Um $ \min_{s: G_1 \to G_2} \sum_{e \in E_1} \delta_{(w)F}(e, s(e))$ zu berechnen, werden wir iterativ eine Graph-Zuordnung $\tilde{s}: G_1: G_2$ konstruieren,
+\\
+um $ \min_{s: G_1 \to G_2} \sum_{e \in E_1} \delta_{(w)F}(e, s(e))$ zu berechnen, werden wir iterativ eine Graph-Zuordnung $\tilde{s}: G_1: G_2$ konstruieren,
 welche das Optimalitätskriterium, dass für alle Kanten für einen Teilgraph $G_1$ und eine Auswahl von $\varepsilon$-Kantenplatzierung einhält.
 $\varepsilon$ ist dabei mindestens so groß wie der gerichtete (schwache) Graph-Abstand von $G_1$ und $G_2$.
+\\
+Da $G_1$ ein Baum ist, können wir diese Zuordnungen jedoch so an den Knoten durchführen, dass ein Teil von $G_1$ stets optimal zugeordnet ist.
 
 
 \section{Ausblick}
