@@ -287,14 +287,18 @@ TODO: Hier wäre ein Beispiel angebracht
 	\\
 	In diesem Fall nennen wir $C_u$ und $C_v$ \textit{voneinander erreichbar}.
 	\\
+	Eine \textit{$\varepsilon$-Platzierung von $G_1$} ist eine Graph-Zuordnung $s: G_1 \to G_2$, so dass $s$ jede Kante $e \in G_1$ auf eine $\varepsilon$-Platzierung von $e$ abbildet.
 	\\
 	Eine schwache $\varepsilon$-Platzierung einer Kante $e = \{u,v\} \in E_1$ ist ein Weg $P$ in $G_2$, welcher eine Platzierung $C_u$ von $u$ mit einer Platzierung $C_v$ von $v$
 	so verbindet, dass $\delta_{wF}(e, P) \leq \varepsilon$.
 	\\
+	Eine \textit{$\varepsilon$-Platzierung von $G_1$} ist eine Graph-Zuordnung $s: G_1 \to G_2$, so dass $s$ jede Kante $e \in G_1$ auf eine $\varepsilon$-Platzierung von $e$ abbildet.
 	In diesem Fall nennen wir $C_u$ und $C_v$ \textit{schwach voneinander erreichbar}.
+	\\
+	Eine schwache \textit{$\varepsilon$-Platzierung von $G_1$} ist eine Graph-Zuordnung $s: G_1 \to G_2$, so dass $s$ jede Kante $e \in G_1$ auf eine schwache $\varepsilon$-Platzierung von $e$ abbildet.
 \end{Def}
 
-\subsection{Lokale Optimierungen von Graph-Abbildungen}
+\subsection{Lokale Optimierungen von Graph-Zuordnung}
 
 Grundsätzlich können viele Graph-Zuordnungen $s: G_1 \to G_2$ existieren, welche den gerichteten (schwachen) Graph-Abstand einhalten.
 Aufgrund der inherenten Eigenschaft des gerichteten (schwachen) Graph-Abstands, ebenfalls einen Flaschenhals-Abstand zu beschreiben, gibt uns dieses Maß im
@@ -314,16 +318,17 @@ Wir merken jedoch an dieser Stelle an, dass im Allgemeinen eine Graph-Zuordnung 
 Fréchet-Abstands auf $G_2$ abbildet, so dass $\delta_{(w)F}(e, \tilde{s}(e)) \leq \delta_{(w)F}(e, s(e))$, nicht existiert (siehe dazu [2], Seite xx).
 \\
 \\
-Als Alternative bietet es sich an, die Summe der Abstände zwischen den Kanten in $G_1$ und ihren Bildern in $G_2$ unter der Graph-Abbildung als Optimalitätskriterum zu betrachten.
+Als Alternative bietet es sich an, die Summe der Abstände zwischen den Kanten in $G_1$ und ihren Bildern in $G_2$ unter der Graph-Zuordnung als Optimalitätskriterum zu betrachten.
 
 \section{Der Min-Sum-Graph-Abstand}
 
 \begin{Def}
 	Min-Sum-Graph-Abstand (engl. min-sum graph distance)
 
-	Für $G_1$ und $G_2$ definieren wir definieren ihren \textit{Min-Sum-Graph-Abstand}$_{dist}(G_1, G_2)$ als
+	Für die Graphen $G_1$ und $G_2$ definieren wir ihren \textit{Min-Sum-Graph-Abstand}$_{dist}(G_1, G_2)$ als
 	$$\min_{s: G_1 \to G_2} \sum_{e \in E_1} dist(e, s(e))$$
-	wobei sich $s$ über alle Graph-Abbildungen zwischen $G_1$ und $G_2$ erstreckt und $dist$ ein beliebiges Abstandsmaß zwischen Kurven im euklidischen Raum repräsentiert.
+	wobei sich $s$ über alle Graph-Zuordnungen von $G_1$ nach $G_2$ erstreckt und $dist$ ein für den Vergleich von $e \in E_1$ mit $s(e)$
+	passendes Abstandsmaß (z.B. zwischen Kurven im euklidischen Raum) repräsentiert.
 	\\
 	\\
 	Verwenden wir den (schwachen) Fréchet-Abstand als Abstandsmaß zwischen Kurven, so bezeichnen wir entsprechend den \textit{Min-Sum-Graph-Abstand}$_{(w)F}(G_1, G_2)$ als
@@ -331,7 +336,7 @@ Als Alternative bietet es sich an, die Summe der Abstände zwischen den Kanten i
 	\\
 	\\
 	Prinzipiell fordern wir nicht, dass $s$ dabei den (schwachen) gerichteten Graph-Abstand zwischen $G_1$ und $G_2$ einhält.
-	Es macht im Einzelfall jedoch durchaus Sinn, sich bei der Bestimmung des \textit{Min-Sum-Graph-Abstands} lediglich auf die Graph-Abbildungen zu beschränken,
+	Es macht im Einzelfall jedoch durchaus Sinn, sich bei der Bestimmung des \textit{Min-Sum-Graph-Abstands} lediglich auf die Graph-Zuordnung zu beschränken,
 	welche den gerichteten (schwachen) Graph-Abstand einhalten.
 \end{Def}
 
@@ -341,9 +346,9 @@ TODO: Etwas zur Symmetrie schreiben.
 \textit{Min-Sum-Graph-Abstand}$_{(w)F}(G_1, G_2)$ ist im Allgemeinen nicht symmetrisch.
 \\
 \\
-\subsection{NP-Schwerheit des Min-Sum Graph-Abstands}
+\subsection{Zur Komplexität des Min-Sum-Graph-Abstands$_{(w)F}$}
 
-Bevor wir uns mit dem erwähnten Polynomialzeit-Algorithmus beschäftigen, wollen wir die NP-Schwerheit der min-sum graph distance für allgemeine Graphen zeigen.
+Bevor wir uns mit dem erwähnten Polynomialzeit-Algorithmus beschäftigen, wollen wir zeigen, dass die Berechnung dese für allgemeine Graphen zeigen.
 Ein ähnliches Setting finden wir in [2] (Seite). Hier wird die NP-Schwerheit des Graph-Abstands für allgemeine Graphen über eine Reduktion von
 \textit{Binary Constraint Satifaction Problem (CSP)} gezeigt. In unserem Beweis für NP-Schwerheit orientieren wir uns im Wesentlichen an dieser Konstruktion.
 
@@ -367,7 +372,7 @@ Ein ähnliches Setting finden wir in [2] (Seite). Hier wird die NP-Schwerheit de
 \end{Def}
 
 \begin{Satz}
-	Theorem: Sei $\varepsilon \geq 0$. Das Entscheidungsproblem \textit{Min-Sum-Graph-Abstand}$_{(w)F}(G_1, G_2)  \leq  \varepsilon, $ ist NP-Schwer.
+	Theorem: Sei $\varepsilon \geq 0$. Das Entscheidungsproblem $$ \textit{Min-Sum-Graph-Abstand}_{(w)F}(G_1, G_2) \leq  \varepsilon $$ ist NP-Schwer.
 \end{Satz}
 
 Sei $\langle X,D,C \rangle$ ein beliebiges Binary Constraint Satisfaction Problem.
@@ -456,7 +461,7 @@ Wir defninieren $\tilde{s}: G_1 \rightarrow G_2$ wie folgt:
 	\item[(ii)] Für alle anderen Knoten $v \in V_1$ ist $\tilde{s}(v)=s(v)$.
 \end{enumerate}
 
-$\tilde{s}$ ist eine Graph-Abbildung, da $s$ nach Vorraussetzung eine Graph-Abbildung ist und es sich bei $\tilde{s}(v_i)$ lediglich um eine Verschiebung
+$\tilde{s}$ ist eine Graph-Zuordnung, da $s$ nach Vorraussetzung eine Graph-Zuordnung ist und es sich bei $\tilde{s}(v_i)$ lediglich um eine Verschiebung
 des Bildpunktes von $s(v_i)$ entlang einer zusammenhängenden Komponente von $G_2$ handelt.
 \\
 Ferner gilt:
@@ -519,19 +524,53 @@ Wir bezeichnen mit $\tilde{G_1}=(\tilde{V_1}, \tilde{E_1})$ den Graphen, den wir
 \\
 Gilt nun
 $$ \min_{s: \tilde{G_1} \to G_2} \sum_{e \in E_1} \delta_{wF}(e, s(e)) \leq 2m_1, $$
-so erhalten wir für jede Kante $\{v_i, v_j\} \in E_1$ und ihre Zerlegung $\{v_i, v_{ij}\},\{v_{ij}, v_j\} \in \tilde{E_2}$
-über $s(\{v_i, v_{ij}\},\{v_{ij}, v_j\})$ eine eindeutig assoziierte Kante $\{u_{i,a}, u_{i,b}\} \in E_2$.
-Die mit $\{u_{i,a}, u_{j,b}\} \in E_2$ assoziierte Wertezuweisung $(d_{i,a}, d_{j,b}$ verletzt dabei nicht die Bedinung an die Variablen $x_i, x_j$.
+so erhalten wir für jede Kante $\{v_i, v_j\} \in E_1$ und ihre Zerlegung $\{v_i, v_{ij}\},\{v_{ij}, v_j\} \in \tilde{E_1}$
+über $s(\{v_i, v_{ij}\},\{v_{ij}, v_j\})$ die eindeutige, assoziierte Kante $\{u_{i,a}, u_{i,b}\} \in E_2$.
+Die durch $\{u_{i,a}, u_{j,b}\} \in E_2$ repräsentierte Wertezuweisung $(d_{i,a}, d_{j,b})$ verletzt dabei nicht die Bedingung an die
+durch $v_i$ und $v_j$ repräsentierten Variablen $x_i, x_j$.
 Daraus ergibt sich insgesamt eine Wertezuweisung, welche keine Bedingung verletzt.
 \\
 \\
 Damit ist $\langle X,D,C \rangle$ lösbar. \qed
 \\
+\\
+TODO: Eine Bemerkung zur der Verallgemeinerung des Beweises?
+\\
+\\
 \section{Ein polynomieller Laufzeit-Algorithmus}
 
-Im Nachfolgenden werden wir den Algorithmus aus [1] beschreiben und diesen anhand eines anschaulichen Beispiels ausführen.
-Wir setzen nun voraus, dass $G_1$ ein Baum ist.
+Im Nachfolgenden werden wir zur Berechnung des Min-Sum-Graph-Abstands$_{(w)F}$ den Algorithmus aus [1] beschreiben und diesen anhand eines konkreten Beispiels ausführen.
+Dabei setzen nun voraus, dass $G_1$ ein Baum - also ein kreisfreier und zusammenhängender Graph - ist.
+
+\subsection{Einschränkungen an die Graph-Abbildung}
+TODO: Optionale Einschränkung, dass wir nur alle $s$ betrachten, die einen Flaschenhals-Abstand einhalten.
 \\
+Da wir hier zur Berechnung der Abstände zwischen einer Kante $\{u,v\} \in E_1$ und ihrem Bild $s(\{u,v\})$ unter einer Graph-Zuordnung $s$ den (schwachen) Fréchet-Abstand verwenden,
+hat die Wahl der Bilder $s(u)$ und $s(v)$, innerhalb der entsprechenden $\varepsilon$-Platzierungen von $u$ und $v$, eine direkte Auswirkung auf die summierten Abstände.
+Anders ausgedrückt: Im Gegensatz zum gerichteten (schwachen) Graph-Abstand ist $\sum_{e \in E_1}\delta_{(w)F}(e, s(e))$ nicht invariant unter dem Freiheitsgrad, den $s$
+bei der Wahl der Bildpunkte in $G_2$, $s(u)$ und $s(v)$ hat.
+\\
+\\
+TODO: Skizze
+\\
+\\
+Erklärung zu der Skizze
+Für einen Baum wie in Skizze xx. haben wir eine Vorauswahl von möglichen Knoten-Bildern unter einer Graph-Abbildung getroffen, welche auch eine
+$\varepsilon$-Platzierung zwischen dem Baum und dem in rot gezeichneten Graphen ist.
+\\
+\\
+Um dies zu umgehen, werden wir für jede
+
+
+\subsection{Allgemeine Beschreibung des Algorithmus}
+Nehmen wir nun an, dass wir für jede $\varepsilon$-Platzierung eines Knotens in $G_1$ die Anzahl der möglichen
+
+Das Kernproblem bei der Konstruktion einer Graph-Zuordnung, welche den Min-Sum-Graph-Abstands$_{(w)F}$ einhält ist, dass eine Kante $\{u,v\} \in E_1$
+Um $ \min_{s: G_1 \to G_2} \sum_{e \in E_1} \delta_{(w)F}(e, s(e))$ zu berechnen, werden wir iterativ eine Graph-Zuordnung $\tilde{s}: G_1: G_2$ konstruieren,
+welche das Optimalitätskriterium, dass für alle Kanten für einen Teilgraph $G_1$ und eine Auswahl von $\varepsilon$-Kantenplatzierung einhält.
+$\varepsilon$ ist dabei mindestens so groß wie der gerichtete (schwache) Graph-Abstand von $G_1$ und $G_2$.
+
+
 \section{Ausblick}
 In dieser Arbeit haben wir uns, motiviert durch die Eigenschaften des (schwachen) gerichteten Graph-Abstands, mit dem
 Min-Sum-Graph-Abstand$_{(w)F}$ beschäftigt. Dabei haben wir die Frage der NP-Schwerheit des Min-Sum-Graph-Abstands$_{(w)F}$ für allgemeine
@@ -542,9 +581,9 @@ Formale Beweise dieser Annahmen stehen dabei noch aus.
 \\
 \\
 Allgemein beschreibt der Min-Sum-Graph-Abstand eine ganze Klasse von Abstandsmaßen auf Graphen, deren Mitglieder sich durch die Wahl
-eines geeigneten Abstandsmaßes auf Kurven zu erkennen geben.
-Wir haben unter Betrachtung des diskreten Fréchet-Abstands ein weiteres Mitglied dieser oben beschriebenen Klasse kennengelern.
-Dabei gehen wir allerdings davon aus, nur einen kleinen Blick über den Tellerrand der noch offenen Möglichkeiten gegeben zu haben.
+eines geeigneten Abstandsmaßes auf Kurven unterscheiden.
+Wir haben bei unserer Betrachtung des diskreten Fréchet-Abstands ein weiteres Mitglied dieser oben beschriebenen Klasse kennengelernt
+Dabei gehen wir allerdings davon aus, nur einen kleinen Blick über den Tellerrand der noch offenen Möglichkeiten gewagt zu haben.
 \newpage\null\thispagestyle{empty}\newpage
 %   Eventuell eine Leerseite vor der Literaturangabe, falls diese sonst auf einer Rückseite angegeben würde. (Seitennummer muss ungerade sein!)
 
