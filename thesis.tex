@@ -302,7 +302,7 @@ TODO: Hier wäre ein Beispiel angebracht
 
 Grundsätzlich können viele Graph-Zuordnungen $s: G_1 \to G_2$ existieren, welche den gerichteten (schwachen) Graph-Abstand einhalten.
 Aufgrund der inherenten Eigenschaft des gerichteten (schwachen) Graph-Abstands, ebenfalls einen Flaschenhals-Abstand zu beschreiben, gibt uns dieses Maß im
-Allgemeinen relativ wenig Aufschluss über die Güte einzelner Zuordnungen der Kanten in $G_1$ bezüglich der Graph-Zuordnung $s$.
+Allgemeinen relativ wenig Aufschluss über die Güte einzelner Zuordnungen der Kanten in $G_1$ unter der Graph-Zuordnung $s$.
 \\
 \\
 Im Anwendungsfall kann man sich z.B. auch mehrere Rekonstruktionen $G_{1,1}, ..., G_{1,n}$ eines Netzwerkes $G_2$ vorstellen.
@@ -537,18 +537,19 @@ Damit ist $\langle X,D,C \rangle$ lösbar. \qed
 TODO: Eine Bemerkung zur der Verallgemeinerung des Beweises?
 \\
 \\
-\section{Ein polynomieller Laufzeit-Algorithmus}
+\section{Ein polynomieller Algorithmus}
 
 Im Nachfolgenden werden wir zur Berechnung des Min-Sum-Graph-Abstands$_{(w)F}$ den Algorithmus aus [1] beschreiben und diesen anhand eines konkreten Beispiels ausführen.
 Sei $G_1$ von nun an ein Baum, also kreisfrei und zusammenhängend.
 
-\subsection{Einschränkungen an die Graph-Abbildung}
-In der Definition des Min-Sum-Graph-Abstands$_{(w)F}(G_1, G_2)$ ziehen wir stets alle Graph-Abbildungen $s: G_1 \to G_2$ in Betracht.
+\subsection{Einschränkungen an die Graph-Zuordnungen} \label{Einschränkungen}
+In der Definition des Min-Sum-Graph-Abstands$_{(w)F}(G_1, G_2)$ ziehen wir stets alle Graph-Zuordnungen $s: G_1 \to G_2$ in Betracht.
 
-Die Menge aller Graph-Abbildungen zwischen $G_1$ und $G_2$ werden wir mit zwei Einschränkungen versehen.
-Die erste Einschränkung ist dabei optional und die zweite Einschränkung ist notwendig für die Polynomialzeit des Algorithmus.
-\\
-\\
+Die Menge aller Graph-Zuordnungen zwischen $G_1$ und $G_2$ werden wir mit zwei Einschränkungen versehen.
+Die erste Einschränkung ist dabei optional und die zweite Einschränkung ist notwendig, um die polynomielle Laufzeit des Algorithmus zu gewährleisten.
+\subsubsection{Erste Einschränkung}
+hallo
+\subsubsection{Zweite Einschränkung} \label {Zweite Einschränkung}
 Da wir hier zur Berechnung der Abstände zwischen einer Kante $\{u,v\} \in E_1$ und ihrem Bild $s(\{u,v\})$ unter einer Graph-Zuordnung $s$ den (schwachen) Fréchet-Abstand verwenden,
 hat die Wahl der Bilder $s(u)$ und $s(v)$, innerhalb der entsprechenden $\varepsilon$-Platzierungen von $u$ und $v$, eine direkte Auswirkung auf die summierten Abstände.
 Anders ausgedrückt: Im Gegensatz zum gerichteten (schwachen) Graph-Abstand ist $\sum_{e \in E_1}\delta_{(w)F}(e, s(e))$ nicht invariant unter dem Freiheitsgrad, den $s$
@@ -560,14 +561,37 @@ TODO: Skizze
 \\
 Erklärung zu der Skizze
 Für einen Baum wie in Skizze xx. haben wir eine Vorauswahl von möglichen Knoten-Bildern unter einer unter einer $\varepsilon$-Platzierung zwischen den skizzierten Graphen getroffen.
-Entsprechend soll der in blau gezeichnete Graph auf den in rot gezeichneten Graphen abgebildet werden.
+Dabei soll der in blaue gezeichnete Baum auf den in rot gezeichneten Graphen abgebildet werden.
 \\
 \\
-Um dies zu umgehen, werden wir für jede
+Um dies zu umgehen, werden wir für einen Knoten $u \in E_1$ sein Bild unter einer Graph-Zuordnung für jede seiner $\varepsilon$-Platzierung fixieren.
+Als Fixpunkt wählen wir dafür einen Punkt in der $\varepsilon$-Platzierung mit minimalem Abstand zu $u$.
 
-\subsection{Allgemeine Beschreibung des Algorithmus}
-Nehmen wir nun an, dass wir für jede $\varepsilon$-Platzierung eines Knotens in $G_1$ die Anzahl der möglichen
+\subsection{Grundidee des Algorithmus}
+Wir setzen nun die beiden Einschränkungen aus \ref{Einschränkungen} voraus.
 
+Um nun den Min-Sum-Graph-Abstand$_{(w)F}(G_1,G_2)$ zu berechnen, konstruieren wir unter den Einschränkungen eine Graph-Zuordnung $s$, welche das Optimalitätskriterium erfüllt.
+
+Dafür sind folgende Schritte notwenig:
+
+\subsection{Schritt 0}
+Vorbereitung der ersten Einschränkung
+\\
+Da wir eine Graph-Zuordnung konstruieren wollen, die neben dem Min-Sum-Graph-Abstand$_{(w)F}(G_1, G_2)$ auch den gerichteten (schwachen) Graph-Abstand von $G_1$ nach $G_2$
+einhält, müssen wir diesen zunächst berechnen.
+
+Dabei initialisieren wir $\varepsilon$ entsprechend dem gerichteten (schwachen) Graph-Abstand.
+\subsubsection{Schritt 1}
+Berechnung der $\varepsilon$-Platzierungen und ihrer Fixpunkte (bezüglich \ref{Zweite Einschränkung}) für alle Knoten in $G_1$.
+
+\subsubsection{Schritt 2}
+Berechnung der Erreichbarkeit zwischen allen Knoten und ihren Nachbarn in $G_1$.
+\subsubsection{Schritt 3}
+Konstruktion von $s$, so dass sie das Optimalitätskriterium erfüllt, also dass für eine beliebige Graph-Zuordnung $\tilde{s}: G_1 \to G_2$ gilt:
+$\sum_{e \in E_1}\delta_{(w)F}(e, s(e)) \leq \sum_{e \in E_1}\delta_{(w)F}(e, \tilde{s}(e))$.
+
+Für eine $\varepsilon$-Platzierung eines Knotens in $G_1$ existieren grundsätzlich
+Nehmen wir nun an, dass wir für eine $\varepsilon$-Platzierung eines Knotens in $G_1$ die Anzahl der möglichen
 Das Kernproblem bei der Konstruktion einer Graph-Zuordnung, welche den Min-Sum-Graph-Abstands$_{(w)F}$ einhält ist, dass eine Kante $\{u,v\} \in E_1$
 \\
 um $ \min_{s: G_1 \to G_2} \sum_{e \in E_1} \delta_{(w)F}(e, s(e))$ zu berechnen, werden wir iterativ eine Graph-Zuordnung $\tilde{s}: G_1: G_2$ konstruieren,
@@ -580,15 +604,17 @@ Da $G_1$ ein Baum ist, können wir diese Zuordnungen jedoch so an den Knoten dur
 \section{Ausblick}
 In dieser Arbeit haben wir uns, motiviert durch die Eigenschaften des (schwachen) gerichteten Graph-Abstands, mit dem
 Min-Sum-Graph-Abstand$_{(w)F}$ beschäftigt. Dabei haben wir die Frage der NP-Schwerheit des Min-Sum-Graph-Abstands$_{(w)F}$ für allgemeine
-Graphen geklärt und einen Polynomialzeit-Algorithmus zur Berechnung dieses Abstandsmaßes beschrieben.
-Buchin et al. weisen darauf hin, dass sich der Min-Sum-Graph-Abstand$_{(w)F}$ auch auf planaren Graphen und
-auf Bäumen (ohne die im Algorithmus beschriebene Einschränkung) nicht effizient berechnen lässt.
+Graphen geklärt und einen Polynomialzeit-Algorithmus zur Berechnung von Min-Sum-Graph-Abstand$_{(w)F}(G_1, G_2)$ beschrieben, sofern $G_1$ ein Baum ist
+und wir die Menge der Graph-Zuordnungen (wie in \ref{Einschränkungen} beschrieben) einschränken.
+
+Buchin et al. gehen des Weiteren davon aus, dass sich der Min-Sum-Graph-Abstand$_{(w)F}$ auch auf planaren Graphen und
+auf Bäumen ohne die notwendige Einschränkung (aus \ref{Zweite Einschränkung}) ebenfalls NP-Schwer ist.
 Formale Beweise dieser Annahmen stehen dabei noch aus.
 \\
 \\
-Allgemein beschreibt der Min-Sum-Graph-Abstand eine ganze Klasse von Abstandsmaßen auf Graphen, deren Mitglieder sich durch die Wahl
-eines geeigneten Abstandsmaßes auf Kurven unterscheiden.
-Wir haben bei unserer Betrachtung des diskreten Fréchet-Abstands ein weiteres Mitglied dieser oben beschriebenen Klasse kennengelernt
+Allgemein beschreibt der Min-Sum-Graph-Abstand$_{dist}$ eine ganze Klasse von Abstandsmaßen auf Graphen, deren Mitglieder sich durch die Wahl
+eines geeigneten Abstandsmaßes für die Messung der Kanten-Zuordnungen unterscheiden.
+Wir haben bei unserer Betrachtung des diskreten Fréchet-Abstands ein weiteres Mitglied dieser oben beschriebenen Klasse kennengelernt.
 Dabei gehen wir allerdings davon aus, nur einen kleinen Blick über den Tellerrand der noch offenen Möglichkeiten gewagt zu haben.
 \newpage\null\thispagestyle{empty}\newpage
 %   Eventuell eine Leerseite vor der Literaturangabe, falls diese sonst auf einer Rückseite angegeben würde. (Seitennummer muss ungerade sein!)
