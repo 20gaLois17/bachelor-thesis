@@ -543,12 +543,19 @@ Im Nachfolgenden werden wir zur Berechnung des Min-Sum-Graph-Abstands$_{(w)F}$ d
 Sei $G_1$ von nun an ein Baum, also kreisfrei und zusammenhängend.
 
 \subsection{Einschränkungen an die Graph-Zuordnungen} \label{Einschränkungen}
-In der Definition des Min-Sum-Graph-Abstands$_{(w)F}(G_1, G_2)$ ziehen wir stets alle Graph-Zuordnungen $s: G_1 \to G_2$ in Betracht.
-
-Die Menge aller Graph-Zuordnungen zwischen $G_1$ und $G_2$ werden wir mit zwei Einschränkungen versehen.
+In der Definition des Min-Sum-Graph-Abstands$_{(w)F}(G_1, G_2)$ ziehen wir alle Graph-Zuordnungen $s: G_1 \to G_2$ in Betracht.
+Im weiteren Verlauf werden wir diese Menge mit zwei Einschränkungen versehen.
 Die erste Einschränkung ist dabei optional und die zweite Einschränkung ist notwendig, um die polynomielle Laufzeit des Algorithmus zu gewährleisten.
+
 \subsubsection{Erste Einschränkung}
-hallo
+Wir haben den Begriff des Min-Sum-Graph-Abstands primär vor dem Hintergrund motiviert, optimale Graph-Zuordnungen auf geometrischen Graphen zu betrachten,
+die bereits einen Flaschenhals-Abstand wie den gerichteten (schwachen) Graph-Abstand einhalten.
+Um diesen Bezug zu erhalten, werden wir die in Betrachtung zu ziehenden Graph-Zuordnungen zunächst auf die Menge
+$S = \{s: G_1 \to G_2 \text{ $|$ } s$ ist eine (schwache) $\varepsilon$-Platzierung von $G_1$ nach $G_2\}$ beschränken.
+\\
+Grundsätzlich ist dabei $\varepsilon \geq \vec{\delta}_{(w)F}(G_1, G_2)$ zu fordern, da eine $\varepsilon$-Platzierung von $G_1$ nach $G_2$ für $\varepsilon < \vec{\delta}_{(w)F}(G_1,G_2)$
+nicht existiert. Dies folgt direkt aus der Defintion des gerichteten (schwachen) Graph-Abstands.
+\\
 \subsubsection{Zweite Einschränkung} \label {Zweite Einschränkung}
 Da wir hier zur Berechnung der Abstände zwischen einer Kante $\{u,v\} \in E_1$ und ihrem Bild $s(\{u,v\})$ unter einer Graph-Zuordnung $s$ den (schwachen) Fréchet-Abstand verwenden,
 hat die Wahl der Bilder $s(u)$ und $s(v)$, innerhalb der entsprechenden $\varepsilon$-Platzierungen von $u$ und $v$, eine direkte Auswirkung auf die summierten Abstände.
@@ -568,25 +575,83 @@ Um dies zu umgehen, werden wir für einen Knoten $u \in E_1$ sein Bild unter ein
 Als Fixpunkt wählen wir dafür einen Punkt in der $\varepsilon$-Platzierung mit minimalem Abstand zu $u$.
 
 \subsection{Grundidee des Algorithmus}
-Wir setzen nun die beiden Einschränkungen aus \ref{Einschränkungen} voraus.
+Um nun unter diesen Einschränkungen an die Graph-Zuordnung den Min-Sum-Graph-Abstand$_{(w)F}(G_1,G_2)$ zu berechnen, wollen wir
+eine $\varepsilon$-Platzierung $s: G_1 \to G_2$ konstruieren, welche das Optimalitätskriterium erfüllt.
+\\
+Anfangs werden wir die dafür notwendigen Berechnungsschritte motivieren.
+Darauf aufbauend werden wir jeden Einzelschritt im Detail beschreiben sowie die Korrektheit und Laufzeit des Algorithmus argumentieren.
+Abschließend demonstrieren wir den Algorithmus anhand eines konkreten Beispiels.
+\\
+Da $G_1$ ein Baum ist und $\varepsilon \leq \delta_{(w)F}(G_1, G_2)$ gilt,
+ist die Existenz einer (schwachen) $\varepsilon$-Platzierung von $G_1$ nach $G_2$ garantiert (siehe dazu Akitaya et al. Seite 13, Lemma 6).
+\\
+\\
+Dafür benötigen wir notwendigerweise zunächst alle $\varepsilon$-Platzierungen der Knoten in $G_1$.
+Wir bezeichnen für $v \in E_1$ mit $P(v)$ die Menge aller $\varepsilon$-Platzierungen von $v$.
+Für ein $p_v \in P(v)$ fixieren wir (ensprechend der zweiten Einschränkung in $\ref{Zweite Einschränkung}$) $s(v)$ für alle Graph-Zuordnungen,
+die $v$ innerhalb von $p_v$ zuordnen. Wählen wir nun für jeden Knoten in $G_1$ eine beliebige aber feste $\varepsilon$-Platzierung, so definiert diese aufgrund der Fixpunkte
+eine konkrete Abbildung $\tau: G_1 \to G_2$, die jedem Knoten in $G_1$ einen Punkt innerhalb seiner $\varepsilon$-Platzierung zuordnet.
+\\
+\\
+Bemerkung:
+$\tau$ ist im Allgemeinen keine Graph-Zuordnung und falls $\tau$ eine Graph-Zuordnung ist, so ist $\tau$ im Allgemeinen keine $\varepsilon$-Platzierung von $G_1$ nach $G_2$.
+Denn für eine Kante $\{u, v\} \in E_1$ sind die $\varepsilon$-Platzierungen in $P(u)$ mit den $\varepsilon$-Platzierungen in $P(v)$ grundsätzlich nicht beliebig kombinerbar.
+Ein $p_u \in P(u)$ und ein $p_v \in P(u)$ sind in $G_2$ im Allgemeinen nicht zwangsläufig verbunden und somit existiert nicht unbedingt ein einfacher Weg von $p_u$ nach $p_v$ in $G_2$.
+\\
+Sollte andernfalls ein einfacher Weg $w_{uv}$ in $G_2$ existieren, welcher $p_u$ und $p_v$ verbindet, so muss $w_{uv}$ keine (schwache) $\varepsilon$-Platzierung
+von $\{u,v\}$ sein, d.h. wir können im Allgemeinen nicht annehmen, dass $\vec{\delta}_{(w)F}(\{u,v\}, w_{uv}) \leq \varepsilon$.
+\\
+\\
+TODO: Beispiel 1
+\\
+\\
+Entsprechend kommt für die Konstruktion einer $\varepsilon$-Platzierung $s: G_1 \to G_2$ für jede Kante $\{u,v\} \in E_1$ eine $\varepsilon$-Platzierungen $p_u \in P(u)$ von $u$ nur in Frage, wenn
+es ein $p_v \in P(v)$ existiert, so dass $p_u$ und $p_v$ (schwach) voneinander erreichbar sind (gemäß Definition ...).
+Dabei reicht es wiederum nicht, diese Bedingung jeweils nur für einzelne Kanten zu fordern.
+\\
+\\
+TODO: Beispiel 2
+\\
+\\
+In diesem Sinne wollen wir den Begriff der $\varepsilon$-Platzierung eines Knotens verschärfen.
+\begin{Def}
+	Gültige $\varepsilon$-Platzierung (engl. valid placement)
+	Eine $\varepsilon$-Platzierung $p_v$ eines Knotens $v$ nennen wir (schwach) gültig, falls für jeden Nachbarn $u$ von $v$
+	eine $\varepsilon$-Platzierung $p_u$ existiert, so dass $p_v$ und $p_u$ (schwach) voneinander erreichbar sind.
+	Ansonsten nennen wir $p_v$ (schwach) ungültig.
+\end{Def}
 
-Um nun den Min-Sum-Graph-Abstand$_{(w)F}(G_1,G_2)$ zu berechnen, konstruieren wir unter den Einschränkungen eine Graph-Zuordnung $s$, welche das Optimalitätskriterium erfüllt.
+Wir wollen uns für die Konstruktion von $s$ lediglich auf die Auswahl von gültigen $\varepsilon$-Platzierungen beschränken.
+Dafür löschen wir alle (schwach) ungültigen $\varepsilon$-Platzungen der Knoten von $G_1$.
+\\
+\\
+Dabei gilt zu beachten, dass nach dem Löschen einer (schwach) ungültigen $\varepsilon$-Platzierung von $v$ aus $P(v)$
+jede vor der Löschung noch (schwach) gültige $\varepsilon$-Platzierung eines Nachbarn von $v$ nun (schwach) ungültig sein kann.
+Daher löschen wir rekursiv solange (schwach) ungültige $\varepsilon$-Platzierungen der Knoten in $G_1$, bis nach einer Löschung
+keine (schwach) ungültige $\varepsilon$-Platzierung mehr existiert.
+\\
+\\
+Existert nach der Bereinigung der (schwach) ungültigen $\varepsilon$-Platzierungen für jeden Knoten in $G_1$ noch mindestens eine
+(schwach) gültige $\varepsilon$-Platzierung, so sichert uns ein Hilfssatz aus Akitaya et al. die Existenz und eine mögliche Konstruktion
+für eine $\varepsilon$-Platzierung von $G_1$ nach $G_2$.
 
-Dafür sind folgende Schritte notwenig:
+Hilfssatz:
+Sei $G_1$ ein Baum und für $v \in V_1$ sei $\tilde{P}(v)$ die Menge der (schwach) gültigen $\varepsilon$-Platzierungenvon $v$ nach der
+rekursiven Löschung aller (schwach) ungültigen $\varepsilon$-Platzierungen der Knoten in $G_1$. Enthält $\tilde{P}(v)$ für jeden Knoten
+in $G_1$ mindestens eine (schwach) gültige $\varepsilon$-Platzierung, so hat $G_1$ eine schwache $\varepsilon$-Platzierung.
 
-\subsection{Schritt 0}
+
+\subsection{Schritt 1}
 Vorbereitung der ersten Einschränkung
 \\
-Da wir eine Graph-Zuordnung konstruieren wollen, die neben dem Min-Sum-Graph-Abstand$_{(w)F}(G_1, G_2)$ auch den gerichteten (schwachen) Graph-Abstand von $G_1$ nach $G_2$
-einhält, müssen wir diesen zunächst berechnen.
-
-Dabei initialisieren wir $\varepsilon$ entsprechend dem gerichteten (schwachen) Graph-Abstand.
-\subsubsection{Schritt 1}
+Zunächst initialisieren wir $\varepsilon$ mit $\varepsilon \geq \vec{\delta}_{(w)F}$.
+\subsubsection{Schritt 2}
 Berechnung der $\varepsilon$-Platzierungen und ihrer Fixpunkte (bezüglich \ref{Zweite Einschränkung}) für alle Knoten in $G_1$.
 
-\subsubsection{Schritt 2}
-Berechnung der Erreichbarkeit zwischen allen Knoten und ihren Nachbarn in $G_1$.
 \subsubsection{Schritt 3}
+Berechnung der Erreichbarkeit zwischen allen Knoten und ihren Nachbarn in $G_1$.
+
+\subsubsection{Schritt 4}
 Konstruktion von $s$, so dass sie das Optimalitätskriterium erfüllt, also dass für eine beliebige Graph-Zuordnung $\tilde{s}: G_1 \to G_2$ gilt:
 $\sum_{e \in E_1}\delta_{(w)F}(e, s(e)) \leq \sum_{e \in E_1}\delta_{(w)F}(e, \tilde{s}(e))$.
 
@@ -599,7 +664,6 @@ welche das Optimalitätskriterium, dass für alle Kanten für einen Teilgraph $G
 $\varepsilon$ ist dabei mindestens so groß wie der gerichtete (schwache) Graph-Abstand von $G_1$ und $G_2$.
 \\
 Da $G_1$ ein Baum ist, können wir diese Zuordnungen jedoch so an den Knoten durchführen, dass ein Teil von $G_1$ stets optimal zugeordnet ist.
-
 
 \section{Ausblick}
 In dieser Arbeit haben wir uns, motiviert durch die Eigenschaften des (schwachen) gerichteten Graph-Abstands, mit dem
