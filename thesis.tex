@@ -157,31 +157,35 @@ Sebastian Koletzko
 \newpage\null\thispagestyle{empty}\newpage % Eine Leerseite nach dem Inhaltsverzeichnis.
 \section{Einleitung}
 
-Die geometrische Graphentheorie beschäftigt sich unter Anderen mit Graphen, deren Knoten und Kanten durch geometrische Objekte in einem metrischen Raum repräsentiert werden.
-Zu solchen Graphen zählen auch geometrische Graphen, auf die wir uns in dieser Arbeit im Wesentlichen beschränken wollen. Genauer wollen wir geometrische Graphen in der euklidischen Ebene betrachten,
-hier repräsentieren wir die Knoten des Graphen durch Punkte in der Ebene und eine Kante zwischen zwei Knoten wird durch das Geradenstück zwischen den Punkten repräsentiert.
-Dadurch eigenen sich geometrische Graphen insbesondere zur Beschreibung von Netzwerken (wie z.B. Straßennetzen).
+Die geometrische Graphentheorie beschäftigt sich unter Anderen mit Graphen, deren Knoten und Kanten durch geometrische Objekte repräsentiert werden.
+Wir bezeichnen solche Graphen als eingebettete Graphen. So bilden die bekannten planaren Graphen z.B. die Teilmenge von in den euklididschen Raum eingebetteten Graphen, deren Kanten sich als ebene Kurven repräsentieren lassen, dass
+sich je zwei Kanten nur an ihren inzidenten Knoten schneiden.
 \\
-Was ist das Grundproblem? Ähnlichkeit zwischen eingebetteten Graphen. Etwas über eingebette Graphen schreiben. Etwas über den Begriff der Ähnlichkeit sowie bereits bekannten Ansätzen schreiben.
+In dieser Arbeit wollen wir uns insbesondere mit den sogenannten geometrischen Graphen beschäftigen. Hierbei handelt es sich um Graphen, die unter bestimmten Vorraussetzungen in die euklidische Ebene eingebettet werden.
+Dabei werden die Knoten durch Punkte in der Ebene und die Kanten durch Geradenstücke zwischen den inzidenten Knotenpunkten repräsentiert.
+Geometrische Graphen eignen sich insbesondere zur Repräsentation von Netzwerken (wie z.B. Straßennetzen).
 \\
-Einige Abstandsmaße (wie z.B. ...) erfassen beim Vergleich von Graphen lediglich die Repräsentation der Graphen im Sinne ihrer Punktmenge im euklidischen Raum lassen dabei ihre Konnektivität ausser Acht.
+Diesbezüglich wollen wir verschiedene Repräsentationen eines Netzwerks miteinander vergleichen, was im Umkehrschluss bedeutet, dass wir geometrische Graphen miteinander vergleichen.
+Wir interessieren uns dabei für die Ähnlichkeit zweier Graphen. Zum Vergleich zweier Graphen bzw. zwei geometrischer Objekte stoßen wir unweigerlich auf den Begriff eines Abstandsmaßes.
+Unter einem Abstandsmaß verstehen im Allgemeinen eine reellwertige Zuordung zum Vergleich zweier geometrischer Objekte wie z.B. zum Vergleich von zwei Kurven im euklidischen Raum.
+Für den Vergleich von eingebetteten Graphen existieren dabei bereits einige bekannte Abstandsmaße.
 \\
-Wir betrachten im Allgemeinen endliche, ungerichtete Graphen, welche in den euklidischen Raum eingebettet werden.
+Eine zentrale Fragestellung dabei ist, wie man neue Abstandsmaße auf eingebetteten Graphen definiert und unter welchen Bedingungen sich ein solches Abstandsmaß effizient berechnen lässt.
 \\
+Ferner interessieren wir uns für die Eigenschaften eines Abstandsmaß und seiner geometrischen Bedeutung im Bezug auf die zu vergleichenden Objekte.
+Einige Abstandsmaße erfassen z.B. beim Vergleich von eingebetteten Graphen lediglich die Repräsentation der Graphen im Sinne ihrer Punktmenge im euklidischen Raum berücksichtigen dabei nicht die ihnen
+durch ihre abstrakte Beschreibung ausgewiesene Konnektivität.
 \\
-Eine zentrale Fragestellung dabei ist, wie man Abstandsmaße auf geometrischen Graphen definiert und unter welchen Bedingungen sich dieses Maß effizient berechnen lässt.
+Um die Ählichkeit zweier eingebetter Graphen insbesondere in Bezug auf die Konnektivität des Graphen zu beschreiben, haben Akitaya et al. \cite{Akitaya} neue Abstandsmaße eingeführt und ihre Eigenschaften untersucht.
 \\
-Um die Ählichkeit zweier eingebetter Graphen zu beschreiben, haben Akitaya et al. \cite{Akitaya} neue Abstandsmaße eingeführt und ihre Eigenschaften untersucht.
-\\
-Besonderheit bei diesen Abstandmaßen ist, dass sie auf einer stetigen Zuordnung zwischen den zu vergleichenden Graphen basieren und somit auch die Topologie der Graphen berücksichtigen.
-Das resultierende Maß beschreibt eine sogenannte "bottleneck-distance".
+Besonderheit bei diesen Abstandmaßen ist, dass sie auf einer stetigen Zuordnung zwischen den zu vergleichenden Graphen basieren.
 \\
 Vor dem Hintergrund, dass die "directed (weak) graph distance" eine bottle-neck distance beschreibt, wird bei der min-sum graph distance das Ziel verfolgt, lokale Abstände zu berücksichtigen.
 Darauf aufbauend haben \cite{Buchin} Buchin et al. ein weiteres Abstandsmaß definiert, welches mögliche lokale Optimierungen der Graph-Zuordnung berücksichtigt.
 [Ein kleiner Text über den Stand der Wissenschaft]
 
 Mit diesem Abstandsmaß wollen wir uns in dieser Arbeit hauptsächlich beschäftigen.
-In Kapitel 2 fassen wir dazu zunächst die Notation und die zentralen Begriffe aus [2] zusammen, welche den Grundstein für die Auseinandersetzung mit dem Min-Sum-Graph-Abstand bilden.
+In Kapitel 2 fassen wir dazu zunächst die Notation und die zentralen Begriffe aus [2] zusammen, welche den Grundstein für die Auseinandersetzung mit dem neuen Abstandsmaß bilden.
 In Kapitel 3 werden wir den Min-Sum-Graph-Abstand motivieren und einführen. Anschließend werden wir uns mit den Bedingungen und einem Ansatz beschäftigen, um den Min-Sum-Graph-Abstand
 unter Verwendung des Fréchet-Abstands in Polynomialzeit zu berechnen.
 Abschließend beweisen wir in Kapitel 4 die NP-Schwerheit des Min-Sum-Graph-Abstands unter Verwendung des Fréchet-Abstands für allgemeine Graphen.
@@ -193,14 +197,14 @@ Bevor wir uns abschließend diesem Algorithmus widmen, werden wir die NP-Schwerh
 \section{Grundlagen}
 Wir betrachten hier den $ \mathbb{R}^n $ grundsätzlich als metrischen Raum, versehen mit der euklidischen Norm.
 \begin{Def}
-	Ein \textit{Weg} in $\mathbb{R}^ni$ st eine stetige Abbildung $ \phi: [a,b] \to \mathbb{R}^n $ von einem geschlossenen Intervall $[a,b]$ nach $\mathbb{R}^n$.
+	Ein \textit{Weg} in $\mathbb{R}^n$ st eine stetige Abbildung $ \phi: [0,1] \to \mathbb{R}^n $ von einem geschlossenen Intervall $[0,1]$ nach $\mathbb{R}^n$.
 	\\
 	Das Bild von $I$ unter $\phi$ nennen wir \textit{Kurve}.
 	\\
 	Wir bezeichnen $\phi(0)$ als den \textit{Startpunkt} und $\phi(1)$ als den \textit{Endpunkt} des Weges und bezeichnen die Menge
-	$\{phi(0), phi(1)\}$ auch als Randpunkte. Sofern nicht anders ausdrücklich erwähnt, fordern wir dabei stets $phi(a) \neq phi(b)$.
+	$\{\phi(0), \phi(1)\}$ auch als Randpunkte des Weges. Sofern nicht ausdrücklich erwähnt, fordern wir dabei stets $\phi(a) \neq \phi(b)$.
 	\\
-	Ein \textit{einfacher Weg} ist ein Weg, welcher injektiv ist.
+	Ein \textit{einfacher Weg} ist ein Weg, welcher injektiv auf $[0,1]$ ist.
 \end{Def}
 
 \begin{Def}
@@ -231,12 +235,12 @@ Wir betrachten hier den $ \mathbb{R}^n $ grundsätzlich als metrischen Raum, ver
 	\\
 	Sei $G$ ein geradlinig eingebetteter Graph.
 	\\
-	Ein einfacher Weg in $G$ ist eine stetige, injektive Abbildung $\tilde{phi}: [a,b] \to G$.
+	Ein einfacher Weg in $G$ ist eine stetige, injektive Abbildung $\tilde{\phi}: [0,1] \to G$.
 	Dabei betrachten bezüglich der Stetigkeit $G$ als Topologischen Graphen (TODO: Referenz).
 	\\
-	Die Kurve von $\tilde{phi}$ repräsentiert in gewisser Weise eine zusammenhängende Komponente von $G$ bestehend aus
-	Kanten und Teilkanten. Dabei ist es jedoch nicht erlaubt, dass $\tilde{phi}$ Umwege über Kantenschnitte in $G$ nimmt.
-	Wir fordern also insbesondere, dass $\tilde{phi}$ die abstrakte Konnektivität von $G$ berücksichtigt.
+	Die Kurve von $\tilde{\phi}$ repräsentiert in gewisser Weise eine zusammenhängende Komponente von $G$ bestehend aus
+	Kanten und Teilkanten. Dabei ist es jedoch nicht erlaubt, dass $\tilde{\phi}$ Umwege über Kantenschnitte in $G$ nimmt.
+	Wir fordern also insbesondere, dass $\tilde{\phi}$ die abstrakte Konnektivität von $G$ berücksichtigt.
 	\\
 	Wenn wir im weiteren Verlauf von einem einfachen Weg sprechen, so beziehen wir die damit verbundene Kurve als Bild des Weges
 	mit ein und benutzen die beiden Begriffe mitunter synonym. Dies soll hervorheben, dass die eigentliche Parametrisierung
@@ -244,7 +248,7 @@ Wir betrachten hier den $ \mathbb{R}^n $ grundsätzlich als metrischen Raum, ver
 	Parametrisierung stetig und injektiv ist.
 	\\
 	Für einen Weg $W$ in einem einegebetteten Graphen definieren wir seine \textit{Länge} als die Anzahl der Geradenstücke, aus
-	denen sich $W$ zusammensetzt. Wir kennzeichnen die Länge von $W$ durch $\|W\|$.
+	denen sich $W$ zusammensetzt. Wir kennzeichnen die Länge von $W$ durch $|W|$.
 \end{Def}
 
 \subsection{Abstände auf geometrischen Graphen}
@@ -335,15 +339,14 @@ Fréchet-Abstands auf $G_2$ abbildet, so dass $\delta_{(w)F}(e, \tilde{s}(e)) \l
 Als Alternative bietet es sich an, die summierten Abstände zwischen den Kanten in $G_1$ und ihren Bildern in $G_2$ unter der Graph-Zuordnung zu minimieren.
 
 \subsection{Optimale Graph-Zuordnungen}
-Damit widmen wir uns nun einem Abstandsmaß, welches für uns im weiteren Verlauf das Optimalitätskriterum (bezüglich lokaler Abstände) für Graph-Zuordnungen beschreibt.
+Damit widmen wir uns nun einem Abstandsmaß, welches für uns im weiteren Verlauf das Optimalitätskriterum - bezüglich lokaler Abstände zwischen Kanten und ihren Bildern - für Graph-Zuordnungen beschreibt.
 
 \begin{Def} \label{Definition Min-Sum}
 	Min-Sum-Graph-Abstand (engl. min-sum graph distance)
 
-	Für die Graphen $G_1$ und $G_2$ definieren wir allgemeine den \textit{Min-Sum-Graph-Abstand}$_{dist}(G_1, G_2)$ als
+	Für die Graphen $G_1$ und $G_2$ definieren wir allgemein den \textit{Min-Sum-Graph-Abstand}$_{dist}(G_1, G_2)$ als
 	$$\min_{s: G_1 \to G_2} \sum_{e \in E_1} dist(e, s(e)),$$
-	wobei sich $s$ über alle Graph-Zuordnungen von $G_1$ nach $G_2$ erstreckt und $dist$ ein für den Vergleich von $e \in E_1$ mit $s(e)$
-	passendes Abstandsmaß (z.B. zwischen Kurven im euklidischen Raum) repräsentiert.
+	wobei sich $s$ über alle Graph-Zuordnungen von $G_1$ nach $G_2$ erstreckt und $dist$ ein unspezifisches Abstandsmaß für den Vergleich von Kurven im euklidischen Raum repräsentiert.
 	\\
 	\\
 	Wählen wir für $dist$ den (schwachen) Fréchet-Abstand als zugrundeliegendes Abstandsmaß, so bezeichnen wir entsprechend
@@ -431,8 +434,6 @@ Für eine solche Abbildung $s$ gilt dann entsprechend $\sum_{e \in E_1}\delta_{(
 Der algorithmische Ansatz um das Entscheidungsproblem, ob eine $\varepsilon$-Platzierung von $G_1$ existiert (siehe [2] Seiten 9-11), liefert das
 Grundgerüst für die Konstruktion von $s$. Wir wollen den algorithmischen Ansatz motivieren und die Berechnungsschritte im Detail beschreiben.
 Der Algorithmus zerfällt dabei in insgesamt 4 Einzelschritte, die wir im Folgenden entsprechend kennzeichnen werden.
-\\
-Abschließend demonstrieren wir den Algorithmus anhand eines konkreten Beispiels.
 
 \subsubsection{$\varepsilon$-Platzierungen der Knoten} \label{Platzierungen der Knoten}
 Die Zuordnung eines Knotens $u \in V_1$ auf einen Punkt innerhalb seiner $\varepsilon$-Platzierung impliziert stets die Randpunkte $w(0)$, $w(1)$
@@ -473,7 +474,7 @@ lediglich ein notwendiges Kriterium dafür, dass $p_u$ und $p_v$ voneinander err
 ob $\delta_F(\{u,v\}, w) \leq \varepsilon$.
 \\
 \\
-Dabei können wir für zwei Wege $Y,Z$  $\delta_F(Y,Z) \leq \varepsilon$ in $O(\|Y\|*\|Z\|$ entscheiden (Siehe [3], Seite 77).
+Dabei können wir für zwei Wege $Y,Z$ die Ungleichung $\delta_F(Y,Z) \leq \varepsilon$ in $O(\|Y\|*\|Z\|)$ entscheiden (Siehe [3], Seite 77).
 Da $\{u,v\}$ ein Geradenstück ist, gilt $\|\{u,v\}\| = 1$. Damit können wir die Erreichbarkeit zwischen $\{u,v\}$ und $w$ in $O(|w|)$ entscheiden.
 Da $w$ per Bedingung ein einfacher Weg ist, besteht $w$ aus maximal $m_2$ Kanten bzw. Teilkanten von $G_2$.
 Zur Speicherung der Erreichbarkeiten speichern wir für jede $\varepsilon$-Platztierung von $u$ eine Liste mit $\varepsilon$-Platzierungen von $v$, die
@@ -482,8 +483,7 @@ Weges in $G_2$ beginnend bei $p_u$. Verlassen wir während der Suche entweder $T
 so entfernen wir den Suchzweig aus der Liste der möglichen Abzweigungen in $G_2$.
 Für eine Kante in $G_1$ beträgt die Laufzeit der Suche somit $O(m_2^2)$ und pro Kante haben wir bis zu $m_2^2$ Paare voneinander erreichbarer Knoten-Platzierungen.
 Für alle Kanten in $G_1$ liegt die Speicher - und Laufzeitkomplexität damit bei $O(m_1*m_2^2)$.
-\\
-\\
+
 \subsubsection{Existenz einer $\varepsilon$-Platzierung von $G_1$}
 Bis zu diesem Schritt haben wir die (schwachen) Erreichbarkeiten zwischen Knoten-Platzierungen paarweise ermittelt.
 Nun wollen wir unseren Wortschatz um den Begriff der Knoten-Platzierungen insofern erweitern, dass wir in unserem konkreten Fall die Existenz einer
@@ -514,19 +514,24 @@ keine (schwach) ungültigen Knoten-Platzierungen mehr existieren. Als Abbruchbed
 ungültigen Knoten-Platzierung keine weitere Löschung mehr impliziert.
 
 \subsubsection{Schritt 3} \label{Schritt 3}
-In diesem Schritt werden wir oben beschrieben alle Knoten-Platzierungen (rekursiv) bereinigt.
+In diesem Schritt werden wie oben beschrieben alle Knoten-Platzierungen (rekursiv) bereinigt.
 Um für eine Kante $\{u,v\} \in E_1$ zu entscheiden, welche Platzierungen der Knoten $u$ und $v$ voneinander (schwach) erreichbar sind, bedienen wir uns dafür der in
 Schritt 2 berechneten Erreichbarkeiten. In Schritt 1 haben wir $O(n_1*m_2)$ Knoten Platzierungen ermittelt.
 
 Für die schwache Erreichbarkeit haben wir in Schritt 2 für eine Kante $\{u,v\} \in E_1$ die zusammenhängende Komponente innerhalb von $T_{\varepsilon}(\{u,v\})$
 und ihre enthaltenen Knoten-Platzierungen von $u$ und $v$ gespeichert.
-
+\\
 Ist nun eine Knoten-Platzierung $p_v \in P(v)$ ungültig, so muss $p_v$ aus allen entsprechenden Listen von Knoten-Platzierungen gelöscht werden, in
-der $p_v$ enthalten ist. Davon gibt es insgesamt $O(deg(v))$
+denen $p_v$ enthalten ist. Dies betrifft potentiell alle zu $v$ inzidenten Knoten, daher beträgt die Laufzeit zum Bereinigen von $p_v$ $O(deg(v))$.
+Mit der Identität $\sum{v \in V_1}(deg(v)) = 2m_1$ beträgt die Laufzeit zum Bereinigen aller ungültigen Knoten-Platzierungen $O(m_1*m_2)$.
 \\
-TODO: Fertig schreiben
+Für die nicht-schwache Erreichbarkeit haben wir für jede Knoten-Platzierung $p_v$ eine Liste mit erreichbaren Knoten-Platzierungen gespeichert.
+Sollte $p_v$ ungültig sein, so müssen wir $p_v$ für jeden zu $v$ adjazenten Knoten aus den Listen der Knoten-Platzierungen entfernen, mit denen $p_v$ erreichbar ist.
+Für jeden ajdazenten Knoten sind dies $O(m_2)$ Listen, daher beträgt die Laufzeit für die Löschung von $p_v$ $O(deg(v)*m_2)$.
+Das Bereinigen aller Platzierungen beträgt entsprechend $O(m_1*m_2^2)$.
 \\
-Nun liefert uns ein Hilfssatz aus Akitaya et al. (siehe dazu Seite 13. Lemma 6) eine verbindliche Aussage über die Existenz
+\\
+Nachdem Schritte 1-3 durchgeführt wurden, liefert uns ein Hilfssatz aus Akitaya et al. (siehe dazu Seite 13. Lemma 6) eine verbindliche Aussage über die Existenz
 einer (schwachen) $\varepsilon$-Platzierung von $G_1$:
 
 \begin{Lem} \label {Lemma 1}
@@ -571,7 +576,7 @@ $\varepsilon$-Platzierungen von $\{u,v\}$ erstreckt.
 
 Sofern $\Delta$ für alle gültigen und voneinander erreichbaren Paaren von Knoten-Platzierungen bekannt ist,
 reduziert sich die Konstruktion einer optimalen $\varepsilon$-Platzierung auf eine konkrete Auswahl der Knoten-Platzierungen von $G_1$.
-Dies ist ähnlich wie im Beweis zu $\ref{Lemma 1}$, allerdings ist die Auswahl einer Kanten-Platzierung hier nicht willkürlich, sondern bereits optimiert.
+Dies ist ähnlich wie im Beweis zu Lemma $\ref{Lemma 1}$, allerdings ist die Auswahl einer Kanten-Platzierung hier nicht willkürlich, sondern bereits optimiert.
 Letztlich stellt dann die Frage, unter welcher der möglichen Auswahlen der Knoten-Platzierungen die Summe der Abstände zwischen den Kanten ihren Platzierungen minimal wird.
 \\
 \\
