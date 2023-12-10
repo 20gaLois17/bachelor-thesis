@@ -17,6 +17,7 @@
 \usepackage{fancyhdr}       % Um saubere Kopf und Fußzeilen sowie Seitenzahlen zu erzeugen.
 \usepackage{setspace}       % Damit kann ich Leerzeilen im Dokument einfügen.
 \usepackage{graphicx}       % Einbinden von externen Bildern
+\usepackage{hyperref}
 % insbesondere beim Inhaltsverzeichnis nötig, da dieses sonst zu
 % gequetscht aussieht.
 
@@ -445,7 +446,7 @@ $\delta_{(w)F}(e, w) \geq max{\{\|u-w(0)\|, \|v-w(1)\|\}}$.
 \\
 In diesem Sinne berechnen wir zunächst alle $\varepsilon$-Platzierungen der Knoten in $G_1$ und bezeichnen für einen Knoten $v \in V_1$ mit $P(v)$ die Menge aller $\varepsilon$-Platzierungen von $v$.
 
-\subsubsection{Schritt 1}
+\subsubsection{Schritt 1} \label{Schritt 1}
 Wir initialisieren $\varepsilon$ mit $\varepsilon \geq \vec{\delta}_{(w)F}(G_1, G_2)$. Da $G_1$ ein Baum ist, können wir
 $\vec{\delta}_{wF}(G_1, G_2)$ in $O(...)$ und $\vec{\delta}_F(G_1, G_2)$ in $O(...)$ berechnen. Siehe dazu ...
 Anschließend berechnen wir die $\varepsilon$-Platzierungen aller Knoten in $G_1$. Jeder Knoten in $G_1$ hat $O(m_2)$
@@ -454,7 +455,7 @@ Für jeden Knoten lassen sich seine $\varepsilon$-Platzierungen über einen Stan
 zusammenhängenden Komponenten in Graphen ermitteln, dessen Laufzeit entsprechend linear in der Größe von $G_2$ ist.
 Die Laufzeit - und Speicherkomplexität betragen damit $O(n_1*m_2)$ (siehe [2], Seite 9).
 
-\subsubsection{Schritt 2}
+\subsubsection{Schritt 2} \label{Schritt 2}
 Für jede Kante $\{u, v\} \in E_1$ berechnen wir nun die Erreichbarkeiten zwischen den $\varepsilon$-Platzierungen der Knoten von $\{u,v\}$.
 Dabei ist für jede Kombination $p_u, p_v$ von $\varepsilon$-Platzierungen von $u$ und $v$ zu jeweils zu entscheiden, ob sie voneinander (schwach) erreichbar sind.
 
@@ -493,14 +494,15 @@ Falls nämlich z.B. der Knoten $u$ neben $\{u,v\}$ nun noch eine weitere inziden
 ein $p_w \in P(w)$ existieren, so dass die Paare $\{p_u,p_v\}$ und $\{p_v,p_u\}$ (schwach) voneinander erreichbar sind. Die paarweise (schwache) Erreichbarkeit
 zwischen Knoten-Platzierungen von einander adjazenten Knoten ist offensichtlich ein notwendiges Kriterium für die Existenz einer $\varepsilon$ von $G_1$.
 Dies motiviert die folgende Definition.
+
 \begin{Def}
 	Gültige $\varepsilon$-Platzierung (engl. valid placement)
-	Eine $\varepsilon$-Platzierung $p_v$ eines Knotens $v$ nennen wir (schwach) gültig, falls für jeden Nachbarn $u$ von $v$
+	Eine $\varepsilon$-Platzierung $p_v$ eines Knotens $v$ nennen wir (schwach) \textit{gültig}, falls für jeden Nachbarn $u$ von $v$
 	eine $\varepsilon$-Platzierung $p_u$ existiert, so dass $p_v$ und $p_u$ (schwach) voneinander erreichbar sind.
 	Ansonsten nennen wir $p_v$ (schwach) ungültig.
 \end{Def}
 
-Für die Konstruktion von $s$ dürfen wir nur gültige $\varepsilon$-Platzierungen der Knoten von $G_1$ betrachten, denn die
+Für die Konstruktion von $s$ dürfen wir nur (schwach) gültige $\varepsilon$-Platzierungen der Knoten von $G_1$ betrachten, denn die
 Wahl einer ungültigen Knoten-Platzierung schließt definitionsgemäß direkt aus, dass $s$ eine $\varepsilon$-Platzierung von $G_1$ sein kann.
 Entsprechend löschen wir unter den in Schritt 1 ermittelten Knoten-Platzierungen alle diejenigen, die (schwach) ungültig sind.
 \\
@@ -536,8 +538,9 @@ einer (schwachen) $\varepsilon$-Platzierung von $G_1$:
 
 \begin{Lem} \label {Lemma 1}
 	Sei $G_1$ ein Baum und für $v \in V_1$ sei $\tilde{P}(v)$ die Menge der (schwach) gültigen $\varepsilon$-Platzierungenvon $v$ nachdem
-	alle (schwach) ungültigen ungültigen $\varepsilon$-Platzierungen der Knoten in $G_1$ rekursiv gelöscht wurden (entsprechend \ref{Schritt 3}.
-	Enthält $\tilde{P}(v)$ für jedes $v \in V_1$ mindestens eine (schwach) gültige $\varepsilon$-Platzierung, so hat $G_1$ eine schwache $\varepsilon$-Platzierung.
+	alle (schwach) ungültigen ungültigen $\varepsilon$-Platzierungen der Knoten in $G_1$ rekursiv gelöscht wurden (analog wie in \ref{Schritt 3}).
+	Enthält $\tilde{P}(v)$ für jedes $v \in V_1$ mindestens eine (schwach) gültige $\varepsilon$-Platzierung, so existiert
+	eine schwache $\varepsilon$-Platzierung von $G_1$.
 \end{Lem}
 
 Beweis:
@@ -546,43 +549,50 @@ Wir wählen einen beliebigen Knoten $v_r \in V_1$ zur Wurzel und betrachten $G_1
 Wir ordnen $v_r$ einem beliebigen Punkt innerhalb einer seiner (schwachen) $\varepsilon$-Platzierung zu und bearbeiten anschließend iterativ alle
 Knoten in $G_1$ ausgehend von der Wurzel.
 
-Dabei wählen wir für einen Knoten $v \in V_1$, dessen Vorgänger bereits einer seiner (schwachen) $\varepsilon$ zugewiesen wurde,
-seine $\varepsilon$-Platzierung $p_v \in P(v)$ so, dass $p_v$
+Dabei wählen wir stets für einen Knoten $v \in V_1$, dessen Vorgänger bereits bereits zugewiesen wurde,
+die $\varepsilon$-Platzierung $p_v \in P(v)$ von $v$ so, dass $p_v$
 und die bereits ausgewählte (bzw. zugeordnete) $\varepsilon$-Platzierung $p_a$ des Vorgängers von $v$ voneinander (schwach) erreichbar sind.
 Für die Kante zwischen $v$ und seinem Vorgänger können wir nun eine passende Kanten-Platzierungen wählen.
+\\
 Denn nach Vorraussetzung ist $p_a$ (schwach) gültig und somit muss ein $p_v$ mit der geforderten Erreichbarkeit zu $p_a$ existieren.
-Ferner gilt nach Definition der (schwachen) Erreichbarkeit, dass mindestens ein einfacher Weg in $G_2$ existiert, welcher $p_v$ und $p_a$ verbindet
-und dessen Abstand zur der Kante zwischen $v$ und seinem Vorgänger bezüglich des (schwachen) Fréchet-Abstands nicht größer als $\varepsilon$ ist.
+Nach Definition der (schwachen) Erreichbarkeit gilt, dass mindestens ein einfacher Weg in $G_2$ existiert, welcher $p_v$ und $p_a$ verbindet
+und dessen (schwacher) Fréchet-Abstand mit der Kante zwischen $v$ und seinem Vorgänger nicht größer als $\varepsilon$ ist.
 Einen solchen Weg wählen wir nun als $\varepsilon$-Platzierung für die Kante zwischen $v$ und seinem Vorgänger.
 \\
-Da wir $G_1$ als gerichteten Baum betrachten, sind nach endlich vielen Schritten ausgehend von der Wurzel alle Knoten in $G_1$
-entsprechend der beschriebenen Vorgaben zugewiesen und ihre $\varepsilon$-Platzierungen
+Da wir $G_1$ als gerichteten Baum betrachten, sind nach endlich vielen Schritten ausgehend von der Wurzel ausgehend alle Knoten in $G_1$
+entsprechend zugewiesen und ihre $\varepsilon$-Platzierungen
 wurden mit den $\varepsilon$-Platzierungen ihrer Nachfahren durch einen einfachen Weg in $G_2$ verbunden.
-Da $G_1$ als Baum insbesondere kreisfrei ist, wurde explizit jede Kante in $G_1$ einer $\varepsilon$-Platzierung zugeordnet.
+Da $G_1$ als Baum insbesondere kreisfrei ist, konnte so jede Kante explizit in $G_1$ einer $\varepsilon$-Platzierung zugeordnet werden.
 Die durch die Auswahl dieser $\varepsilon$-Platzierungen implizierte Graph-Zuordnung ist damit insgesamt eine $\varepsilon$-Platzierung von $G_1$. $\qed$
 
-\subsubsection{Konstruktion einer optimalen $\varepsilon$-Platzierung von $G_1$}
 Über die Konstruktion aus dem Beweis von Lemma \ref{Lemma 1} erhalten wir einen ersten Ansatz zur Konstruktion einer $\varepsilon$-Platzierung gemäß der Einschränkungen und
 des Optimalitätskriteriums.
 
-Die unter \ref{Zweite Einschränkung} geforderten Fixpunkte ließen sich z.B. vor der Berechnung der Kanten-Platzierungen entsprechend setzen.
+\subsubsection{Optimale Kanten-Platzierungen}
 Im Beweis von $\ref{Lemma 1}$ konnten wir zur Konstruktion einer $\varepsilon$-Platzierung von $G_1$ stets eine beliebige $\varepsilon$-Platzierung einer Kante wählen.
 \\
 \\
-Hier können wir die Konstruktion entsprechend anpassen, indem wir jeweils nur eine lokal optimale $\varepsilon$-Platzierung einer Kante (vergleich 4.2.2) in Betracht ziehen.
-Konkret gemeint ist damit, dass eine optimale Kanten-Platzierung $p_{\{u,v\}}$ den (schwachen) Fréchet-Abstand minimiert.
+Diesen Ansatz werden wir erweitern, indem wir statt einer beliebigen jeweils nur eine lokal optimale $\varepsilon$-Platzierung einer Kante für die Graph-Zuordnung in Betracht ziehen.
+Dabei minimiert eine lokal optimale Kanten-Platzierung $p_{\{u,v\}}$ den (schwachen) Fréchet-Abstand zu der Kante $\{u,v\}$.
 Für ein paar Knoten-Platzierungen $p_u, p_v$ sei $$\Delta(p_u,p_v) = \min_{p_{{\{u,v}\}}} \delta_{(w)F}(\{u,v\},p_{\{u,v\}}),$$ wobei sich $p_{{\{u,v}\}}$ über alle
-$\varepsilon$-Platzierungen von $\{u,v\}$ erstreckt.
+$\varepsilon$-Platzierungen von $\{u,v\}$ erstreckt. Die unter \ref{Zweite Einschränkung} geforderten Fixpunkte werden dafür vor der Berechnung von $\Delta$ gesetzt.
 
-Sofern $\Delta$ für alle gültigen und voneinander erreichbaren Paaren von Knoten-Platzierungen bekannt ist,
-reduziert sich die Konstruktion einer optimalen $\varepsilon$-Platzierung auf eine konkrete Auswahl der Knoten-Platzierungen von $G_1$.
-Dies ist ähnlich wie im Beweis zu Lemma $\ref{Lemma 1}$, allerdings ist die Auswahl einer Kanten-Platzierung hier nicht willkürlich, sondern bereits optimiert.
-Letztlich stellt dann die Frage, unter welcher der möglichen Auswahlen der Knoten-Platzierungen die Summe der Abstände zwischen den Kanten ihren Platzierungen minimal wird.
+Wir erweitern Schritt 2 des Algorithmus um die Berechnung optimaler Kanten-Platzierungen und speichern für jede Kante $e=\{u,v\} \in G_1$ eine Liste $L_e$
+mit Einträgen $(p_v, p_u, \Delta(p_v,p_v))$ für alle $p_v \in P(v)$, $p_u \in P(u)$ die (schwach) voneinander erreichbar sind.
 \\
 \\
-Ein naiver Ansatz zur Lösung des Problems wäre, alle möglichen Kombinationen der $\varepsilon$-Platzierungen der Knoten von $G_1$ über z.B. einen Backtracking-Algorithmus auszuschöpfen.
-Dabei würden wir - beginnend bei der Wurzel - die Knoten und Kanten von $G_1$ wie in der Konstruktion der Graph-Zuordnung in $\ref{Lemma 1}$ (unter Einhaltung der Einschränkungen
-und lokal optimaler Kanten-Platzierungen) zuordnen.
+TODO: Laufzeit und Speicher
+\\
+\\
+
+Sofern $L_e$ für alle Knoten in $G_1$ berechnet ist und alle ungültigen Knoten-Platzierungen nach Ausführung von Schritt 3 (\ref{Schritt 3}) bereinigt sind,
+reduziert sich die Konstruktion einer optimalen $\varepsilon$-Platzierung auf eine optimale Gesamt-Auswahl der jeweiligen Paare von Knoten-Platzierungen für jedes Paar inzidenter Knoten in $G_1$.
+So eine Konstruktion ließe sich analog wie im Beweis zu Lemma $\ref{Lemma 1}$ realisieren und eine so ermittelte Graph-Zuordnung ist insbesondere auch eine $\varepsilon$-Platzierung von $G_1$.
+Letztlich stellt dann die Frage, unter welcher der möglichen Auswahlen von Knoten-Platzierungen bei der Konstruktion von $s$ die Summe der Gewichte der durch $s$ implizierten Kanten-Platzierungen minimiert wird.
+
+\subsubsection{Konstruktion einer optimalen $\varepsilon$-Platzierung von $G_1$}
+Ein naiver Ansatz zur Berechnung von Min-Sum$_{(w)F}(G_1,G_2)$ wäre nun, alle möglichen Kombinationen der $\varepsilon$-Platzierungen der Knoten von $G_1$ über z.B. einen Backtracking-Algorithmus auszuschöpfen.
+Dabei würden wir - beginnend bei dem ausgewiesenen Wurzelknoten $v_r$ - die Knoten und Kanten von $G_1$ wie in der Konstruktion der Graph-Zuordnung in $\ref{Lemma 1}$ zuordnen.
 An jeder Stelle, wo die Auswahl einer Knoten-Platzierung nicht eindeutig ist, hätte der Backtracking-Algorithmus entsprechende Abzweigungen.
 Sobald wir erstmalig $G_1$ vollständig zugeordnet haben, speichern wir die Zuordnung $s$ sowie ihr bisheriges Gewicht $Sum_{(w)F}(s)$, welches sich als Summe der
 paarweise gewählten Knoten-Platzierungen und ihren $\Delta$-Gewichten ergibt.
@@ -590,16 +600,32 @@ Für einen bereits zugeordneten Teilgraphen könnten wir sein Gewicht unter den 
 minimalste Gewicht einer vollständigen Zuordnung von $G_1$ überschreitet. Nachdem der Algorithmus terminiert, hätten wir so Min-Sum$_{(w)F}(G_1,G_2)$ berechnet.
 
 Allerdings ist trotz der Einschränkungen and die zu betrachteten Graph-Zuordnungen der Möglichkeitenraum im Allgemeinen zu groß
-für einen solchen (brute-force) Ansatz. Jeder Knoten in $G_1$ hat potentiell bis zu $m_2$ $\varepsilon$-Platzierungen und für
+für einen solchen (brute-force) Ansatz.
+\\
+\\
+Bevor wir uns nun dem letzten Schritt des Algorithmus widmen, konstruieren wir eine geeignete Suchstruktur für die Auswahl und Bewertung von Knoten-Platzierungen.
+Dabei interpretieren wir $G_1$ wie im Beweis zu Lemma \ref{Lemma 1} nach wie vor als gerichteten Wurzelbaum (Out-Tree) mit beliebiger Wurzel $v_r$ und
+legen einen abstrakten Graphen $H = (V_H, E_H)$ an.
+\\
+\\
+Jede gültige $\varepsilon$-Platzierung $p_v$ eines Knotens $v \in V_1$ wird durch einen entsprechenden Knoten $i_{p_v}$ in $H$ repräsentiert.
+Für zwei Knoten-Platzierungen $p_v \in P(v)$ und $p_u \in P(u)$ enthält $H$ genau dann die gerichtete Kante $(i_{p_u},i_{p_v})$, wenn
+
+\begin{enumerate}
+	\item[(i)] $G_1$ die (gerichtete) Kante $(v,u)$ enthält und
+	\item[(ii)] $p_v$ und $p_u$ (schwach) voneinander erreichbar sind.
+\end{enumerate}
+
+Abschließend induzieren wir durch $w: E_H \to \mathbb{R}$ mit $w(i_{p_v},i_{p_u}) = \Delta(p_v,p_v)$ eine Gewichtung der Kanten von $H$.
+\\
+\\
+Jeder Knoten in $G_1$ hat potentiell bis zu $m_2$ $\varepsilon$-Platzierungen und für
 zwei benachbarte Knoten in $G_1$ gibt somit bis zu $m_2^2$ Möglichkeiten, die Knoten-Platzierungen zu kombinieren.
 Insgesamt wächst die Anzahl der potentiellen Kombinationsmöglichkeiten exponentiell mit der Anzahl der Kanten bzw. der Anzahl der Knoten(**) von $G_1$.
 (**) Da $G_1$ ein Baum ist, gilt $m_1 = n_1-1$.
 \\
 \\
-Wir machen folgende Beobachtung:
-Da der oben beschriebene Backtracking-Algorithmus keine polynomielle Laufzeit garantiert, wählen wir einen Ansatz, welcher das kombinatorische
-Problem einer Auswahl von $\varepsilon$-Platzierungen greedy löst.
-\\
+Wir betrachten $G_1$ weiterhin als gerichteten Baum mit beliebiger Wurzel $v_r$.
 Anders: Wir finden heraus, dass sich die Konstruktion über eine Änderung der Reihenfolge greedy lösen lässt.
 Diesen Ansatz könnte man über eine Beobachtung motivieren.
 \\
@@ -620,7 +646,7 @@ Der Algorithmus unterteilt sich letztlich in die folgenden 4 Einzelschritte:
 
 \begin{enumerate}
 		\item[1)] Schritt 1: Berechnung der $\varepsilon$-Platzierungen der Knoten von $G_1$
-		\item[2)] Schritt 2: Berechnung der (schwachen) Erreichbarkeiten
+		\item[2)] Schritt 2: Berechnung der (schwachen) Erreichbarkeiten und optimaler Kanten-Platzierungen
 		\item[3)] Schritt 3: Löschung aller ungültigen $\varepsilon$-Platzierungen der Knoten von $G_1$
 		\item[4)] Schritt 4: Konstruktion einer Min-Sum$_{(w)F}$ Zuordnung
 \end{enumerate}
