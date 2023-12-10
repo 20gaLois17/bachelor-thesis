@@ -256,7 +256,6 @@ Wir betrachten hier den $ \mathbb{R}^n $ grundsätzlich als metrischen Raum, ver
 
 Seien $ G_1=(V_1, E_1) $ und $ G_2=(V_2, E_2) $ für den gesamten weiteren Verlauf geometrische Graphen mit
 $n_1 = |V_1|, m_1 = |E_1|, n_2 = |V_2|$ und $m_2 = |E_2|$.
-Im weiteren Verlauf werden wir für einen Graphen nicht explizit zwischen seiner abstrakten Beschreibung und seiner Einbettung unterscheiden.
 
 \begin{Def} \label{Definition Graph-Zuordnung}
 	Graph-Zuordnung (engl. graph mapping)
@@ -414,19 +413,19 @@ hat die Wahl der Bilder $s(u)$ und $s(v)$, innerhalb der entsprechenden $\vareps
 Anders ausgedrückt: Im Gegensatz zum gerichteten (schwachen) Graph-Abstand ist $\sum_{e \in E_1}\delta_{(w)F}(e, s(e))$ nicht invariant unter dem Freiheitsgrad, den $s$
 bei der Wahl der Bildpunkte in $G_2$, $s(u)$ und $s(v)$ hat.
 \\
+TODO: Dies besser beschreiben
+\\
 \\
 TODO: Skizze
 \\
 \\
-Erklärung zu der Skizze
-Für einen Baum wie in Skizze xx. haben wir eine Vorauswahl von möglichen Knoten-Bildern unter einer unter einer $\varepsilon$-Platzierung zwischen den skizzierten Graphen getroffen.
-Dabei soll der in blaue gezeichnete Baum auf den in rot gezeichneten Graphen abgebildet werden.
+TODO: Erläuterung der Skizze
 \\
 \\
 Um dies zu umgehen, werden wir für einen Knoten $u \in E_1$ sein Bild unter einer Graph-Zuordnung für jede seiner $\varepsilon$-Platzierung fixieren.
 Als Fixpunkt wählen wir dafür einen Punkt in der $\varepsilon$-Platzierung mit minimalem Abstand zu $u$.
 
-\subsection{Ansätze zur Konstruktion eines polynomiellen Algorithmus} \label{Grundidee des Algorithmus}
+\subsection{Ansätze und Beschreibung eines polynomiellen Algorithmus} \label{Grundidee des Algorithmus}
 Um nun unter diesen Einschränkungen an die Graph-Zuordnungen von $G_1$ nach $G_2$ Min-Sum$_{(w)F}(G_1,G_2)$ zu berechnen, konstruieren
 eine $\varepsilon$-Platzierung $s: G_1 \to G_2$, die das Optimalitätskriterium erfüllt.
 Für eine solche Abbildung $s$ gilt dann entsprechend $\sum_{e \in E_1}\delta_{(w)F}(e, s(e) = \text{Min-Sum}_{(w)F}(G_1,G_2)$.
@@ -434,7 +433,7 @@ Für eine solche Abbildung $s$ gilt dann entsprechend $\sum_{e \in E_1}\delta_{(
 \\
 Der algorithmische Ansatz um das Entscheidungsproblem, ob eine $\varepsilon$-Platzierung von $G_1$ existiert (siehe [2] Seiten 9-11), liefert das
 Grundgerüst für die Konstruktion von $s$. Wir wollen den algorithmischen Ansatz motivieren und die Berechnungsschritte im Detail beschreiben.
-Der Algorithmus zerfällt dabei in insgesamt 4 Einzelschritte, die wir im Folgenden entsprechend kennzeichnen werden.
+Der gesamte Algorithmus zerfällt dabei in insgesamt 4 Einzelschritte, die wir in diesem Kapitel entsprechend kennzeichnen werden.
 
 \subsubsection{$\varepsilon$-Platzierungen der Knoten} \label{Platzierungen der Knoten}
 Die Zuordnung eines Knotens $u \in V_1$ auf einen Punkt innerhalb seiner $\varepsilon$-Platzierung impliziert stets die Randpunkte $w(0)$, $w(1)$
@@ -452,15 +451,15 @@ $\vec{\delta}_{wF}(G_1, G_2)$ in $O(...)$ und $\vec{\delta}_F(G_1, G_2)$ in $O(.
 Anschließend berechnen wir die $\varepsilon$-Platzierungen aller Knoten in $G_1$. Jeder Knoten in $G_1$ hat $O(m_2)$
 $\varepsilon$-Platzierungen, womit insgesamt $(n_1*m_2)$ $\varepsilon$-Platzierung zu berechnen sind.
 Für jeden Knoten lassen sich seine $\varepsilon$-Platzierungen über einen Standard-Algorithmus zur Berechnung von
-zusammenhängenden Komponenten in Graphen ermitteln, dessen Laufzeit entsprechend linear in der Größe von $G_2$ ist.
-Die Laufzeit - und Speicherkomplexität betragen damit $O(n_1*m_2)$ (siehe [2], Seite 9).
+zusammenhängenden Komponenten in Graphen ermitteln, dessen Laufzeit linear in der Größe von $G_2$ ist (?Referenz?).
+Die Laufzeit - und Speicherkomplexität beträgt somit $O(n_1*m_2)$.
 
 \subsubsection{Schritt 2} \label{Schritt 2}
 Für jede Kante $\{u, v\} \in E_1$ berechnen wir nun die Erreichbarkeiten zwischen den $\varepsilon$-Platzierungen der Knoten von $\{u,v\}$.
 Dabei ist für jede Kombination $p_u, p_v$ von $\varepsilon$-Platzierungen von $u$ und $v$ zu jeweils zu entscheiden, ob sie voneinander (schwach) erreichbar sind.
 
 Um die schwache Erreichbarkeit zu entscheiden, ist die Existenz eines einfachen Weges zwischen zwei Knoten-Platzierungen
-$p_u,p_v$, welcher vollständig innerhalb von $T_{\varepsilon}(\{u,v\})$ liegt, bereits ein hinreichendes Kriterium. (Vergleich hierfür [3] Seite 83).
+$p_u,p_v$, welcher vollständig innerhalb von $T_{\varepsilon}(\{u,v\})$ liegt, bereits ein hinreichendes Kriterium (siehe [3], Seite 83).
 
 Schränken wir $G_2$ auf $T_{\varepsilon}(\{u,v\})$ ein, so sind alle Knoten-Platzierungen innerhalb derselben zusammenhängenden Komponente von $G_2$
 schwach voneinander erreichbar. Entsprechend speichern wir für eine zusammenhängende Komponente von $G_2$ innerhalb $T_{\varepsilon}(e)$ jeweils zwei Listen mit den
@@ -525,7 +524,7 @@ und ihre enthaltenen Knoten-Platzierungen von $u$ und $v$ gespeichert.
 \\
 Ist nun eine Knoten-Platzierung $p_v \in P(v)$ ungültig, so muss $p_v$ aus allen entsprechenden Listen von Knoten-Platzierungen gelöscht werden, in
 denen $p_v$ enthalten ist. Dies betrifft potentiell alle zu $v$ inzidenten Knoten, daher beträgt die Laufzeit zum Bereinigen von $p_v$ $O(deg(v))$.
-Mit der Identität $\sum{v \in V_1}(deg(v)) = 2m_1$ beträgt die Laufzeit zum Bereinigen aller ungültigen Knoten-Platzierungen $O(m_1*m_2)$.
+Mit der Identität $\sum_{v \in V_1}(deg(v)) = 2m_1$ beträgt die Laufzeit zum Bereinigen aller ungültigen Knoten-Platzierungen $O(m_1*m_2)$.
 \\
 Für die nicht-schwache Erreichbarkeit haben wir für jede Knoten-Platzierung $p_v$ eine Liste mit erreichbaren Knoten-Platzierungen gespeichert.
 Sollte $p_v$ ungültig sein, so müssen wir $p_v$ für jeden zu $v$ adjazenten Knoten aus den Listen der Knoten-Platzierungen entfernen, mit denen $p_v$ erreichbar ist.
@@ -584,7 +583,6 @@ mit Einträgen $(p_v, p_u, \Delta(p_v,p_v))$ für alle $p_v \in P(v)$, $p_u \in 
 TODO: Laufzeit und Speicher
 \\
 \\
-
 Sofern $L_e$ für alle Knoten in $G_1$ berechnet ist und alle ungültigen Knoten-Platzierungen nach Ausführung von Schritt 3 (\ref{Schritt 3}) bereinigt sind,
 reduziert sich die Konstruktion einer optimalen $\varepsilon$-Platzierung auf eine optimale Gesamt-Auswahl der jeweiligen Paare von Knoten-Platzierungen für jedes Paar inzidenter Knoten in $G_1$.
 So eine Konstruktion ließe sich analog wie im Beweis zu Lemma $\ref{Lemma 1}$ realisieren und eine so ermittelte Graph-Zuordnung ist insbesondere auch eine $\varepsilon$-Platzierung von $G_1$.
@@ -593,22 +591,29 @@ Letztlich stellt dann die Frage, unter welcher der möglichen Auswahlen von Knot
 \subsubsection{Konstruktion einer optimalen $\varepsilon$-Platzierung von $G_1$}
 Ein naiver Ansatz zur Berechnung von Min-Sum$_{(w)F}(G_1,G_2)$ wäre nun, alle möglichen Kombinationen der $\varepsilon$-Platzierungen der Knoten von $G_1$ über z.B. einen Backtracking-Algorithmus auszuschöpfen.
 Dabei würden wir - beginnend bei dem ausgewiesenen Wurzelknoten $v_r$ - die Knoten und Kanten von $G_1$ wie in der Konstruktion der Graph-Zuordnung in $\ref{Lemma 1}$ zuordnen.
-An jeder Stelle, wo die Auswahl einer Knoten-Platzierung nicht eindeutig ist, hätte der Backtracking-Algorithmus entsprechende Abzweigungen.
+An jedem Knoten, wo es für die Auswahl einer Knoten-Platzierung mehr als eine Möglichkeit gibt, hätte der Backtracking-Algorithmus eine Abzweigung pro möglicher Auswahl.
 Sobald wir erstmalig $G_1$ vollständig zugeordnet haben, speichern wir die Zuordnung $s$ sowie ihr bisheriges Gewicht $Sum_{(w)F}(s)$, welches sich als Summe der
 paarweise gewählten Knoten-Platzierungen und ihren $\Delta$-Gewichten ergibt.
 Für einen bereits zugeordneten Teilgraphen könnten wir sein Gewicht unter den bereits zugeordneten Kanten mitführen und backtracken, sobald dieses das bis zu diesem Iterationsschritt
 minimalste Gewicht einer vollständigen Zuordnung von $G_1$ überschreitet. Nachdem der Algorithmus terminiert, hätten wir so Min-Sum$_{(w)F}(G_1,G_2)$ berechnet.
-
+\\
+\\
 Allerdings ist trotz der Einschränkungen and die zu betrachteten Graph-Zuordnungen der Möglichkeitenraum im Allgemeinen zu groß
 für einen solchen (brute-force) Ansatz.
+Jeder Knoten in $G_1$ hat potentiell bis zu $m_2$ $\varepsilon$-Platzierungen und für
+zwei benachbarte Knoten in $G_1$ gibt somit bis zu $m_2^2$ Möglichkeiten, die Knoten-Platzierungen zu kombinieren.
+Insgesamt wächst die Anzahl der potentiellen Kombinationsmöglichkeiten exponentiell mit der Anzahl der Kanten bzw. der Anzahl der Knoten(**) von $G_1$.
+(**) Da $G_1$ ein Baum ist, gilt $m_1 = n_1-1$.
 \\
 \\
-Bevor wir uns nun dem letzten Schritt des Algorithmus widmen, konstruieren wir eine geeignete Suchstruktur für die Auswahl und Bewertung von Knoten-Platzierungen.
-Dabei interpretieren wir $G_1$ wie im Beweis zu Lemma \ref{Lemma 1} nach wie vor als gerichteten Wurzelbaum (Out-Tree) mit beliebiger Wurzel $v_r$ und
-legen einen abstrakten Graphen $H = (V_H, E_H)$ an.
+Im letzten Schritt des Algorithmus konstruieren wir eine geeignete Suchstruktur für die Zuweisung und Gewichtung von Knoten-Platzierungen.
+Anschließend werden wir eine $\varepsilon$-Platzierung $s$ konstruieren, die ebenfalls eine Min-Sum$_{(w)F}$ Zuordnung ist, also das Optimalitätskriterium erfüllt.
 \\
 \\
-Jede gültige $\varepsilon$-Platzierung $p_v$ eines Knotens $v \in V_1$ wird durch einen entsprechenden Knoten $i_{p_v}$ in $H$ repräsentiert.
+\subsubsection{Schritt 4}
+Wir interpretieren $G_1$ nach wie vor (analog wie im Beweis zu Lemma \ref{Lemma 1}) als gerichteten Wurzelbaum (Out-Tree) mit beliebiger Wurzel $v_r$ und
+konstruieren einen abstrakten Graphen $H = (V_H, E_H)$ als Suchstruktur für die Berechnung.
+Jede (gültige) $\varepsilon$-Platzierung $p_v$ eines Knotens $v \in V_1$ wird durch einen entsprechenden Knoten $i_{p_v}$ in $H$ repräsentiert.
 Für zwei Knoten-Platzierungen $p_v \in P(v)$ und $p_u \in P(u)$ enthält $H$ genau dann die gerichtete Kante $(i_{p_u},i_{p_v})$, wenn
 
 \begin{enumerate}
@@ -616,57 +621,82 @@ Für zwei Knoten-Platzierungen $p_v \in P(v)$ und $p_u \in P(u)$ enthält $H$ ge
 	\item[(ii)] $p_v$ und $p_u$ (schwach) voneinander erreichbar sind.
 \end{enumerate}
 
-Abschließend induzieren wir durch $w: E_H \to \mathbb{R}$ mit $w(i_{p_v},i_{p_u}) = \Delta(p_v,p_v)$ eine Gewichtung der Kanten von $H$.
+Insgesamt ist $H$ somit ein gerichteter, azyklischer Graph. Die Gerichtetheit folgt dabei direkt aus der Konstruktion der Kanten in $H$ und
+ein Kreis in $H$ würde direkt der Vorraussetzung widersprechen, dass $G$ ein (gerichteter) Baum ist.
+Da jeder Knoten in $G_1$ bis zu $m_2$ Knoten-Platzierungen hat, gilt $|V_H| \in O(n_1*m_2)$ und $|E_H| \in O(n_1*m_2^2)$.
 \\
-\\
-Jeder Knoten in $G_1$ hat potentiell bis zu $m_2$ $\varepsilon$-Platzierungen und für
-zwei benachbarte Knoten in $G_1$ gibt somit bis zu $m_2^2$ Möglichkeiten, die Knoten-Platzierungen zu kombinieren.
-Insgesamt wächst die Anzahl der potentiellen Kombinationsmöglichkeiten exponentiell mit der Anzahl der Kanten bzw. der Anzahl der Knoten(**) von $G_1$.
-(**) Da $G_1$ ein Baum ist, gilt $m_1 = n_1-1$.
-\\
-\\
-Wir betrachten $G_1$ weiterhin als gerichteten Baum mit beliebiger Wurzel $v_r$.
-Anders: Wir finden heraus, dass sich die Konstruktion über eine Änderung der Reihenfolge greedy lösen lässt.
-Diesen Ansatz könnte man über eine Beobachtung motivieren.
-\\
-Hier könnten wir den Algorithmus bereits beschreiben oder den Ansatz über einen Hilfssatz zeigen.
-\begin{Lem}
-	Sei $G_1$ ein Baum und $\varepsilon \geq \vec{\delta}_{(w)F}(G_1, G_2)$. Für jedes $v \in V_1$ sei die Menge seiner gültigen
-	$\varepsilon$-Platzierungen $P(v)$ sei jede seiner  (schwach) gültig.
+Wir induzieren durch $w_H: E_H \to \mathbb{R}$ mit $w_H(i_{p_v},i_{p_u}) = \Delta(p_v,p_v)$ eine Gewichtung der Kanten von $H$ und
+initialisieren $w(p_v) = 0$ für alle Knoten-Platzierungen in $G_1$.
+Wir werden nun die Knoten-Platzierungen iterativ zuweisen und eine optimale $\varepsilon$-Platzierung von $G_1$ berechnen.
+Im Gegensatz zu der Konstruktion von Lemma \ref{Lemma 1} berechnen wir $s$ und die Gewichte der Knoten-Platzierungen \textit{bottom-up}.
+Für einen Knoten $v \in V_1$, dessen Nachfahren ausschließlich Blätter in $G_1$ sind, setzen wir
+\begin{equation}
+	w(p_v) = \sum_{\text{$u:$ $u$ ist Nachfahre von $v$}} \min_{p_u \in P(u)} w(p_u) + w_H(p_v,p_u)
+\end{equation}
+Dabei speichern wir die Zuordnung $s$ welche $w(p_v)$ realisiert für alle $p_v \in P(v)$ und löschen alle Nachfahren von $v$ aus $G_1$,
+nachdem alle Knoten-Platzierungen von $v$ bearbeitet wurden.
+Diese Bearbeitung eines Knotens in $G_1$ bezeichnen wir als einen Iterationsschritt \label{Iterationsschritt}
+
+\begin{Lem} \label{Lemma 2}
+	Nachdem Schritt 4 beendet ist, gilt für den Wurzelknoten von $G_1$:
+	$$w(v_r) = \text{Min-Sum}_{(w)F}(G_1,G_2)$$.
 \end{Lem}
 
-Dabei interpretieren wir $G_1$ wie in $\ref{Lemma 1}$ als gerichteten
-Wurzel-Baum (Out-Tree). Ferner nehmen wir an, dass alle $\varepsilon$-Platzierungen der Knoten von $G_1$ gültig sind und das alle $\varepsilon$-Platzierungen der Kanten
-in $G_1$ fixierte Randpunkte haben und lokal optimal gewählt sind.
+\begin{proof}
+Wir beweisen die Aussage über die Invariante, dass nach jedem Iterationsschritt \ref{Iterationsschritt} der Teilgraph (eingeschränkt auf
+den bearbeiteten Knoten) optimal zugeordnet ist.
 
-\subsection{Beschreibung des Algorithmus}
-Den in \ref{Grundidee des Algorithmus} beschriebenen Ansatz wollen wir nun formalisieren. Dabei werden wesentliche Berechnungsschritte des Entscheidungs-Algorithmus aus [2]
-um die zur Berechnung des Min-Sum-Graph-Abstands$_{(w)F}$ notwendigen Anpassungen aus [1] erweitert.
-Der Algorithmus unterteilt sich letztlich in die folgenden 4 Einzelschritte:
+Sei $v$ ein Knoten in $G_1$, dessen Nachfahren Blätter sind. Nachdem $v$ bearbeitet wurde und wir $s$ als die Zuordnung betrachten,
+die $\min{w(p_v)}: p_v \in P(v)$ realisiert, so ist der Teilgraph unter $v$ offensichlich optimal zugeordnet.
+Sei nun $u$ ein Knoten in $G_1$ zu einem Iterationsschritt $i > 1$, dessen Nachfahren in dem aktualisierten Graphen $G_1$ Blätter sind.
 
+TODO: Beweis vervollständigen
+\end{proof}
+Insgesamt setzt sich der Algorithmus also aus den folgenden Einzelschritten zusammen:
 \begin{enumerate}
-		\item[1)] Schritt 1: Berechnung der $\varepsilon$-Platzierungen der Knoten von $G_1$
-		\item[2)] Schritt 2: Berechnung der (schwachen) Erreichbarkeiten und optimaler Kanten-Platzierungen
-		\item[3)] Schritt 3: Löschung aller ungültigen $\varepsilon$-Platzierungen der Knoten von $G_1$
-		\item[4)] Schritt 4: Konstruktion einer Min-Sum$_{(w)F}$ Zuordnung
+	\item[1)] Schritt 1: Berechnung der $\varepsilon$-Platzierungen der Knoten von $G_1$
+	\item[2)] Schritt 2: Berechnung der (schwachen) Erreichbarkeiten und optimaler Kanten-Platzierungen
+	\item[3)] Schritt 3: Löschung aller ungültigen $\varepsilon$-Platzierungen der Knoten von $G_1$
+	\item[4)] Schritt 4: Konstruktion der Suchstruktur $H$ und iterative Berechnung von Min-Sum$_{(w)F}(G_1, G_2)$ und einer optimalen $\varepsilon$-Platzierung von $G_1$.
 \end{enumerate}
 
-\subsubsection{Schritt 4}
-Hier beschreiben wir die Konstruktion im Detail und beweisen ihre Korrektheit.
+\begin{Satz}
+	Sei $G_1$ ein Baum und sei $\varepsilon \geq \vec{\delta}_{(w)F}(G_1,G_2)$.
+	So lässt sich unter Einhaltung der Einschränkung \ref{Zweite Einschränkung} eine $\varepsilon$-Platzierung $s$ von $G_1$
+	mit einer Laufzeitkomplexität von $O(n_1*m_2^3)$ und einer Speicherkomplexität von $O(n_1*m_2^2)$ berechnen, so dass für jede
+	andere $\varepsilon$-Platzierung $\tilde{s}$ von $G_1$ gilt:
+	$$\sum_{e \in E_1}\delta{(w)F}(e, s(e)) \leq \sum_{e \in E_1}\delta{(w)F}(e, \tilde{s}(e)).$$
+\end{Satz}
+Beweis.
 \\
+TODO: Zeitkomplexität und Speicherkomplexität zur Berechnung von $H$ begründen.
 \\
-Hier schreiben wir erstmalig etwas zu den Fixpunkten
-Abschließend schreiben wir das Lemma auf.
+Die Korrektheit des Algorithmus folgt direkt aus Lemma \ref{Lemma 2}.
+\\
+Zur Berechnung von Gleichung (1) betrachten für eine feste Knoten-Platzierung $p_v \in P(v)$ den zur Lösung der Gleichung relevanten Teilgraph von $H$,
+bestehend aus den Knoten-Platzierungen von $v$ sowie deren Nachfahren. Dieser Teilgraph weist somit für jede fixierte Knoten-Platzierung eine Komplexität von $O(m_2^2)$ auf.
+Sofern $v$ nicht die Wurzel ist, gibt es $deg(v)-1$ Nachfahren von $v$. Ferner gilt $|P(v)| \in O(m_2)$. Damit beträgt die Zeitkomplexität für Gleichung (1) für alle
+Knoten-Platzierungen von $v$ insgesamt
+\begin{equation}
+	O(deg(v)*m_2^3).
+\end{equation}
+Mit (2) und der Identität
+\begin{equation}
+	\sum_{v \in V_1} deg(v) = 2*m_1 = 2(n-1)
+\end{equation}
+ergibt sich die schließlich die Laufzeitkomplexität von $O(n_1*m_2^3). \qed$
+
 
 \subsection{Ein Beispiel}
 Anhand eines kleinen Beispiels wollen wir den eben beschriebenen Algorithmus nun demonstrieren.
+TODO: Skizze und Beispielrechnung ergänzen
 
 \section{Komplexität}
 
 \subsubsection{NP-Schwerheit von Min-Sum-Graph-Abstand$_{(w)F}$}
 
 Abschließend wollen wir zeigen, dass die Berechnung des Min-Sum-Graph-Abstands$_{(w)F}$ ohne Bedingungen an die Graphen $G_1$ und $G_2$ im Allgemeinen
-NP-Schwer ist. Ein für die Konstruktion des Beweises ähnliches Setting finden wir in [2] (Seite), wo die NP-Schwerheit des Graph-Abstands
+NP-schwer ist. Ein für die Konstruktion des Beweises ähnliches Setting finden wir in [2] (Seite), wo die NP-Schwerheit des Graph-Abstands
 über eine Reduktion von \textit{Binary Constraint Satifaction Problem (CSP)} gezeigt wird.
 In unserem Beweis der NP-Schwerheit für den Min-Sum-Graph-Abstand orientieren wir uns im Wesentlichen an dieser Konstruktion.
 
@@ -687,12 +717,12 @@ In unserem Beweis der NP-Schwerheit für den Min-Sum-Graph-Abstand orientieren w
 	In diesem Falle nennen wir $\langle X,D,C \rangle$ \textit{lösbar}.
 	\\
 	\\
-	TODO: Referenz, dass CSP NP-Schwer ist
+	TODO: Referenz, dass CSP NP-schwer ist
 \end{Def}
 
-\begin{Satz}
+\begin{Satz} \label{Satz NP-Schwerheit}
 	Theorem: Seien $G_1$ und $G_2$ geometrische Graphen und sei $\varepsilon \geq 0$.
-	Das Entscheidungsproblem $$ \textit{Min-Sum-Graph-Abstand}_{(w)F}(G_1, G_2) \leq  \varepsilon $$ ist NP-Schwer.
+	Das Entscheidungsproblem $$ \textit{Min-Sum}_{(w)F}(G_1, G_2) \leq  \varepsilon $$ ist NP-schwer.
 \end{Satz}
 
 Sei $\langle X,D,C \rangle$ ein beliebiges Binary Constraint Satisfaction Problem.
@@ -740,10 +770,13 @@ dass $\delta_{(w)F}(\{v_i, v_j\}, s(\{v_i, v_j\}) \leq 1$. Bilden wir jede Kante
 und $\delta_{(w)F}(e, \tilde{s}) \leq 1$ für jedes $e \in E_1$.
 \\
 \\
-Damit ist $$\sum_{e \in E_1} \delta_{(w)F}(e, \tilde{s}(e)) \leq \varepsilon \text{ (i)} $$
+Damit ist
+\begin{equation} \label{beweis_1}
+	\sum_{e \in E_1} \delta_{(w)F}(e, \tilde{s}(e)) \leq \varepsilon
+\end{equation}
 \\
 Über die Identität $$\min_{s: G_1 \to G_2} \sum_{e \in E_1} \delta_{(w)F}(e, s(e)) \leq \sum_{e \in E_1} \delta_{(w)F}(e,\tilde{s}(e)) $$
-und (i) erhalten wir
+und (\ref{beweis_1}) erhalten wir
 $$\min_{s: G_1 \to G_2} \sum_{e \in E_1} \delta_{(w)F}(e, s(e)) \leq \varepsilon .$$
 \\
 \\
@@ -770,7 +803,7 @@ Denn die Randpunkte von $s(e)$ lassen sich innerhalb der 1-Bälle versetzten und
 per Konstruktion auch innerhalb von $T_1(e)$ verlaufen, existiert in $G_2$ eine 1-Platzierung von $e$.
 \\
 \\
-Damit ist für eine Kante $\{v_i, v_j\} \in E_1$ ihr Bild $s(\{(v_i, v_j)\})$ stets eine 1-Platzierung von $\{v_i, v_j\}$. (**)
+Damit ist für eine Kante $\{v_i, v_j\} \in E_1$ ihr Bild $s(\{v_i, v_j\})$ stets eine 1-Platzierung von $\{v_i, v_j\}$. (**)
 \\
 \\
 Im Falle des Fréchet-Abstands gilt damit, dass wir durch eine $\text{Min-Sum}_F$ Zuordnung $s: G_1 \to G_2$ das Bild $s(\{v_i, v_j\})$ einer Kante
@@ -834,7 +867,7 @@ einen Polynomialzeit-Algorithmus zur Berechnung von Min-Sum-Graph-Abstand$_{(w)F
 \\
 Dabei verbleiben noch einige offene Fragen bezüglich der Komplexität.
 Buchin et al. gehen des Weiteren davon aus, dass sich der Min-Sum-Graph-Abstand$_{(w)F}$ auch auf planaren Graphen und
-auf Bäumen ohne die notwendige Einschränkung (aus \ref{Zweite Einschränkung}) ebenfalls NP-Schwer ist.
+auf Bäumen ohne die notwendige Einschränkung (aus \ref{Zweite Einschränkung}) ebenfalls NP-schwer ist.
 Formale Beweise dieser Annahmen stehen dabei noch aus.
 \\
 \\
@@ -849,7 +882,7 @@ damit einen kleinen Einblick in den Raum der offenen Möglichkeiten gewagt.
 \newpage\null\thispagestyle{empty}\newpage
 %   Eventuell eine Leerseite vor der Literaturangabe, falls diese sonst auf einer Rückseite angegeben würde. (Seitennummer muss ungerade sein!)
 
-\begin{thebibliography}{4}
+\begin{thebibliography}{3}
 	\bibitem{Buchin}
 		Maike Buchin, Bernhard Kilgus. Distance Measures for Embedded Graphs - Optimal Graph Mappings.
 		\textit{European Workshop on Computational Gemoetry,} 2020.
@@ -861,11 +894,6 @@ damit einen kleinen Einblick in den Raum der offenen Möglichkeiten gewagt.
 	\bibitem{Alt}
 		Hemlut Alt, Michael Godau. Computing the Fréchet distance between two polygonal curves.
 		\textit{Int. Journal of Computational Geometry and Applications,} 5:75-91, 1995.
-
-	\bibitem{Rote}
-		Günter Rote, Lexicographic Fréchet distance.
-		\textit{European Workshop on Computational Gemoetry,} 2014.
-
 \end{thebibliography}
 
 % Symbolverzeichnis definieren
