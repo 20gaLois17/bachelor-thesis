@@ -158,24 +158,34 @@ Sebastian Koletzko
 \newpage\null\thispagestyle{empty}\newpage % Eine Leerseite nach dem Inhaltsverzeichnis.
 \section{Einleitung}
 
-Die geometrische Graphentheorie beschäftigt sich unter Anderen mit Graphen, deren Knoten und Kanten durch geometrische Objekte repräsentiert werden.
-Wir bezeichnen solche Graphen als eingebettete Graphen. So bilden die bekannten planaren Graphen z.B. die Teilmenge von in den euklididschen Raum eingebetteten Graphen, deren Kanten sich als ebene Kurven repräsentieren lassen, dass
-sich je zwei Kanten nur an ihren inzidenten Knoten schneiden.
+Die geometrische Graphentheorie ist ein Zweig der Graphentheorie, die sich dem Studium von Graphen verschreibt, deren Knoten und Kanten wir mit geometrischen Objekten identifizieren.
+Sie ist eng verwandt mit der Topologischen Graphentheorie, welche sich mit der Darstellung von Graphen in topologischen Räumen beschäftigt.
+
+Graphen, denen eine konkrete Darstellung - z.B im euklidischen Raum - zugewiesen wurde, bezeichnen wir als eingebettete Graphen.
+Bekannte Vertreter dieser Klasse sind unter Anderen die planaren Graphen. Dies sind Graphen, deren deren Kanten sich als Jordan-Kurven so in die euklidische
+Ebene einbetten lassen, dass sich zwei Kanten höchstens an ihren inzidenten Knoten schneiden.
 \\
-In dieser Arbeit wollen wir uns insbesondere mit den sogenannten geometrischen Graphen beschäftigen. Hierbei handelt es sich um Graphen, die unter bestimmten Vorraussetzungen in die euklidische Ebene eingebettet werden.
-Dabei werden die Knoten durch Punkte in der Ebene und die Kanten durch Geradenstücke zwischen den inzidenten Knotenpunkten repräsentiert.
-Geometrische Graphen eignen sich insbesondere zur Repräsentation von Netzwerken (wie z.B. Straßennetzen).
+TODO: Beispiel
 \\
-Diesbezüglich wollen wir verschiedene Repräsentationen eines Netzwerks miteinander vergleichen, was im Umkehrschluss bedeutet, dass wir geometrische Graphen miteinander vergleichen.
-Wir interessieren uns dabei für die Ähnlichkeit zweier Graphen. Zum Vergleich zweier Graphen bzw. zwei geometrischer Objekte stoßen wir unweigerlich auf den Begriff eines Abstandsmaßes.
+In dieser Arbeit wollen wir uns insbesondere mit den sogenannten geometrischen Graphen beschäftigen. Hierbei handelt es sich um Graphen,
+deren Kanten in Form eines Geradenstücks in der euklidischen Ebene dargestellt werden.
+Geometrische Graphen eignen sich insbesondere zur Repräsentation von realen Netzwerken (wie z.B. Straßennetzen).
+\\
+Wir wollen geometrische Graphen vergleichen.
+Inbesondere wollen wir geometrische Graphen bezüglich ihrer jeweiligen Repräsentation/Rekonstruktion eines Netzwerks miteinander vergleichen.
+Wir interessieren uns dabei für die Ähnlichkeit zweier geometrischer Graphen. Für uns bedeutet Ähnlichkeit zum einen die geometrische Ähnlichkeit gegeben durch die
+Einbettung der Graphen in die Ebene aber auch insbesondere bezüglich ihrer Konnektivität.
+Zum Vergleich zweier Graphen bzw. zwei geometrischer Objekte stößt man in der Literatur unweigerlich auf das Konzept eines Abstandsmaßes zwischen Graphen.
 Unter einem Abstandsmaß verstehen im Allgemeinen eine reellwertige Zuordung zum Vergleich zweier geometrischer Objekte wie z.B. zum Vergleich von zwei Kurven im euklidischen Raum.
 Für den Vergleich von eingebetteten Graphen existieren dabei bereits einige bekannte Abstandsmaße.
 \\
-Eine zentrale Fragestellung dabei ist, wie man neue Abstandsmaße auf eingebetteten Graphen definiert und unter welchen Bedingungen sich ein solches Abstandsmaß effizient berechnen lässt.
-\\
-Ferner interessieren wir uns für die Eigenschaften eines Abstandsmaß und seiner geometrischen Bedeutung im Bezug auf die zu vergleichenden Objekte.
 Einige Abstandsmaße erfassen z.B. beim Vergleich von eingebetteten Graphen lediglich die Repräsentation der Graphen im Sinne ihrer Punktmenge im euklidischen Raum berücksichtigen dabei nicht die ihnen
 durch ihre abstrakte Beschreibung ausgewiesene Konnektivität.
+TODO: Um Referenzen ergänzen.
+\\
+Eine zentrale Fragestellung dabei ist fortlaufend, wie man neue Abstandsmaße auf Graphen definieren kann und unter welchen Bedingungen sie sich auch für potentiell komplexe Graphen effizient berechnen lassen.
+\\
+Dabei interessieren wir uns insbesondere auch für die mathematischen Eigenschaften eines Abstandsmaßes sowie seiner implizierten 'Notion' der Ähnlichkeit auf die zu vergleichenden Objekte.
 \\
 Um die Ählichkeit zweier eingebetter Graphen insbesondere in Bezug auf die Konnektivität des Graphen zu beschreiben, haben Akitaya et al. \cite{Akitaya} neue Abstandsmaße eingeführt und ihre Eigenschaften untersucht.
 \\
@@ -196,14 +206,14 @@ Bevor wir uns abschließend diesem Algorithmus widmen, werden wir die NP-Schwerh
 \newpage
 
 \section{Grundlagen}
-Wir betrachten hier den $ \mathbb{R}^n $ grundsätzlich als metrischen Raum, versehen mit der euklidischen Norm.
+Wir betrachten hier $ \mathbb{R}^n $ grundsätzlich als metrischen Raum, versehen mit der euklidischen Norm.
 \begin{Def}
-	Ein \textit{Weg} in $\mathbb{R}^n$ st eine stetige Abbildung $ \phi: [0,1] \to \mathbb{R}^n $ von einem geschlossenen Intervall $[0,1]$ nach $\mathbb{R}^n$.
+	Ein \textit{Weg} ist eine stetige Abbildung $ \phi: [0,1] \to \mathbb{R}^n $ von einem geschlossenen Intervall $[0,1]$ nach $\mathbb{R}^n$.
 	\\
 	Das Bild von $I$ unter $\phi$ nennen wir \textit{Kurve}.
 	\\
 	Wir bezeichnen $\phi(0)$ als den \textit{Startpunkt} und $\phi(1)$ als den \textit{Endpunkt} des Weges und bezeichnen die Menge
-	$\{\phi(0), \phi(1)\}$ auch als Randpunkte des Weges. Sofern nicht ausdrücklich erwähnt, fordern wir dabei stets $\phi(a) \neq \phi(b)$.
+	$\{\phi(0), \phi(1)\}$ auch als \textit{Randpunkte} des Weges. Dabei ist grundsätzlich $\phi(a) \neq \phi(b)$ anzunehmen.
 	\\
 	Ein \textit{einfacher Weg} ist ein Weg, welcher injektiv auf $[0,1]$ ist.
 \end{Def}
@@ -216,7 +226,7 @@ Wir betrachten hier den $ \mathbb{R}^n $ grundsätzlich als metrischen Raum, ver
 	jedem Knoten $v \in V$ einen eindeutigen Punkt $v_0 \in \mathbb{R}^n$ zuordnet und jeder Kante $\{u,v\} \in E$
 	einen einfachen Weg $\phi: [0,1]: \to \mathbb{R}^n$ mit den Randpunkten $\omega(u)$ und $\omega(v)$ zuordnet.
 	\\
-	Sind alle Kanten in $\mathbb{R}^n$ als Geradenstücke mit den zur jeweiligen Kante inzidenten Knoten als Randpunkte realisiert, so
+	Ist jede Kante von $G$ in den euklidischen Raum als Geradenstück mit den zur jeweiligen Kante inzidenten Knoten als Randpunkte realisiert, so
 	nennen wir $G$ einen \textit{geradlinig eingebetteten Graphen}.
 	\\
 	Dabei dürfen sich Kanten von $G$ grundsätzlich in einem Punkt schneiden.
@@ -224,7 +234,7 @@ Wir betrachten hier den $ \mathbb{R}^n $ grundsätzlich als metrischen Raum, ver
 	\\
 	Für einen eingebetteten Knoten $v \in V$ definieren wir seinen \textit{$\varepsilon$-Ball} $B_{\varepsilon}(v)$ als die Menge
 	$\{x \in \mathbb{R}^n.: \|v-x\| \leq \varepsilon\}$
-	und für eine (geradlinig) eingebette Kante $e \in E$ definieren wir ihren \textit{$\varepsilon$-Schlauch} $T_{\varepsilon}(e)$ als die Menge
+	und für eine eingebette Kante $e \in E$ definieren wir ihren \textit{$\varepsilon$-Schlauch} $T_{\varepsilon}(e)$ als die Menge
 	$\{x \in \mathbb{R}^n: \min_{a \in e}\|a-x\| \leq \varepsilon\}$.
 	\\
 	\\
@@ -268,7 +278,7 @@ $n_1 = |V_1|, m_1 = |E_1|, n_2 = |V_2|$ und $m_2 = |E_2|$.
 	Eine Graph-Zuordnung definiert somit eine stetige Abbildung von $ G_1 $ nach $ G_2 $ und ist im Allgemeinen weder injektiv noch surjektiv.
 	In gewisser Weise könnte man hier einen Bezug zum Begriff der \textit{Einbettung} aus der Topologie herstellen. (TODO: Referenz).
 	Hier ist es jedoch so, dass wir für die Existenz einer Graph-Zuordnung von $ G_1 $ nach $ G_2 $ nicht so strenge Bedingungen stellen, insbesondere
-	müssen $G_1$ und $G_2$ nicht homöomorph sein.
+	müssen $G_1$ und $G_2$ nicht homöomorph sein, damit eine Graph-Abbildung zwischen ihnen existieren kann.
 \end{Def}
 
 \begin{Def} \label{Definition Fréchet-Abstand}
@@ -338,7 +348,7 @@ Fréchet-Abstands auf $G_2$ abbildet, so dass $\delta_{(w)F}(e, \tilde{s}(e)) \l
 \\
 Als Alternative bietet es sich an, die summierten Abstände zwischen den Kanten in $G_1$ und ihren Bildern in $G_2$ unter der Graph-Zuordnung zu minimieren.
 
-\subsection{Optimale Graph-Zuordnungen}
+\subsection{Optimale Graph-Zuordnungen} \label{Optimale Graphzuordnungen}
 Damit widmen wir uns nun einem Abstandsmaß, welches für uns im weiteren Verlauf das Optimalitätskriterum - bezüglich lokaler Abstände zwischen Kanten und ihren Bildern - für Graph-Zuordnungen beschreibt.
 
 \begin{Def} \label{Definition Min-Sum}
@@ -390,22 +400,25 @@ Die erste Einschränkung ist dabei optional. Die zweite Einschränkung wird notw
 	Eine schwache \textit{$\varepsilon$-Platzierung von $G_1$} ist eine Graph-Zuordnung $s: G_1 \to G_2$, so dass $s$ jede Kante $e \in G_1$ auf eine schwache $\varepsilon$-Platzierung von $e$ abbildet.
 	\\
 	\\
-	Als Abkürzung benutzen wir auch auch die Begriffe \textit{Knoten-Platzierung} und \textit{Kanten-Platzierung}, sofern im Kontext dadurch kein Bezug verloren geht.
+	Synonym für $\varepsilon$-Platzierung eines Knotens bzw. einer Kante benutzen wir mitunter auch die Begriffe \textit{Knoten-Platzierung} und \textit{Kanten-Platzierung}.
 \end{Def}
 
-\subsubsection{Erste Einschränkung}
+\subsubsection{Erste Einschränkung} \label{Erste Einschränkung}
 
 Wir haben den Begriff des Min-Sum-Graph-Abstands primär vor dem Hintergrund motiviert, optimale Graph-Zuordnungen auf geometrischen Graphen zu betrachten,
 die bereits einen Flaschenhals-Abstand wie den gerichteten (schwachen) Graph-Abstand einhalten.
 
 Um diesen Zusammenhang zu erhalten, werden wir die in Betrachtung zu ziehenden Graph-Zuordnungen zunächst auf die Menge
-$S = \{s: G_1 \to G_2 \text{ $|$ } s$ ist eine (schwache) $\varepsilon$-Platzierung von $G_1$ nach $G_2\}$ einschränken.
+\begin{center}
+	$\{s: G_1 \to G_2 \text{ $|$ } s$ ist eine (schwache) $\varepsilon$-Platzierung von $G_1$ nach $G_2\}$
+\end{center}
+einschränken.
 \\
 Generell können wir auch $\varepsilon \geq \vec{\delta}_{(w)F}(G_1, G_2)$ fordern, für größere $\varepsilon$ erhöht sich entsprechend der Freiheitsgrad in der Auswahl
-der möglichen Graph-Zuuordnungen und damit verrringert sich auch potentiell der unter dieser Einschränkung bewertete Min-Sum$_{(w)F}$ Abstand.
+der möglichen Graph-Zuordnungen und damit verrringert sich auch potentiell der unter dieser Einschränkung geltende Min-Sum$_{(w)F}$ Abstand.
 \\
-Wir merken zusätzlich an, dass eine $\varepsilon$-Platzierung von $G_1$ nach $G_2$ für $\varepsilon < \vec{\delta}_{(w)F}(G_1,G_2)$
-nicht existiert. Dies folgt direkt aus den Definitionen \ref{Definition Graph-Abstand} und \ref{Definition Min-Sum}.
+Wir merken an dieser Stelle insbesondere an, dass eine $\varepsilon$-Platzierung von $G_1$ nach $G_2$ für $\varepsilon < \vec{\delta}_{(w)F}(G_1,G_2)$
+nicht existieren kann. Dies folgt direkt aus den Definitionen \ref{Definition Graph-Abstand} und \ref{Definition Min-Sum}.
 
 \subsubsection{Zweite Einschränkung} \label {Zweite Einschränkung}
 Da wir hier zur Berechnung der Abstände zwischen einer Kante $\{u,v\} \in E_1$ und ihrem Bild $s(\{u,v\})$ unter einer Graph-Zuordnung $s$ den (schwachen) Fréchet-Abstand verwenden,
@@ -426,14 +439,15 @@ Um dies zu umgehen, werden wir für einen Knoten $u \in E_1$ sein Bild unter ein
 Als Fixpunkt wählen wir dafür einen Punkt in der $\varepsilon$-Platzierung mit minimalem Abstand zu $u$.
 
 \subsection{Ansätze und Beschreibung eines polynomiellen Algorithmus} \label{Grundidee des Algorithmus}
-Um nun unter diesen Einschränkungen an die Graph-Zuordnungen von $G_1$ nach $G_2$ Min-Sum$_{(w)F}(G_1,G_2)$ zu berechnen, konstruieren
-eine $\varepsilon$-Platzierung $s: G_1 \to G_2$, die das Optimalitätskriterium erfüllt.
-Für eine solche Abbildung $s$ gilt dann entsprechend $\sum_{e \in E_1}\delta_{(w)F}(e, s(e) = \text{Min-Sum}_{(w)F}(G_1,G_2)$.
+Um unter den Einschränkungen \ref{Erste Einschränkung} und \ref{Zweite Einschränkung} an die zu betrachtenden Graph-Zuordnungen von $G_1$ nach $G_2$
+Min-Sum$_{(w)F}(G_1,G_2)$ zu berechnen, wollen wir eine
+eine $\varepsilon$-Platzierung $s: G_1 \to G_2$ konstruieren, die das Optimalitätskriterium (siehe \ref{Optimale Graphzuordnungen}) erfüllt.
+Für eine solche Abbildung $s$ gilt dann entsprechend $\sum_{e \in E_1}\delta_{(w)F}(e, s(e)) = \text{Min-Sum}_{(w)F}(G_1,G_2)$.
 \\
 \\
-Der algorithmische Ansatz um das Entscheidungsproblem, ob eine $\varepsilon$-Platzierung von $G_1$ existiert (siehe [2] Seiten 9-11), liefert das
+Der algorithmische Ansatz zur Lösung des Entscheidungsproblems, ob eine $\varepsilon$-Platzierung von $G_1$ existiert (siehe [2] Seiten 9-11), liefert das
 Grundgerüst für die Konstruktion von $s$. Wir wollen den algorithmischen Ansatz motivieren und die Berechnungsschritte im Detail beschreiben.
-Der gesamte Algorithmus zerfällt dabei in insgesamt 4 Einzelschritte, die wir in diesem Kapitel entsprechend kennzeichnen werden.
+Der Algorithmus gliedert sich in insgesamt 4 Einzelschritte, die wir im Verlauf des Kapitels entsprechend kennzeichnen werden.
 
 \subsubsection{$\varepsilon$-Platzierungen der Knoten} \label{Platzierungen der Knoten}
 Die Zuordnung eines Knotens $u \in V_1$ auf einen Punkt innerhalb seiner $\varepsilon$-Platzierung impliziert stets die Randpunkte $w(0)$, $w(1)$
@@ -469,14 +483,14 @@ Die schwachen Erreichbarkeiten zwischen allen Knoten-Platzierungen entlang einer
 Insgesamt beträgt die Zeit - und Speicherkomplexität zur Berechnung der Erreichbarkeiten aller Kanten in $G_1$ $O(m_1*m_2)$.
 \\
 \\
-Für den Fréchet-Abstand ist die Existenz eines einfachen Weges $w$ innerhalb von $T_{\varepsilon}(\{u,v\})$, welcher $p_u$ und $p_v$ miteinander verbindet
+Für den Fréchet-Abstand ist die Existenz eines einfachen Weges $w$ innerhalb von $T_{\varepsilon}(\{u,v\})$, welcher $p_u$ und $p_v$ miteinander verbindet,
 lediglich ein notwendiges Kriterium dafür, dass $p_u$ und $p_v$ voneinander erreichbar sind. Wir müssen für $w$ explizit entscheiden,
 ob $\delta_F(\{u,v\}, w) \leq \varepsilon$.
 \\
 \\
-Dabei können wir für zwei Wege $Y,Z$ die Ungleichung $\delta_F(Y,Z) \leq \varepsilon$ in $O(\|Y\|*\|Z\|)$ entscheiden (Siehe [3], Seite 77).
+Dabei können wir für zwei Wege $Y$ und $Z$ das Entscheidungsproblem $\delta_F(Y,Z) \leq \varepsilon$ in $O(\|Y\|*\|Z\|)$ lösen (Siehe [3], Seite 77).
 Da $\{u,v\}$ ein Geradenstück ist, gilt $\|\{u,v\}\| = 1$. Damit können wir die Erreichbarkeit zwischen $\{u,v\}$ und $w$ in $O(|w|)$ entscheiden.
-Da $w$ per Bedingung ein einfacher Weg ist, besteht $w$ aus maximal $m_2$ Kanten bzw. Teilkanten von $G_2$.
+Da $w$ per Bedingung ein einfacher Weg ist, besteht $w$ aus maximal $m_2$ Kanten (bzw. Teilkanten) von $G_2$.
 Zur Speicherung der Erreichbarkeiten speichern wir für jede $\varepsilon$-Platztierung von $u$ eine Liste mit $\varepsilon$-Platzierungen von $v$, die
 über ein $w$ voneinander erreichbar sind. Um die Liste für ein $p_u \in P(u)$ zu berechnen, starten wir eine Graph-Suche zur Ermittlung eines
 Weges in $G_2$ beginnend bei $p_u$. Verlassen wir während der Suche entweder $T_{\varepsilon}(\{u,v\})$ bzw. überschreitet der Fréchet-Abstand $\varepsilon$,
@@ -542,7 +556,7 @@ einer (schwachen) $\varepsilon$-Platzierung von $G_1$:
 	eine schwache $\varepsilon$-Platzierung von $G_1$.
 \end{Lem}
 
-Beweis:
+\begin{proof}
 Für den Beweis konstruieren wir eine $\varepsilon$-Platzierung von $G_1$.
 Wir wählen einen beliebigen Knoten $v_r \in V_1$ zur Wurzel und betrachten $G_1$ als gerichteten Baum ausgehend von $v_r$.
 Wir ordnen $v_r$ einem beliebigen Punkt innerhalb einer seiner (schwachen) $\varepsilon$-Platzierung zu und bearbeiten anschließend iterativ alle
@@ -562,7 +576,8 @@ Da wir $G_1$ als gerichteten Baum betrachten, sind nach endlich vielen Schritten
 entsprechend zugewiesen und ihre $\varepsilon$-Platzierungen
 wurden mit den $\varepsilon$-Platzierungen ihrer Nachfahren durch einen einfachen Weg in $G_2$ verbunden.
 Da $G_1$ als Baum insbesondere kreisfrei ist, konnte so jede Kante explizit in $G_1$ einer $\varepsilon$-Platzierung zugeordnet werden.
-Die durch die Auswahl dieser $\varepsilon$-Platzierungen implizierte Graph-Zuordnung ist damit insgesamt eine $\varepsilon$-Platzierung von $G_1$. $\qed$
+Die durch die Auswahl dieser $\varepsilon$-Platzierungen implizierte Graph-Zuordnung ist damit insgesamt eine $\varepsilon$-Platzierung von $G_1$.
+\end{proof}
 
 Über die Konstruktion aus dem Beweis von Lemma \ref{Lemma 1} erhalten wir einen ersten Ansatz zur Konstruktion einer $\varepsilon$-Platzierung gemäß der Einschränkungen und
 des Optimalitätskriteriums.
