@@ -584,7 +584,7 @@ TODO: Laufzeit und Speicher
 \\
 \\
 Sofern $L_e$ für alle Knoten in $G_1$ berechnet ist und alle ungültigen Knoten-Platzierungen nach Ausführung von Schritt 3 (\ref{Schritt 3}) bereinigt sind,
-reduziert sich die Konstruktion einer optimalen $\varepsilon$-Platzierung auf eine optimale Gesamt-Auswahl der jeweiligen Paare von Knoten-Platzierungen für jedes Paar inzidenter Knoten in $G_1$.
+reduziert sich die Konstruktion einer optimalen $\varepsilon$-Platzierung auf eine optimale Gesamt-Auswahl der jeweiligen Paare von Knoten-Platzierungen für jedes Paar adjazenter Knoten in $G_1$.
 So eine Konstruktion ließe sich analog wie im Beweis zu Lemma $\ref{Lemma 1}$ realisieren und eine so ermittelte Graph-Zuordnung ist insbesondere auch eine $\varepsilon$-Platzierung von $G_1$.
 Letztlich stellt dann die Frage, unter welcher der möglichen Auswahlen von Knoten-Platzierungen bei der Konstruktion von $s$ die Summe der Gewichte der durch $s$ implizierten Kanten-Platzierungen minimiert wird.
 
@@ -613,8 +613,8 @@ Anschließend werden wir eine $\varepsilon$-Platzierung $s$ konstruieren, die eb
 \subsubsection{Schritt 4}
 Wir interpretieren $G_1$ nach wie vor (analog wie im Beweis zu Lemma \ref{Lemma 1}) als gerichteten Wurzelbaum (Out-Tree) mit beliebiger Wurzel $v_r$ und
 konstruieren einen abstrakten Graphen $H = (V_H, E_H)$ als Suchstruktur für die Berechnung.
-Jede (gültige) $\varepsilon$-Platzierung $p_v$ eines Knotens $v \in V_1$ wird durch einen entsprechenden Knoten $i_{p_v}$ in $H$ repräsentiert.
-Für zwei Knoten-Platzierungen $p_v \in P(v)$ und $p_u \in P(u)$ enthält $H$ genau dann die gerichtete Kante $(i_{p_u},i_{p_v})$, wenn
+Jede (gültige) $\varepsilon$-Platzierung $p_v$ eines Knotens $v \in V_1$ wird durch einen entsprechenden Knoten $i_{p_v} \in V_H$ repräsentiert.
+Für zwei Knoten-Platzierungen $p_v \in P(v)$ und $p_u \in P(u)$ gilt $(i_{p_u},i_{p_v}) \in E_H$ genau dann, wenn
 
 \begin{enumerate}
 	\item[(i)] $G_1$ die (gerichtete) Kante $(v,u)$ enthält und
@@ -631,27 +631,43 @@ Wir werden nun die Knoten-Platzierungen iterativ zuweisen und eine optimale $\va
 Im Gegensatz zu der Konstruktion von Lemma \ref{Lemma 1} berechnen wir $s$ und die Gewichte der Knoten-Platzierungen \textit{bottom-up}.
 Für einen Knoten $v \in V_1$, dessen Nachfahren ausschließlich Blätter in $G_1$ sind, setzen wir
 \begin{equation}
-	w(p_v) = \sum_{\text{$u:$ $u$ ist Nachfahre von $v$}} \min_{p_u \in P(u)} w(p_u) + w_H(p_v,p_u)
+	w(p_v) = \sum_{\text{$u:$ $u$ ist Nachfahre von $v$}} \min_{p_u \in P(u)} w(p_u) + w_H(p_v,p_u) \label{optimal placements}
 \end{equation}
 Dabei speichern wir die Zuordnung $s$ welche $w(p_v)$ realisiert für alle $p_v \in P(v)$ und löschen alle Nachfahren von $v$ aus $G_1$,
 nachdem alle Knoten-Platzierungen von $v$ bearbeitet wurden.
 Diese Bearbeitung eines Knotens in $G_1$ bezeichnen wir als einen Iterationsschritt \label{Iterationsschritt}
 
 \begin{Lem} \label{Lemma 2}
-	Nachdem Schritt 4 beendet ist, gilt für den Wurzelknoten von $G_1$:
-	$$w(v_r) = \text{Min-Sum}_{(w)F}(G_1,G_2)$$.
+	Schritt 4 berechnet in $O(n_1)$ Iterationsschritten \ref{Iterationsschritt} $\text{Min-Sum}_{(w)F}(G_1,G_2)$ und
+	eine optimale $\varepsilon$-Platzierung von $G_1$.
 \end{Lem}
 
 \begin{proof}
 Wir beweisen die Aussage über die Invariante, dass nach jedem Iterationsschritt \ref{Iterationsschritt} der Teilgraph (eingeschränkt auf
-den bearbeiteten Knoten) optimal zugeordnet ist.
+den zuletzt bearbeiteten Knoten) optimal zugeordnet ist.
 
-Sei $v$ ein Knoten in $G_1$, dessen Nachfahren Blätter sind. Nachdem $v$ bearbeitet wurde und wir $s$ als die Zuordnung betrachten,
-die $\min{w(p_v)}: p_v \in P(v)$ realisiert, so ist der Teilgraph unter $v$ offensichlich optimal zugeordnet.
-Sei nun $u$ ein Knoten in $G_1$ zu einem Iterationsschritt $i > 1$, dessen Nachfahren in dem aktualisierten Graphen $G_1$ Blätter sind.
-
-TODO: Beweis vervollständigen
+Vor dem ersten Iterationsschritt ist das Gewicht aller Knoten-Platzierungen $0$.
+Wir bezeichnen den aktualisierten Graphen $G_1$ nach dem $i$-ten Iterationsschritt mit $G_1^i$.
+Für einen beliebigen Knoten $v \in V_1$, dessen Nachfahren Blätter in $G_1^0$ sind, wird das Gewicht aller Knoten-Platzierungen nun durch die Berechnung von (\ref{optimal placements})
+für alle Nachfahren von $v$ minimiert. Insbesondere entspricht $w(v)$ gerade der Summe aller gewichteten Kanten-Platzierungen. Betrachten wir nun $s$ als die Abbildung, die $\min{w(p_v)}: p_v \in P(v)$ realisiert,
+so ist $s$ offensichtlich eine Graph-Zuordnung, die Min-Sum$_{(w)F}(G_v, G_2)$ auf dem Teilgraphen $G_v$ - mit $v$ als Wurzel - einhält.
+\\
+Seien nun alle Teilgraphen in $G_1^i$ für ein beliebiges $i>1$ an allen bereits bearbeiteten Knoten optimal zugeordnet und sei $u \in V_1$ ein Knoten, dessen
+Nachfahren Blätter in $G_1^i$ sind. Die Graph-Abbildung, die $\min{w(p_u)}: p_u \in P(u)$ realsiert, wählt unter Umständen nach der Berechnung von \ref{optimal placements}
+für einen Nachfahren $\tilde{u}$ von $u$ eine andere Knoten-Platzierung als $\min{w(p_{\tilde{u}}}): p_{\tilde{u}} \in P(\tilde{u})$. Nach Vorraussetzung sind jedoch
+wiederum alle (potentiellen) Nachfahren von $\tilde{u}$ für jede Knoten-Platzierung von $\tilde{u}$ optimal zugeordnet. Insgesamt ist damit die Graph-Abbildung, die $\min{w(p_u)}: p_u \in P(u)$ realisiert,
+optimal in dem geforderten Sinne.
+\\
+\\
+Da es zu Beginn weniger als $n_1$ Knoten mindestens einen Nachfahren haben und pro Iteration genau ein Knoten bearbeitet wird,
+ended Schritt 4 nach $O(n_1)$ Iterationsschritten mit der Berechnung der Wurzel $v_r$ und es gilt nach obiger Argumentation:
+\begin{equation}
+	\min_{p_{v_r} \in P(v_r)}{w(p_{v_r})} = \text{Min-Sum}_{(w)F}(G_1,G_2) \label {last one}
+\end{equation}
+Die Gleichung (\ref{last one}) realisierende Graph-Abbildung ist (nach \ref{Lemma 1}) eine $\varepsilon$-Platzierung von $G_1$.
+\\
 \end{proof}
+
 Insgesamt setzt sich der Algorithmus also aus den folgenden Einzelschritten zusammen:
 \begin{enumerate}
 	\item[1)] Schritt 1: Berechnung der $\varepsilon$-Platzierungen der Knoten von $G_1$
@@ -667,11 +683,12 @@ Insgesamt setzt sich der Algorithmus also aus den folgenden Einzelschritten zusa
 	andere $\varepsilon$-Platzierung $\tilde{s}$ von $G_1$ gilt:
 	$$\sum_{e \in E_1}\delta{(w)F}(e, s(e)) \leq \sum_{e \in E_1}\delta{(w)F}(e, \tilde{s}(e)).$$
 \end{Satz}
-Beweis.
+
+\begin{proof}
+Die Korrektheit des Algorithmus folgt aus Lemma \ref{Lemma 2}.
 \\
 TODO: Zeitkomplexität und Speicherkomplexität zur Berechnung von $H$ begründen.
 \\
-Die Korrektheit des Algorithmus folgt direkt aus Lemma \ref{Lemma 2}.
 \\
 Zur Berechnung von Gleichung (1) betrachten für eine feste Knoten-Platzierung $p_v \in P(v)$ den zur Lösung der Gleichung relevanten Teilgraph von $H$,
 bestehend aus den Knoten-Platzierungen von $v$ sowie deren Nachfahren. Dieser Teilgraph weist somit für jede fixierte Knoten-Platzierung eine Komplexität von $O(m_2^2)$ auf.
@@ -684,8 +701,8 @@ Mit (2) und der Identität
 \begin{equation}
 	\sum_{v \in V_1} deg(v) = 2*m_1 = 2(n-1)
 \end{equation}
-ergibt sich die schließlich die Laufzeitkomplexität von $O(n_1*m_2^3). \qed$
-
+ergibt sich die schließlich die Laufzeitkomplexität von $O(n_1*m_2^3).$
+\end{proof}
 
 \subsection{Ein Beispiel}
 Anhand eines kleinen Beispiels wollen wir den eben beschriebenen Algorithmus nun demonstrieren.
