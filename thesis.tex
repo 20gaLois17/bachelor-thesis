@@ -158,23 +158,22 @@ Sebastian Koletzko
 \newpage\null\thispagestyle{empty}\newpage % Eine Leerseite nach dem Inhaltsverzeichnis.
 \section{Einleitung}
 
-Die geometrische Graphentheorie ist ein Zweig der Graphentheorie, die sich dem Studium von Graphen verschreibt, deren Knoten und Kanten wir mit geometrischen Objekten identifizieren.
-Sie ist eng verwandt mit der Topologischen Graphentheorie, welche sich mit der Darstellung von Graphen in topologischen Räumen beschäftigt.
+Die geometrische Graphentheorie ist ein Zweig der Graphentheorie, die sich dem Studium von Graphen verschreibt, deren Knoten und Kanten wir mit geometrischen Objekten identifizieren
+und ist verwandt mit der topologischen Graphentheorie.
 
-Graphen, denen eine konkrete Darstellung - z.B im euklidischen Raum - zugewiesen wurde, bezeichnen wir als eingebettete Graphen.
-Bekannte Vertreter dieser Klasse sind unter Anderen die planaren Graphen. Dies sind Graphen, deren deren Kanten sich als Jordan-Kurven so in die euklidische
-Ebene einbetten lassen, dass sich zwei Kanten höchstens an ihren inzidenten Knoten schneiden.
+Graphen, denen eine konkrete Darstellung ihrer Knoten und Kanten - z.B im euklidischen Raum - zugewiesen wurde, bezeichnen wir als eingebettete Graphen.
+Bekannte Vertreter dieser Klasse sind die planaren Graphen. Dies sind  Graphen, deren deren Kanten sich als Jordan-Kurven so in die euklidische
+Ebene einbetten lassen, dass sie sich untereinander nur in ihren inzidenten Knoten schneiden.
 \\
-TODO: Beispiel
 \\
-In dieser Arbeit wollen wir uns insbesondere mit den sogenannten geometrischen Graphen beschäftigen. Hierbei handelt es sich um Graphen,
-deren Kanten in Form eines Geradenstücks in der euklidischen Ebene dargestellt werden.
-Geometrische Graphen eignen sich insbesondere zur Repräsentation von realen Netzwerken (wie z.B. Straßennetzen).
+In dieser Arbeit wollen wir uns mit geometrischen Graphen beschäftigen. Hierbei handelt es sich um Graphen,
+bei denen eine Kante jeweils als ein Geradenstück in der euklidischen Ebene eingebettet wird.
+Geometrische Graphen eignen sich insbesondere zur Repräsentation von Netzwerken wie z.B. Straßennetzen.
 \\
-Wir wollen geometrische Graphen vergleichen.
+Wir wollen solche Graphen miteinander vergleichen, um Aussagen über die Güte der Repräsentation des Netzwerkes treffen zu können.
 Inbesondere wollen wir geometrische Graphen bezüglich ihrer jeweiligen Repräsentation/Rekonstruktion eines Netzwerks miteinander vergleichen.
-Wir interessieren uns dabei für die Ähnlichkeit zweier geometrischer Graphen. Für uns bedeutet Ähnlichkeit zum einen die geometrische Ähnlichkeit gegeben durch die
-Einbettung der Graphen in die Ebene aber auch insbesondere bezüglich ihrer Konnektivität.
+Wir interessieren uns dabei für die Ähnlichkeit zweier geometrischer Graphen. Für uns bedeutet Ähnlichkeit primär die geometrische Ähnlichkeit gegeben durch die
+Einbettung der Graphen in die Ebene, insbesondere aber auch ohne dabei ihre inherente Konnektivität außer Acht zu lassen.
 Zum Vergleich zweier Graphen bzw. zwei geometrischer Objekte stößt man in der Literatur unweigerlich auf das Konzept eines Abstandsmaßes zwischen Graphen.
 Unter einem Abstandsmaß verstehen im Allgemeinen eine reellwertige Zuordung zum Vergleich zweier geometrischer Objekte wie z.B. zum Vergleich von zwei Kurven im euklidischen Raum.
 Für den Vergleich von eingebetteten Graphen existieren dabei bereits einige bekannte Abstandsmaße.
@@ -183,7 +182,7 @@ Einige Abstandsmaße erfassen z.B. beim Vergleich von eingebetteten Graphen ledi
 durch ihre abstrakte Beschreibung ausgewiesene Konnektivität.
 TODO: Um Referenzen ergänzen.
 \\
-Eine zentrale Fragestellung dabei ist fortlaufend, wie man neue Abstandsmaße auf Graphen definieren kann und unter welchen Bedingungen sie sich auch für potentiell komplexe Graphen effizient berechnen lassen.
+Eine zentrale Fragestellung ist dabei, wie man neue Abstandsmaße auf Graphen definieren kann und unter welchen Bedingungen sich diese auch für potentiell komplexe Graphen effizient berechnen lassen.
 \\
 Dabei interessieren wir uns insbesondere auch für die mathematischen Eigenschaften eines Abstandsmaßes sowie seiner implizierten 'Notion' der Ähnlichkeit auf die zu vergleichenden Objekte.
 \\
@@ -191,21 +190,15 @@ Um die Ählichkeit zweier eingebetter Graphen insbesondere in Bezug auf die Konn
 \\
 Besonderheit bei diesen Abstandmaßen ist, dass sie auf einer stetigen Zuordnung zwischen den zu vergleichenden Graphen basieren.
 \\
-Vor dem Hintergrund, dass die "directed (weak) graph distance" eine bottle-neck distance beschreibt, wird bei der min-sum graph distance das Ziel verfolgt, lokale Abstände zu berücksichtigen.
-Darauf aufbauend haben \cite{Buchin} Buchin et al. ein weiteres Abstandsmaß definiert, welches mögliche lokale Optimierungen der Graph-Zuordnung berücksichtigt.
-[Ein kleiner Text über den Stand der Wissenschaft]
 
 Mit diesem Abstandsmaß wollen wir uns in dieser Arbeit hauptsächlich beschäftigen.
 In Kapitel 2 fassen wir dazu zunächst die Notation und die zentralen Begriffe aus [2] zusammen, welche den Grundstein für die Auseinandersetzung mit dem neuen Abstandsmaß bilden.
-In Kapitel 3 werden wir den Min-Sum-Graph-Abstand motivieren und einführen. Anschließend werden wir uns mit den Bedingungen und einem Ansatz beschäftigen, um den Min-Sum-Graph-Abstand
-unter Verwendung des Fréchet-Abstands in Polynomialzeit zu berechnen.
-Abschließend beweisen wir in Kapitel 4 die NP-Schwerheit des Min-Sum-Graph-Abstands unter Verwendung des Fréchet-Abstands für allgemeine Graphen.
+In Kapitel 3 werden wir ein weiteres Abstandsmaß auf Graphen motivieren und einführen. Anschließend werden wir uns mit den Bedingungen und einem Ansatz beschäftigen, um dieses Maß
+in Polynomialzeit berechnen zu können.
+Abschließend beschäftigen wir uns in Kapitel 4 mit der Komplexität des Maßes für allgemeine Graphen.
 \newpage
 
 \section{Grundlagen}
-TODO: Einleitung
-\\
-\\
 Wir betrachten hier $ \mathbb{R}^n $ grundsätzlich als metrischen Raum, versehen mit der euklidischen Norm.
 
 \begin{Def}
@@ -213,11 +206,11 @@ Wir betrachten hier $ \mathbb{R}^n $ grundsätzlich als metrischen Raum, versehe
 	Das Bild von $I$ unter $\phi$ nennen wir \textit{Kurve}.
 	\\
 	\\
-	Wir bezeichnen $\phi(0)$ als den \textit{Startpunkt}, $\phi(1)$ als den \textit{Endpunkt} des Weges und die Menge
-	$\{\phi(0), \phi(1)\}$ als \textit{Randpunkte} des Weges. Dabei ist grundsätzlich $\phi(a) \neq \phi(b)$ anzunehmen.
+	Wir bezeichnen $\phi(0)$ als den \textit{Startpunkt}, $\phi(1)$ als den \textit{Endpunkt} und die Menge
+	$\{\phi(0), \phi(1)\}$ als die \textit{Randpunkte} des Weges. Dabei ist grundsätzlich $\phi(a) \neq \phi(b)$ anzunehmen.
 	\\
 	\\
-	Ein \textit{einfacher Weg} ist ein Weg, welcher injektiv auf $[0,1]$ ist.
+	Ein \textit{einfacher Weg} ist ein Weg, welcher injektiv (auf $[0,1]$) ist.
 \end{Def}
 
 \begin{Def}
@@ -234,8 +227,8 @@ Wir betrachten hier $ \mathbb{R}^n $ grundsätzlich als metrischen Raum, versehe
 	\\
 	\\
 	Dabei verlangen wir bezüglich der Einbettung grundsätzlich nicht, dass die eingebetteten Kanten von $G$ \textit{kreuzungsfrei} sind,
-	dass heißt Kanten schneiden sich mitunter auch in mehr Punkten als gemeinsamen Knoten.
-	Einen in die euklidische Ebene geradlinig eingebetteten Graphen bezeichnen wir als \textit{geometrischen Graphen}.
+	dass heißt Kanten schneiden sich mitunter auch in mehr Punkten als in ihren gemeinsamen Knoten.
+	Einen in die euklidische Ebene geradlinig eingebetteten Graphen nennen wir \textit{geometrischen Graphen}.
 	\\
 	\\
 	Für einen eingebetteten Knoten $v \in V$ definieren wir seinen \textit{$\varepsilon$-Ball} $B_{\varepsilon}(v)$ als die Menge
@@ -264,10 +257,12 @@ Wir betrachten hier $ \mathbb{R}^n $ grundsätzlich als metrischen Raum, versehe
 \subsection{Abstände auf geometrischen Graphen}
 
 Seien $ G_1=(V_1, E_1) $ und $ G_2=(V_2, E_2) $ für den gesamten weiteren Verlauf geometrische Graphen mit
-$n_1 = |V_1|, m_1 = |E_1|, n_2 = |V_2|$ und $m_2 = |E_2|$.
+$n_1 = |V_1|, m_1 = |E_1|, n_2 = |V_2|$ und $m_2 = |E_2|$. Dabei bezeichnet $|V_1|, |V_2|$ jeweils die Anzahl der Knoten und $|E_1|,|E_2|$ jeweils die Anzahl der Kanten
+der entsprechenden Graphen.
 
 \begin{Def} \label{Definition Graph-Zuordnung}
 	Graph-Zuordnung (engl. graph mapping)
+	\\
 	Wir nennen eine Abbildung $s: G_1 \to G_2 $ eine \textit{Graph-Zuordnung}, falls
     	\begin{enumerate}
 		\item[1)] s jeden Knoten $ v \in V_1 $ auf einen Punkt innerhalb von $ G_2 $ abbildet und
@@ -279,6 +274,7 @@ $n_1 = |V_1|, m_1 = |E_1|, n_2 = |V_2|$ und $m_2 = |E_2|$.
 
 \begin{Def} \label{Definition Fréchet-Abstand}
 	Fréchet-Abstand (engl. fréchet distance)
+	\\
 	Für zwei Wege $ f, g: [0,1] \to \mathbb{R}^n $ definieren wir den \textit{Fréchet-Abstand} von $f$ und $g$ als
 	$$ \delta_F(f,g) =  \inf_{\sigma:[0,1] \to [0,1]} \; \max_{t \in [0,1]} \lVert f(t)-(g(\sigma(t)) \rVert, $$
 	wobei sich $\sigma $ über alle orientierungserhaltenen Homöomorphismen erstreckt.
@@ -296,14 +292,12 @@ $n_1 = |V_1|, m_1 = |E_1|, n_2 = |V_2|$ und $m_2 = |E_2|$.
 	\\
 	Zur Anschauung des Fréchet-Abstands stelle man sich $f$ und $g$ als Kurven im $\mathbb{R}^2$ vor. Der (euklidische) Abstand zwischen $f$ und $g$ zum Zeitpunkt $t_0 \in [0,1]$ entspricht gerade der Länge der Strecke
 	mit den Randpunkten $f(t_0)$ und $g(t_0)$. Bei dem Fréchet-Abstand dürfen wir eine Kurve reparametrisieren, um den maximal angenommenen euklidischen Abstand zwischen $f$ und $g$ zu minimieren.
+	Da der Fréchet-Abstand insbesondere symmetrisch ist (TODO: Referenz), spielt es keine Rolle, ob wir $f$ oder $g$ repräsentieren.
+	\\
 	TODO: Anschauung ergänzen
 	\\
-	Für den Fréchet-Abstand darf einer von beiden auf seinem festgelegten Weg - welcher der Spur der Kurve entspricht - zu jedem Zeitpunkt beliebig beschleunigen oder sogar stehenbleiben, aber nicht die Richtung wechseln.
-	Dies mit dem Ziel, die dabei maximal angenommene Länge der Leine möglichst zu minimieren.
-	Für den schwachen Fréchet-Abstand dürfen der Mann sowie sein Hund auf ihrem Weg beliebig beschleunigen und auch die Richtung ändern.
 	\\
-	Wir bezeichnen einen solchen maximal-angenommen Abstand zwischen zwei Objekten sinngemäß auch als \textit{Flaschenhals-Abstand}.
-	\\
+	Wir bezeichnen einen solchen maximal angenommen Abstand zwischen zwei Objekten sinngemäß auch als \textit{Flaschenhals-Abstand}.
 \end{Def}
 
 \begin{Def} \label{Definition Graph-Abstand}
@@ -326,11 +320,11 @@ TODO: Beispiel/Erklärung
 
 \subsection{Lokale Optimierungen}
 
-Generell können viele Graph-Zuordnungen $s: G_1 \to G_2$ existieren, die den gerichteten (schwachen) Graph-Abstand einhalten.
+Generell können für einen konkreten Fall viele Graph-Zuordnungen $s: G_1 \to G_2$ existieren, die den gerichteten (schwachen) Graph-Abstand einhalten.
 Im Anwendungsfall kann man sich z.B. mehrere Rekonstruktionen $G_{1,1}, ..., G_{1,n}$ eines Netzwerkes $G_2$ vorstellen.
 Anschließend stelle man sich nun die Frage, welche der Rekonstruktionen dem urpsprünglichen Netzwerk $G_2$ am ähnlichsten ist bzw. dieses entsprechend eines konkreten Abstandsmaßes
-für Graphen am besten.
-Der gerichtete (schwache) Graph-Abstand zwischen einem $G_{1i}$ $(i \in \{1,...,n\})$ und $G_2$ beschreibt dabei lediglich eine obere Schranke für die größte Abweichung zwischen
+für Graphen am besten beschreibt.
+Der gerichtete (schwache) Graph-Abstand zwischen einem $G_{1i}$ $(i \in \{1,...,n\})$ und $G_2$ beschreibt dabei in gewisser Weise eine obere Schranke für die größte Abweichung zwischen
 einer Rekonstruktion $G_{1i}$ und $G_2$.
 Unter Umständen haben evlt. sogar alle $G_{1i}$ denselben Flaschenhals-Abstand zu $G_2$, da sie dieselbe entscheidende Abweichung bei der Rekonstruktion von $G_2$ erzeugen.
 Insbesondere interessieren wir uns hier nun für die lokale Güte der Rekonstruktion, welche für den gerichteten (schwachen) Graph-Abstand keine Rolle spielt.
@@ -346,10 +340,10 @@ Fréchet-Abstands auf $G_2$ abbildet, so dass $\delta_{(w)F}(e, \tilde{s}(e)) \l
 TODO: Beispiel
 \\
 \\
-Als Alternative bietet es sich an, die summierten Abstände zwischen den Kanten in $G_1$ und ihren Bildern in $G_2$ unter der Graph-Zuordnung zu minimieren.
+Alternativ bietet es sich an, die summierten (schwachen) Fréchet-Abstände zwischen den Kanten in $G_1$ und ihren Bildern in $G_2$ unter der Graph-Zuordnung zu optimieren.
 
 \subsection{Optimale Graph-Zuordnungen} \label{Optimale Graphzuordnungen}
-Damit widmen wir uns nun einem Abstandsmaß, welches für uns im weiteren Verlauf das Optimalitätskriterum zur Charakterisierung optimaler Zuordnungen auf Graphen beschreibt.
+Damit widmen wir uns nun dem Abstandsmaß, welches für uns im weiteren Verlauf das Optimalitätskriterum zur Charakterisierung optimaler Zuordnungen auf Graphen beschreibt.
 
 \begin{Def} \label{Definition Min-Sum}
 	Min-Sum-Graph-Abstand (engl. min-sum graph distance)
@@ -364,7 +358,7 @@ Damit widmen wir uns nun einem Abstandsmaß, welches für uns im weiteren Verlau
 	\textit{Min-Sum}$_{(w)F}(G_1, G_2)$ als $$\min_{s: G_1 \to G_2} \sum_{e \in E_1} \delta_{(w)F}(e, s(e)).$$
 	\\
 	\\
-	Ferner bezeichnen wir mit $Sum_{(w)F}(s) = \sum_{e \in E_1}\delta_{(w)F}(e, s(e))$ die Summe (schwachen) Fréchet-Abstände zwischen den Kanten
+	Ferner bezeichnen wir mit $Sum_{(w)F}(s) = \sum_{e \in E_1}\delta_{(w)F}(e, s(e))$ die Summe der (schwachen) Fréchet-Abstände zwischen den Kanten
 	in $G_1$ und ihren durch $s$ zugeordneten Wegen in $G_2$.
 	\\
 	Wir nennen $s$ eine Min-Sum$_{(w)F}$ Zuordnung, falls
@@ -380,7 +374,7 @@ Begriffe und Ergebnisse aus [2] herleiten und diesen Algorithmus schließlich an
 Sei $G_1$ von nun an ein kreisfreier und zusammenhängender Graph, also ein \textit{Baum}.
 
 \subsection{Einschränkungen an die Graph-Zuordnungen} \label{Einschränkungen}
-Für die Berechnung von Min-Sum$_{(w)F}(G_1, G_2)$ kommen definitionsgemäß \ref{Definition Min-Sum} alle möglichen Graph-Zuordnungen von $G_1$ nach $G_2$ in Betracht.
+Für die Berechnung von Min-Sum$_{(w)F}(G_1, G_2)$ kommen definitionsgemäß (siehe \ref{Definition Min-Sum}) alle möglichen Graph-Zuordnungen von $G_1$ nach $G_2$ in Betracht.
 Im weiteren Verlauf werden wir die Menge der Graph-Zuordnungen jedoch mit zwei Einschränkungen versehen.
 Die erste Einschränkung ist dabei optional. Die zweite Einschränkung wird notwendig sein, um die polynomielle Laufzeit des Algorithmus zu gewährleisten.
 \\
@@ -455,17 +449,17 @@ Für eine solche Abbildung $s$ gilt dann entsprechend $\sum_{e \in E_1}\delta_{(
 \\
 \\
 Der algorithmische Ansatz zur Lösung des Entscheidungsproblems, ob eine $\varepsilon$-Platzierung von $G_1$ existiert (siehe [2] Seiten 9-11), liefert das
-Grundgerüst für die Konstruktion von $s$. Wir wollen den algorithmischen Ansatz motivieren und die Berechnungsschritte im Detail beschreiben.
+Grundgerüst für die Konstruktion von $s$. Wir wollen diesen algorithmischen Ansatz motivieren und die Berechnungsschritte im Detail beschreiben.
 Der Algorithmus gliedert sich in insgesamt 4 Einzelschritte, die wir im Verlauf des Kapitels entsprechend kennzeichnen werden.
 
 \subsubsection{$\varepsilon$-Platzierungen der Knoten} \label{Platzierungen der Knoten}
-Die Zuordnung der Knoten $u,v \in V_1$ auf einen Punkt jeweils innerhalb ihrer $\varepsilon$-Platzierungen bedingt die Randpunkte $w(0)$, $w(1)$
-für einen einfachen Weg $w: [0,1] \to G_2$, auf den die Kante $\{u,v\} \in E_1$ durch eine Graph-Zuordndung $s$ abgebildet werden kann.
+Die Zuordnung der Knoten $u,v \in V_1$ auf einen Punkt jeweils innerhalb ihrer $\varepsilon$-Platzierungen bedingt die Randpunkte $W(0)$, $W(1)$
+für einen einfachen Weg $W: [0,1] \to G_2$, auf den die Kante $\{u,v\} \in E_1$ durch eine Graph-Zuordndung $s$ abgebildet werden kann.
 Dass diese Randpunkte innerhalb der $\varepsilon$-Platzierung ihrer jeweiligen Knoten liegen, ist ein notwendiges Kriterium dafür, dass der (schwache) Fréchet-Abstand
 zwischen der Kante und ihrem Bild unter $s$ nicht größer als $\varepsilon$ ist.
 
 Aus der Definition des (schwachen) Fréchet-Abstands (siehe \ref{Definition Fréchet-Abstand}) folgt direkt, dass
-$\delta_{(w)F}(e, w) \geq max{\{\|u-w(0)\|, \|v-w(1)\|\}}$.
+$\delta_{(w)F}(e, W) \geq max{\{\|u-W(0)\|, \|v-W(1)\|\}}$.
 \\
 \\
 Anfangs berechnen wir zunächst alle $\varepsilon$-Platzierungen der Knoten in $G_1$ und bezeichnen für einen Knoten $v \in V_1$ mit $P(v)$ die Menge
@@ -482,30 +476,30 @@ zusammenhängenden Komponenten in Graphen ermitteln, dessen Laufzeit linear in d
 Die Laufzeit - und Speicherkomplexität beträgt somit $O(n_1*m_2)$.
 
 \subsubsection{Schritt 2} \label{Schritt 2}
-Für jede Kante $\{u, v\} \in E_1$ berechnen wir nun die Erreichbarkeiten zwischen den $\varepsilon$-Platzierungen der Knoten von $\{u,v\}$.
-Dabei ist für jede Kombination $p_u, p_v$ von $\varepsilon$-Platzierungen von $u$ und $v$ zu jeweils zu entscheiden, ob sie voneinander (schwach) erreichbar sind.
+Für jede Kante $\{u, v\} \in E_1$ berechnen wir nun die (schwachen) Erreichbarkeiten zwischen den $\varepsilon$-Platzierungen der Knoten von $u,v$.
+Dabei ist für jede Kombination $p_u, p_v$ von $\varepsilon$-Platzierungen von $u$ und $v$ zu jeweils zu entscheiden, ob sie (schwach) voneinander erreichbar sind.
 
-Um die schwache Erreichbarkeit zu entscheiden, ist die Existenz eines einfachen Weges zwischen zwei Knoten-Platzierungen
+Um nur die schwache Erreichbarkeit zu entscheiden, ist die Existenz eines einfachen Weges zwischen zwei Knoten-Platzierungen
 $p_u,p_v$, welcher vollständig innerhalb von $T_{\varepsilon}(\{u,v\})$ liegt, bereits ein hinreichendes Kriterium (siehe [3], Seite 83).
-
+z
 Schränken wir $G_2$ auf $T_{\varepsilon}(\{u,v\})$ ein, so sind alle Knoten-Platzierungen innerhalb derselben zusammenhängenden Komponente von $G_2$
 schwach voneinander erreichbar. Entsprechend speichern wir für eine zusammenhängende Komponente von $G_2$ innerhalb $T_{\varepsilon}(e)$ jeweils zwei Listen mit den
-der Knoten-Platzierungen $P(u)$ und $P(v)$.
+zusammenhängenden Knoten-Platzierungen von $u$ und $v$.
 
 Die schwachen Erreichbarkeiten zwischen allen Knoten-Platzierungen entlang einer Kante in $G_1$ lassen sich somit mit einer Laufzeit von $O(m_2)$ berechnen.
 Insgesamt beträgt die Zeit - und Speicherkomplexität zur Berechnung der Erreichbarkeiten aller Kanten in $G_1$ $O(m_1*m_2)$.
 \\
 \\
-Für den Fréchet-Abstand ist die Existenz eines einfachen Weges $w$ innerhalb von $T_{\varepsilon}(\{u,v\})$, welcher $p_u$ und $p_v$ miteinander verbindet,
-zwar ein notwendiges aber kein hinreichendes Kriterium dafür, dass $p_u$ und $p_v$ voneinander erreichbar sind. Wir müssen für $w$ explizit entscheiden,
-ob $\delta_F(\{u,v\}, w) \leq \varepsilon$.
+Für den Fréchet-Abstand ist die Existenz eines einfachen Weges $W$ innerhalb von $T_{\varepsilon}(\{u,v\})$, welcher $p_u$ und $p_v$ miteinander verbindet,
+zwar ein notwendiges aber kein hinreichendes Kriterium dafür, dass $p_u$ und $p_v$ voneinander erreichbar sind. Wir müssen für $W$ explizit entscheiden,
+ob $\delta_F(\{u,v\}, W) \leq \varepsilon$.
 \\
 \\
 Dabei können wir für zwei Wege $Y$ und $Z$ das Entscheidungsproblem $\delta_F(Y,Z) \leq \varepsilon$ in $O(\|Y\|*\|Z\|)$ lösen ([3], Seite 77).
-Da $\{u,v\}$ ein Geradenstück ist, gilt $\|\{u,v\}\| = 1$. Damit können wir die Erreichbarkeit zwischen $\{u,v\}$ und $w$ in $O(|w|)$ entscheiden.
-Da $w$ per Bedingung ein einfacher Weg ist, besteht $w$ aus maximal $m_2$ Kanten (bzw. Teilkanten) von $G_2$.
+Da $\{u,v\}$ ein Geradenstück ist, hat $\{u,v\}$ die Länge $1$. Damit können wir die Erreichbarkeit zwischen $\{u,v\}$ und $W$ in $O(|W|)$ entscheiden.
+Da $W$ per Bedingung ein einfacher Weg ist, besteht $W$ aus maximal $m_2$ Kanten (bzw. Teilkanten) von $G_2$.
 Zur Speicherung der Erreichbarkeiten speichern wir für jede $\varepsilon$-Platztierung von $u$ eine Liste mit $\varepsilon$-Platzierungen von $v$, die
-über ein $w$ voneinander erreichbar sind. Um die Liste für ein $p_u \in P(u)$ zu berechnen, starten wir eine Graph-Suche zur Ermittlung eines
+über einen Weg voneinander erreichbar sind. Um die Liste für ein $p_u \in P(u)$ zu berechnen, starten wir eine Graph-Suche zur Ermittlung eines
 Weges in $G_2$ beginnend bei $p_u$. Verlassen wir während der Suche entweder $T_{\varepsilon}(\{u,v\})$ bzw. überschreitet der Fréchet-Abstand $\varepsilon$,
 so entfernen wir den Suchzweig aus der Liste der möglichen Abzweigungen in $G_2$.
 Für eine Kante in $G_1$ beträgt die Laufzeit der Suche somit $O(m_2^2)$ und pro Kante zählen wir bis zu $m_2^2$ Paare von potentiell voneinander erreichbarer Knoten-Platzierungen.
@@ -513,13 +507,13 @@ Für alle Kanten in $G_1$ liegt die Speicher - und Laufzeitkomplexität damit be
 
 \subsubsection{Existenz einer $\varepsilon$-Platzierung von $G_1$}
 Bis zu diesem Schritt haben wir die (schwachen) Erreichbarkeiten zwischen Knoten-Platzierungen paarweise ermittelt.
-Nun wollen wir unseren Wortschatz um den Begriff der Knoten-Platzierungen insofern erweitern, dass wir in unserem konkreten Fall die Existenz einer
-$\varepsilon$-Platzierung von $G_1$ garantieren wollen.
+Nun wollen wir unseren Wortschatz um den Begriff der Knoten-Platzierungen um eine Eigenschaft erweitern, um anschließend eine Aussage über die Existenz
+einer $\varepsilon$-Platzierung von $G_1$ treffen zu können.
 \\
 Hat ein Knoten $u \in V_1$ neben $\{u,v\} \in E_1$ noch eine weitere inzidente Kante $\{u,w\}$, so muss neben einem $p_v \in P(v)$ insbesondere auch
-ein $p_w \in P(w)$ existieren, so dass die Paare $\{p_u,p_v\}$ und $\{p_v,p_u\}$ jeweils (schwach) voneinander erreichbar sind. Die (schwache) Erreichbarkeit
+ein $p_w \in P(w)$ existieren, so dass die Paare $(p_u,p_v)$ und $\(p_v,p_u)$ jeweils (schwach) voneinander erreichbar sind. Die (schwache) Erreichbarkeit
 zwischen einer Knoten-Platzierungen mit mindestens einer Knoten-Platzeriung benachbarter knoten stellt somit ein notwendiges Kriterium für die Existenz
-einer $\varepsilon$ von $G_1$ dar und motiviert damit die folgende Definition.
+einer $\varepsilon$-Platzierung von $G_1$ dar und motiviert damit die folgende Definition.
 
 \begin{Def}
 	Gültige $\varepsilon$-Platzierung (engl. valid placement)
@@ -550,44 +544,44 @@ Für die schwache Erreichbarkeit haben wir in Schritt 2 für eine Kante $\{u,v\}
 und ihre enthaltenen Knoten-Platzierungen von $u$ und $v$ gespeichert.
 \\
 Ist nun eine Knoten-Platzierung $p_v \in P(v)$ ungültig, so muss $p_v$ aus allen entsprechenden Listen von Knoten-Platzierungen gelöscht werden, in
-denen $p_v$ enthalten ist. Dies betrifft potentiell alle zu $v$ inzidenten Knoten, daher beträgt die Laufzeit zum Bereinigen von $p_v$ $O(deg(v))$.
+denen $p_v$ enthalten ist. Dies betrifft potentiell alle zu $v$ adjazenten Knoten, daher beträgt die Laufzeit zum Bereinigen von $p_v$ $O(deg(v))$.
 Mit der Identität $\sum_{v \in V_1}(deg(v)) = 2m_1$ beträgt die Laufzeit zum Bereinigen aller ungültigen Knoten-Platzierungen $O(m_1*m_2)$.
 \\
 Für die nicht-schwache Erreichbarkeit haben wir für jede Knoten-Platzierung $p_v$ eine Liste mit erreichbaren Knoten-Platzierungen gespeichert.
-Sollte $p_v$ ungültig sein, so müssen wir $p_v$ für jeden zu $v$ adjazenten Knoten aus den Listen der Knoten-Platzierungen entfernen, mit denen $p_v$ erreichbar ist.
-Für jeden ajdazenten Knoten sind dies $O(m_2)$ Listen, daher beträgt die Laufzeit für die Löschung von $p_v$ $O(deg(v)*m_2)$.
-Das Bereinigen aller Platzierungen beträgt entsprechend $O(m_1*m_2^2)$.
+Sollte $p_v$ ungültig sein, so müssen wir $p_v$ für jeden zu $v$ adjazenten Knoten aus den Listen der Knoten-Platzierungen entfernen, in denen $p_v$ enthalten ist.
+Für jeden ajdazenten Knoten sind dies $O(m_2)$ Listen, daher beträgt die Laufzeit für die Löschung von $p_v$ insgesamt $O(deg(v)*m_2)$.
+Das Bereinigen aller Knoten-Platzierungen beträgt entsprechend $O(m_1*m_2^2)$.
 \\
 \\
 Nachdem Schritte 1-3 durchgeführt wurden, liefert uns ein Hilfssatz aus Akitaya et al. (siehe dazu Seite 13. Lemma 6) eine verbindliche Aussage über die Existenz
 einer (schwachen) $\varepsilon$-Platzierung von $G_1$:
 
 \begin{Lem} \label {Lemma 1}
-	Sei $G_1$ ein Baum und für $v \in V_1$ sei $\tilde{P}(v)$ die Menge der (schwach) gültigen $\varepsilon$-Platzierungenvon $v$ nachdem
-	alle (schwach) ungültigen ungültigen $\varepsilon$-Platzierungen der Knoten in $G_1$ rekursiv gelöscht wurden (analog wie in \ref{Schritt 3}).
+	Sei $G_1$ ein Baum und für $v \in V_1$ sei $\tilde{P}(v)$ die Menge der (schwach) gültigen $\varepsilon$-Platzierungen von $v$, nachdem
+	alle (schwach) ungültigen $\varepsilon$-Platzierungen der Knoten in $G_1$ rekursiv gelöscht wurden (analog wie in \ref{Schritt 3}).
 	Enthält $\tilde{P}(v)$ für jedes $v \in V_1$ mindestens eine (schwach) gültige $\varepsilon$-Platzierung, so existiert
-	eine schwache $\varepsilon$-Platzierung von $G_1$.
+	eine (schwache) $\varepsilon$-Platzierung von $G_1$.
 \end{Lem}
 
 \begin{proof}
 Für den Beweis konstruieren wir eine $\varepsilon$-Platzierung von $G_1$.
-Wir wählen einen beliebigen Knoten $v_r \in V_1$ zur Wurzel und betrachten $G_1$ als gerichteten Baum ausgehend von $v_r$.
-Wir ordnen $v_r$ einem beliebigen Punkt innerhalb einer seiner (schwachen) $\varepsilon$-Platzierung zu und bearbeiten anschließend iterativ alle
-Knoten in $G_1$ ausgehend von der Wurzel.
+Wir ernennen einen beliebigen Knoten $v_r \in V_1$ zur Wurzel und betrachten $G_1$ als gerichteten Baum (Out-Tree) ausgehend von $v_r$ .
+Wir ordnen $v_r$ einen beliebigen Punkt innerhalb einer seiner (schwachen) $\varepsilon$-Platzierung zu und bearbeiten anschließend iterativ alle
+Knoten in $G_1$ ausgehend von der Wurzel $v_r$.
 
-Dabei wählen wir stets für einen Knoten $v \in V_1$, dessen Vorgänger bereits bereits zugewiesen wurde,
+Dabei wählen wir stets für einen Knoten $v \in V_1$, dessen Vorgänger bereits zugewiesen wurde,
 die $\varepsilon$-Platzierung $p_v \in P(v)$ von $v$ so, dass $p_v$
 und die bereits ausgewählte (bzw. zugeordnete) $\varepsilon$-Platzierung $p_a$ des Vorgängers von $v$ voneinander (schwach) erreichbar sind.
 Für die Kante zwischen $v$ und seinem Vorgänger können wir nun eine passende Kanten-Platzierungen wählen.
 \\
-Denn nach Vorraussetzung ist $p_a$ (schwach) gültig und somit muss ein $p_v$ mit der geforderten Erreichbarkeit zu $p_a$ existieren.
-Nach Definition der (schwachen) Erreichbarkeit gilt, dass mindestens ein einfacher Weg in $G_2$ existiert, welcher $p_v$ und $p_a$ verbindet
+Nach Vorraussetzung ist $p_a$ (schwach) gültig und somit muss ein $p_v$ mit der geforderten Erreichbarkeit zu $p_a$ existieren.
+Per Definition der (schwachen) Erreichbarkeit gilt, dass mindestens ein einfacher Weg in $G_2$ existiert, welcher $p_v$ und $p_a$ verbindet
 und dessen (schwacher) Fréchet-Abstand mit der Kante zwischen $v$ und seinem Vorgänger nicht größer als $\varepsilon$ ist.
 Einen solchen Weg wählen wir nun als $\varepsilon$-Platzierung für die Kante zwischen $v$ und seinem Vorgänger.
 \\
 Da wir $G_1$ als gerichteten Baum betrachten, sind nach endlich vielen Schritten ausgehend von der Wurzel ausgehend alle Knoten in $G_1$
 entsprechend zugewiesen und ihre $\varepsilon$-Platzierungen
-wurden mit den $\varepsilon$-Platzierungen ihrer Nachfahren durch einen einfachen Weg in $G_2$ verbunden.
+wurden mit den $\varepsilon$-Platzierungen ihrer Vorfahren durch einen einfachen Weg in $G_2$ verbunden.
 Da $G_1$ als Baum insbesondere kreisfrei ist, konnte so jede Kante explizit in $G_1$ einer $\varepsilon$-Platzierung zugeordnet werden.
 Die durch die Auswahl dieser $\varepsilon$-Platzierungen implizierte Graph-Zuordnung ist damit insgesamt eine $\varepsilon$-Platzierung von $G_1$.
 \end{proof}
@@ -614,13 +608,14 @@ TODO: Laufzeit und Speicher
 Sofern $L_e$ für alle Knoten in $G_1$ berechnet ist und alle ungültigen Knoten-Platzierungen nach Ausführung von Schritt 3 (\ref{Schritt 3}) bereinigt sind,
 reduziert sich die Konstruktion einer optimalen $\varepsilon$-Platzierung auf eine optimale Gesamt-Auswahl der jeweiligen Paare von Knoten-Platzierungen für jedes Paar adjazenter Knoten in $G_1$.
 So eine Konstruktion ließe sich analog wie im Beweis zu Lemma $\ref{Lemma 1}$ realisieren und eine so ermittelte Graph-Zuordnung ist insbesondere auch eine $\varepsilon$-Platzierung von $G_1$.
-Letztlich stellt dann die Frage, unter welcher der möglichen Auswahlen von Knoten-Platzierungen bei der Konstruktion von $s$ die Summe der Gewichte der durch $s$ implizierten Kanten-Platzierungen minimiert wird.
+Letztlich stellt dann die Frage, unter welcher der möglichen Auswahlen von Knoten-Platzierungen bei der Konstruktion von $s$ die Summe der Gewichte der durch $s$ implizierten Kanten-Platzierungen
+minimiert und damit das Optimalitätskriterium erfüllt wird.
 
 \subsubsection{Konstruktion einer optimalen $\varepsilon$-Platzierung von $G_1$}
 Ein naiver Ansatz zur Berechnung von Min-Sum$_{(w)F}(G_1,G_2)$ wäre nun, alle möglichen Kombinationen der $\varepsilon$-Platzierungen der Knoten von $G_1$ über z.B. einen Backtracking-Algorithmus auszuschöpfen.
-Dabei würden wir - beginnend bei dem ausgewiesenen Wurzelknoten $v_r$ - die Knoten und Kanten von $G_1$ wie in der Konstruktion der Graph-Zuordnung in $\ref{Lemma 1}$ zuordnen.
+Dabei würden wir - beginnend bei dem ausgewiesenen Wurzelknoten $v_r$ - die Knoten und Kanten von $G_1$ wie in der Konstruktion der Graph-Zuordnung (siehe $\ref{Lemma 1}$) zuordnen.
 An jedem Knoten, wo es für die Auswahl einer Knoten-Platzierung mehr als eine Möglichkeit gibt, hätte der Backtracking-Algorithmus eine Abzweigung pro möglicher Auswahl.
-Sobald wir erstmalig $G_1$ vollständig zugeordnet haben, speichern wir die Zuordnung $s$ sowie ihr bisheriges Gewicht $Sum_{(w)F}(s)$, welches sich als Summe der
+Sobald wir erstmalig $G_1$ vollständig zugeordnet haben, speichern wir die Zuordnung $s$ sowie ihr Gewicht $Sum_{(w)F}(s)$, welches sich als Summe der
 paarweise gewählten Knoten-Platzierungen und ihren $\Delta$-Gewichten ergibt.
 Für einen bereits zugeordneten Teilgraphen könnten wir sein Gewicht unter den bereits zugeordneten Kanten mitführen und backtracken, sobald dieses das bis zu diesem Iterationsschritt
 minimalste Gewicht einer vollständigen Zuordnung von $G_1$ überschreitet. Nachdem der Algorithmus terminiert, hätten wir so Min-Sum$_{(w)F}(G_1,G_2)$ berechnet.
@@ -635,11 +630,12 @@ Insgesamt wächst die Anzahl der potentiellen Kombinationsmöglichkeiten exponen
 \\
 \\
 Im letzten Schritt des Algorithmus konstruieren wir eine geeignete Suchstruktur für die Zuweisung und Gewichtung von Knoten-Platzierungen.
+Dabei werden wir die Knoten-Platzierungen \textit{greedy} berechnen und auswählen.
 Anschließend werden wir eine $\varepsilon$-Platzierung $s$ konstruieren, die ebenfalls eine Min-Sum$_{(w)F}$ Zuordnung ist, also das Optimalitätskriterium erfüllt.
 \\
 \\
 \subsubsection{Schritt 4}
-Wir interpretieren $G_1$ nach wie vor (analog wie im Beweis zu Lemma \ref{Lemma 1}) als gerichteten Wurzelbaum (Out-Tree) mit beliebiger Wurzel $v_r$ und
+Wir interpretieren $G_1$ nach wie vor (analog wie im Beweis zu Lemma \ref{Lemma 1}) als gerichteten Wurzelbaum  mit beliebiger Wurzel $v_r$ und
 konstruieren einen abstrakten Graphen $H = (V_H, E_H)$ als Suchstruktur für die Berechnung.
 Jede (gültige) $\varepsilon$-Platzierung $p_v$ eines Knotens $v \in V_1$ wird durch einen entsprechenden Knoten $i_{p_v} \in V_H$ repräsentiert.
 Für zwei Knoten-Platzierungen $p_v \in P(v)$ und $p_u \in P(u)$ gilt $(i_{p_u},i_{p_v}) \in E_H$ genau dann, wenn
@@ -666,12 +662,12 @@ nachdem alle Knoten-Platzierungen von $v$ bearbeitet wurden.
 Diese Bearbeitung eines Knotens in $G_1$ bezeichnen wir als einen Iterationsschritt \label{Iterationsschritt}
 
 \begin{Lem} \label{Lemma 2}
-	Schritt 4 berechnet in $O(n_1)$ Iterationsschritten \ref{Iterationsschritt} $\text{Min-Sum}_{(w)F}(G_1,G_2)$ und
+	Schritt 4 berechnet in $O(n_1)$ Iterationsschritten (siehe \ref{Iterationsschritt}) $\text{Min-Sum}_{(w)F}(G_1,G_2)$ und
 	eine optimale $\varepsilon$-Platzierung von $G_1$.
 \end{Lem}
 
 \begin{proof}
-Wir beweisen die Aussage über die Invariante, dass nach jedem Iterationsschritt \ref{Iterationsschritt} der Teilgraph (eingeschränkt auf
+Wir beweisen die Aussage über die Invariante, dass nach jedem Iterationsschritt der Teilgraph (eingeschränkt auf
 den zuletzt bearbeiteten Knoten) optimal zugeordnet ist.
 
 Vor dem ersten Iterationsschritt ist das Gewicht aller Knoten-Platzierungen $0$.
@@ -687,7 +683,7 @@ wiederum alle (potentiellen) Nachfahren von $\tilde{u}$ für jede Knoten-Platzie
 optimal in dem geforderten Sinne.
 \\
 \\
-Da es zu Beginn weniger als $n_1$ Knoten mindestens einen Nachfahren haben und pro Iteration genau ein Knoten bearbeitet wird,
+Da es zu Beginn von Schritt 4 weniger als $n_1$ Knoten mindestens einen Nachfahren haben und pro Iteration genau ein Knoten bearbeitet wird,
 ended Schritt 4 nach $O(n_1)$ Iterationsschritten mit der Berechnung der Wurzel $v_r$ und es gilt nach obiger Argumentation:
 \begin{equation}
 	\min_{p_{v_r} \in P(v_r)}{w(p_{v_r})} = \text{Min-Sum}_{(w)F}(G_1,G_2) \label {last one}
@@ -740,10 +736,10 @@ TODO: Skizze und Beispielrechnung ergänzen
 
 \subsubsection{NP-Schwerheit von Min-Sum-Graph-Abstand$_{(w)F}$}
 
-Abschließend wollen wir zeigen, dass die Berechnung des Min-Sum-Graph-Abstands$_{(w)F}$ ohne Bedingungen an die Graphen $G_1$ und $G_2$ im Allgemeinen
+Abschließend wollen wir zeigen, dass die Berechnung des Min-Sum$_{(w)F}$ Abstands ohne Bedingungen an die Graphen $G_1$ und $G_2$ im Allgemeinen
 NP-schwer ist. Ein für die Konstruktion des Beweises ähnliches Setting finden wir in [2] (Seite), wo die NP-Schwerheit des Graph-Abstands
 über eine Reduktion von \textit{Binary Constraint Satifaction Problem (CSP)} gezeigt wird.
-In unserem Beweis der NP-Schwerheit für den Min-Sum-Graph-Abstand orientieren wir uns im Wesentlichen an dieser Konstruktion.
+Hier orientieren wir uns im Wesentlichen an der oben genannten Konstruktion aus [2].
 
 \begin{Def}
 	Binary Constraint Satisfaction Problem
@@ -782,7 +778,7 @@ sich der $\varepsilon$-Schlauch einer Kante $e \in E_1$ genau dann mit dem $\var
 \\
 Eine solche Einbettung für $G_1$ lässt sich z.B. realisieren, indem wir die Knoten in $G_1$ (gleichmäßig) auf einem Kreis mit entsprechend großem Radius verteilen.
 \\
-Jeder Wert $d_{i,a} \in D_i$ wird durch einen Knoten $u_{i,a}$ in $G_2$ repräsentiert und wir betten $_{i,a}$ beliebig innerhalb des 1-Balles $B_1(v_i)$ von $v_i$ ein.
+Jeder Wert $d_{i,a} \in D_i$ wird durch einen Knoten $u_{i,a}$ in $G_2$ repräsentiert und wir betten $u_{i,a}$ beliebig innerhalb des 1-Balles $B_1(v_i)$ von $v_i$ ein.
 Für jedes Wertepaar $d_{i,a} \in D_i, d_{j,b} \in D_j$ enthält $G_2$ genau dann die Kante $\{u_{i,a},u_{j,b}\}$, wenn die Wertekombination $(d_{i,a},d_{j,b})$
 zulässig ist.
 \\
@@ -805,12 +801,12 @@ Dann existiert eine Wertezuweisung $(\tilde{d_1},\tilde{d_2},...,\tilde{d_n}) \i
 Wir definieren eine Abbildung $\tilde{s}:G_1 \to G_2$ mit $\tilde{s}(v_i) = u_{\tilde{d_i}}$.
 Nach Konstruktion von $G_2$ existiert für jedes $\tilde{d_i}$ ein entsprechendes $u_{\tilde{d_i}} \in G_2$.
 \\
-Ferner existiert für eine beliebige Kante $\{v_i, v_j\} \in E_1$ die Kante $\{u_{\tilde{d_i}}, u_{\tilde{d_j}}\} \in E_2$ und diese ist
+Ferner existiert für eine beliebige Kante $\{v_i, v_j\} \in E_1$ die Kante $\{u_{\tilde{d_i}}, u_{\tilde{d_j}}\} \in E_2$ und
 und da das mit $\{u_{\tilde{d_i}}, u_{\tilde{d_j}}\}$ assoziierte Wertepaar $(\tilde{d_i},\tilde{d_j})$ per Vorraussetzung zulässig ist,
 liegt $\{u_{\tilde{d_i}}, u_{\tilde{d_j}}\}$ innerhalb von $T_1(\{v_i, v_j\}$ und die Randpunkte liegen respektive innerhalb von $B_1(v_i)$ und $B_1(v_j)$.
 \\
 \\
-Wir erweitern $\tilde{s}$ insofern, dass $\{v_i, v_j\}$ durch $s$ so auf $\{u_{\tilde{d_i}}, u_{\tilde{d_j}}\}$ abgebildet wird,
+Wir erweitern $\tilde{s}$ insofern, dass $\{v_i, v_j\}$ durch $\tilde{s}$ so auf $\{u_{\tilde{d_i}}, u_{\tilde{d_j}}\}$ abgebildet wird,
 dass $\delta_{(w)F}(\{v_i, v_j\}, s(\{v_i, v_j\}) \leq 1$. Bilden wir jede Kante von $G_1$ auf diese Weise auf $G_2$ ab, so ist $\tilde{s}$ eine Graph-Zuordnung
 und $\delta_{(w)F}(e, \tilde{s}) \leq 1$ für jedes $e \in E_1$.
 \\
@@ -906,9 +902,9 @@ Damit ist $\langle X,D,C \rangle$ lösbar. \qed
 \\
 \section{Ausblick}
 In dieser Arbeit haben wir uns, motiviert durch das Ziel optimale Zuordnungen auf geometrischen Graphen zu untersuchen, mit dem
-Min-Sum-Graph-Abstand$_{(w)F}$ beschäftigt. Dabei haben wir die Frage der NP-Schwerheit des Min-Sum-Graph-Abstands$_{(w)F}$ für allgemeine
+Min-Sum$_{(w)F}$ Abstands beschäftigt. Dabei haben wir Komplexität für allgemeine
 Graphen geklärt und - falls $G_1$ ein Baum ist und wir die Menge der Graph-Zuordnungen (wie in \ref{Einschränkungen} beschrieben) einschränken -
-einen Polynomialzeit-Algorithmus zur Berechnung von Min-Sum-Graph-Abstand$_{(w)F}(G_1, G_2)$ beschrieben.
+einen Polynomialzeit-Algorithmus zur Berechnung dieses Abstandsmaßes beschrieben.
 \\
 Dabei verbleiben noch einige offene Fragen bezüglich der Komplexität.
 Buchin et al. gehen des Weiteren davon aus, dass sich der Min-Sum-Graph-Abstand$_{(w)F}$ auch auf planaren Graphen und
@@ -920,9 +916,9 @@ Allgemein beschreibt der Min-Sum-Graph-Abstand$_{dist}$ eine ganze Klasse von Ab
 eines geeigneten Abstandsmaßes für die Gewichtung der Kanten-Zuordnungen unterscheiden.
 Grundsätzlich sind die Eigenschaften des Min-Sum-Graph-Abstands unter anderen Abstandsmaßen zu betrachten. Hier bietet sich z.B. der
 diskrete Fréchet-Abstand als geeigneter Kandidat an. Wir behaupten, dass wir aufgrund seiner inherenten Eigenschaft die in $\ref{Zweite Einschränkung}$
-geforderten Fixpunkte zur Einhaltung der polynomiellen Laufzeit nicht benötigen.
+geforderten Fixpunkte zur Gewährleistung einer polynomiellen Laufzeit der Berechnung nicht benötigen.
 \\
-Wir haben bei unserer Betrachtung des Min-Sum${(w)f}$ Abstands bisher nur ein Mitglied dieser oben beschriebenen Klasse kennengelernt und
+Wir haben bei unserer Betrachtung des Min-Sum$_{(w)F}$ Abstands bisher nur ein Mitglied dieser oben beschriebenen Klasse genauer betrachter und
 damit einen kleinen Einblick in den Raum der offenen Möglichkeiten gewagt.
 \newpage\null\thispagestyle{empty}\newpage
 %   Eventuell eine Leerseite vor der Literaturangabe, falls diese sonst auf einer Rückseite angegeben würde. (Seitennummer muss ungerade sein!)
