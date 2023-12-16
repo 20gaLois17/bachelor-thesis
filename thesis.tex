@@ -161,9 +161,7 @@ Sebastian Koletzko
 Die geometrische Graphentheorie ist ein Zweig der Graphentheorie, die sich dem Studium von Graphen verschreibt, deren Knoten und Kanten wir mit geometrischen Objekten identifizieren
 und ist verwandt mit der topologischen Graphentheorie.
 
-Graphen, denen eine konkrete Darstellung ihrer Knoten und Kanten - z.B im euklidischen Raum - zugewiesen wurde, bezeichnen wir als eingebettete Graphen.
-Bekannte Vertreter dieser Klasse sind die planaren Graphen. Dies sind  Graphen, deren deren Kanten sich als Jordan-Kurven so in die euklidische
-Ebene einbetten lassen, dass sie sich untereinander nur in ihren inzidenten Knoten schneiden.
+Graphen, denen eine konkrete Darstellung ihrer Knoten und Kanten - z.B im euklidischen Raum - zugewiesen wird, bezeichnen wir als eingebettete Graphen.
 \\
 \\
 In dieser Arbeit wollen wir uns mit geometrischen Graphen beschäftigen. Hierbei handelt es sich um Graphen,
@@ -292,7 +290,13 @@ der entsprechenden Graphen.
 	\\
 	Zur Anschauung des Fréchet-Abstands stelle man sich $f$ und $g$ als Kurven im $\mathbb{R}^2$ vor. Der (euklidische) Abstand zwischen $f$ und $g$ zum Zeitpunkt $t_0 \in [0,1]$ entspricht gerade der Länge der Strecke
 	mit den Randpunkten $f(t_0)$ und $g(t_0)$. Bei dem Fréchet-Abstand dürfen wir eine Kurve reparametrisieren, um den maximal angenommenen euklidischen Abstand zwischen $f$ und $g$ zu minimieren.
-	Da der Fréchet-Abstand insbesondere symmetrisch ist (TODO: Referenz), spielt es keine Rolle, ob wir $f$ oder $g$ reparametrisieren.
+	Da der Fréchet-Abstand insbesondere symmetrisch ist,
+	\\
+	\\
+	(TODO: Referenz)
+	\\
+	\\
+	spielt es keine Rolle, ob wir $f$ oder $g$ reparametrisieren.
 	\\
 	TODO: Anschauung ergänzen
 	\\
@@ -309,7 +313,13 @@ der entsprechenden Graphen.
 	wobei s sich über alle Graph-Zuordnungen erstreckt.
 \end{Def}
 
-Im Vergleich zu anderen Abstandsmaßen (TODO: Referenz hinzufügen), welche primär die geometrische Ähnlichkeit von $G_1$ und $G_2$ berücksichtigen, hat neben den geometrischen Eigenschaften auch die (abstrakte) Konnektivtät von $G_1$ und $G_2$
+Im Vergleich zu anderen Abstandsmaßen
+\\
+\\
+(TODO: Referenz hinzufügen)
+\\
+\\
+welche primär die geometrische Ähnlichkeit von $G_1$ und $G_2$ berücksichtigen, hat neben den geometrischen Eigenschaften auch die (abstrakte) Konnektivtät von $G_1$ und $G_2$
 Implikationen für das Ausmaß des gerichteten (schwachen) Graph-Abstands.
 \\
 \\
@@ -602,7 +612,7 @@ Wir erweitern Schritt 2 des Algorithmus um die Berechnung optimaler Kanten-Platz
 mit Einträgen $(p_v, p_u, \Delta(p_v,p_v))$ für alle $p_v \in P(v)$, $p_u \in P(u)$ die (schwach) voneinander erreichbar sind.
 \\
 \\
-TODO: Laufzeit und Speicher
+TODO: Laufzeit und Speicher (siehe Mail)
 \\
 \\
 Sofern $L_e$ für alle Knoten in $G_1$ berechnet ist und alle ungültigen Knoten-Platzierungen nach Ausführung von Schritt 3 (\ref{Schritt 3}) bereinigt sind,
@@ -711,7 +721,7 @@ Insgesamt setzt sich der Algorithmus also aus den folgenden Einzelschritten zusa
 \begin{proof}
 Die Korrektheit des Algorithmus folgt aus Lemma \ref{Lemma 2}.
 \\
-TODO: Zeitkomplexität und Speicherkomplexität zur Berechnung von $H$ begründen.
+TODO: Zeitkomplexität und Speicherkomplexität zur Berechnung von $H$ begründen (siehe Mail).
 \\
 \\
 Zur Berechnung von Gleichung (1) betrachten für eine feste Knoten-Platzierung $p_v \in P(v)$ den zur Lösung der Gleichung relevanten Teilgraph von $H$,
@@ -729,12 +739,19 @@ ergibt sich die schließlich die Laufzeitkomplexität von $O(n_1*m_2^3).$
 \end{proof}
 
 \subsection{Ein Beispiel}
-Anhand eines kleinen Beispiels wollen wir den eben beschriebenen Algorithmus nun demonstrieren.
-TODO: Skizze und Beispielrechnung ergänzen
+Anhand eines kleinen Beispiels wollen wir den oben beschriebenen Algorithmus nun demonstrieren.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1\textwidth]{min_sum_tree_0.pdf}
+    \caption{$G_1$ ist in blau und $G_2$ in rot gezeichnet. Der Wurzelknoten für $G_1$, welcher die Bearbeitungsreihenfolge der Knoten von für den Algorithmus bestimmt, ist mit $r$ gekennzeichnet.
+	$G_2$ setzt sich insgesamtaus 2 disjunkten Bäumen zusammen - deren Kanten mit unterschiedlicher Stärke dargestellt sind - und ist so in die Ebene eingebettet, dass jeder Knoten von $G_1$ genau 2 gültige $\varepsilon$-Platzierung hat aus
+	den entsprechenden Teilgraphen hat von $G_2$ hat. Es ist leicht zu sehen, dass jede Knoten-Platzierung (schwach) gültig ist.}
+\end{figure}
 
 \section{Komplexität}
 
-\subsubsection{NP-Schwerheit von Min-Sum-Graph-Abstand$_{(w)F}$}
+\subsubsection{NP-Schwerheit von Min-Sum$_{(w)F}$}
 
 Abschließend wollen wir zeigen, dass die Berechnung des Min-Sum$_{(w)F}$ Abstands ohne Bedingungen an die Graphen $G_1$ und $G_2$ im Allgemeinen
 NP-schwer ist. Ein für die Konstruktion des Beweises ähnliches Setting finden wir in [2] (Seite), wo die NP-Schwerheit des Graph-Abstands
@@ -858,19 +875,21 @@ $$(d_{i,a},d_{j,b}) \in R_{C_{i,j}}$$
 Damit ist im Falle des Fréchet-Abstands $\langle X,D,C \rangle$ erfüllbar.
 \\
 \\
-Für den schwachen Fréchet-Abstand gilt das Argument, dass wir das Bild einer Kante in $E_1$ unter $s$ eindeutig mit einer Kante in $E_2$ identifizieren können, allgemein nicht.
+Für den schwachen Fréchet-Abstand gilt das Argument, dass wir das Bild einer Kante in $G_1$ unter $s$ eindeutig mit einer Kante in $G_2$ identifizieren können, allgemein nicht.
 
 Dies liegt daran, dass grundsätzlich jedes beliebige Knotenpaar $u_{i,a}, u_{j,b} \in V_2$ mit $u_{i,a} \in B_1(v_i)$, $u_{i,b} \in B_1(v_j)$ eine Kante in $G_2$ haben kann.
 \\
 So existieren einfache Wege in $G_2$ bestehendend aus mindestens 3 Kanten innerhalb von $T_1(\{v_i, v_j\}$, deren Startpunkt in $B_1(v_i)$ und deren Endpunkt in $B_1(v_j)$ liegt.
-Ein solcher Weg $W$ ist dabei - da er bedingt durch die Konstruktion von $G_2$ vollständig innerhalb von $T_1(\{v_i, v_j\}$ liegt - eine schwache 1-Platzierung der Kante $\{v_i, v_j\}$, also
-$$ \delta_{wF}(\{v_i, v_j\}, W) \leq 1.$$
-\\
-\\
-TODO: Skizze
-\\
-\\
-Um dies Fall auszuschließen und ein ähnliches Szenario wie für den Fréchet-Abstand zu gewährleisten, fügen wir mittig auf jeder Kante $\{v_i, v_j\} \in E_1$
+Ein solcher Weg $W$ ist dabei - da er bedingt durch die Konstruktion von $G_2$ vollständig innerhalb von $T_1(\{v_i, v_j\}$ liegt - eine schwache 1-Platzierung der Kante $\{v_i, v_j\}$,
+also $\delta_{wF}(\{v_i, v_j\}, W) \leq 1$.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.6\textwidth]{chapter_4_example.pdf}
+    \caption{TODO: Schreibe Caption, ergänze Bezeichnungen}
+\end{figure}
+
+Um diesen Fall auszuschließen und ein ähnliches Szenario wie für den Fréchet-Abstand zu gewährleisten, fügen wir mittig auf jeder Kante $\{v_i, v_j\} \in E_1$
 einen zusätzlichen Knoten $v_{ij}$ in $G_1$ ein, so dass $B_1(v_{ij}) \cap B_1(v_i) = B_1(v_{ij}) \cap B_1(v_j) = \emptyset$.
 \\
 \\
@@ -881,7 +900,6 @@ Die Kante $\{v_i, v_j\}$ zerfällt dabei in die zwei Kanten $\{v_i, v_{ij}\}$, $
 jede 1-Platzierung von $\{v_i, v_j\}$ zerfällt dabei zwei 1-Platzierungen der Kanten $\{v_i, v_{ij}\}$ und $\{v_{ij}, v_j$\}.
 \\
 \\
-TODO: Skizze
 \\
 \\
 TODO: Ergänze Erklärung, warum das Problem jetzt gelöst ist.
