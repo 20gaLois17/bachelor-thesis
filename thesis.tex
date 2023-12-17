@@ -505,7 +505,7 @@ zwar ein notwendiges aber kein hinreichendes Kriterium dafür, dass $p_u$ und $p
 ob $\delta_F(\{u,v\}, W) \leq \varepsilon$.
 \\
 \\
-Dabei können wir für zwei Wege $Y$ und $Z$ das Entscheidungsproblem $\delta_F(Y,Z) \leq \varepsilon$ in $O(\|Y\|*\|Z\|)$ lösen ([3], Seite 77).
+Dabei können wir für zwei Wege $Y$ und $Z$ das Entscheidungsproblem $\delta_F(Y,Z) \leq \varepsilon$ in $O(|Y|*|Z|)$ lösen ([3], Seite 77).
 Da $\{u,v\}$ ein Geradenstück ist, hat $\{u,v\}$ die Länge $1$. Damit können wir die Erreichbarkeit zwischen $\{u,v\}$ und $W$ in $O(|W|)$ entscheiden.
 Da $W$ per Bedingung ein einfacher Weg ist, besteht $W$ aus maximal $m_2$ Kanten (bzw. Teilkanten) von $G_2$.
 Zur Speicherung der Erreichbarkeiten speichern wir für jede $\varepsilon$-Platztierung von $u$ eine Liste mit $\varepsilon$-Platzierungen von $v$, die
@@ -521,7 +521,7 @@ Nun wollen wir unseren Wortschatz um den Begriff der Knoten-Platzierungen um ein
 einer $\varepsilon$-Platzierung von $G_1$ treffen zu können.
 \\
 Hat ein Knoten $u \in V_1$ neben $\{u,v\} \in E_1$ noch eine weitere inzidente Kante $\{u,w\}$, so muss neben einem $p_v \in P(v)$ insbesondere auch
-ein $p_w \in P(w)$ existieren, so dass die Paare $(p_u,p_v)$ und $\(p_v,p_u)$ jeweils (schwach) voneinander erreichbar sind. Die (schwache) Erreichbarkeit
+ein $p_w \in P(w)$ existieren, so dass die Paare $(p_u,p_v)$ und $(p_v,p_u)$ jeweils (schwach) voneinander erreichbar sind. Die (schwache) Erreichbarkeit
 zwischen einer Knoten-Platzierungen mit mindestens einer Knoten-Platzeriung benachbarter knoten stellt somit ein notwendiges Kriterium für die Existenz
 einer $\varepsilon$-Platzierung von $G_1$ dar und motiviert damit die folgende Definition.
 
@@ -735,7 +735,7 @@ Mit (2) und der Identität
 \begin{equation}
 	\sum_{v \in V_1} deg(v) = 2*m_1 = 2(n-1)
 \end{equation}
-ergibt sich die schließlich die Laufzeitkomplexität von $O(n_1*m_2^3).$
+ergibt sich schließlich die Laufzeitkomplexität von $O(n_1*m_2^3).$
 \end{proof}
 
 \subsection{Ein Beispiel}
@@ -743,10 +743,12 @@ Anhand eines kleinen Beispiels wollen wir den oben beschriebenen Algorithmus nun
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=1\textwidth]{min_sum_tree_0.pdf}
+    \includegraphics[width=\textwidth]{min_sum_tree_0.pdf}
     \caption{$G_1$ ist in blau und $G_2$ in rot gezeichnet. Der Wurzelknoten für $G_1$, welcher die Bearbeitungsreihenfolge der Knoten von für den Algorithmus bestimmt, ist mit $r$ gekennzeichnet.
-	$G_2$ setzt sich insgesamtaus 2 disjunkten Bäumen zusammen - deren Kanten mit unterschiedlicher Stärke dargestellt sind - und ist so in die Ebene eingebettet, dass jeder Knoten von $G_1$ genau 2 gültige $\varepsilon$-Platzierung hat aus
-	den entsprechenden Teilgraphen hat von $G_2$ hat. Es ist leicht zu sehen, dass jede Knoten-Platzierung (schwach) gültig ist.}
+	$G_2$ besteht hier aus 2 disjunkten Bäumen - deren Kanten mit unterschiedlicher Stärke dargestellt sind. Jeder Knoten von $G_1$ hat genau 2 gültige $\varepsilon$-Platzierung,
+	jeweils eine hat aus den entsprechenden Teilgraphen hat von $G_2$. Es ist leicht zu sehen, dass jede Knoten-Platzierung (schwach) gültig ist. TODO: Noch etwas zu den
+	Fixpunkten ergänzen
+	}
 \end{figure}
 
 \section{Komplexität}
@@ -766,8 +768,8 @@ Hier orientieren wir uns im Wesentlichen an der oben genannten Konstruktion aus 
 	$$ \text{einer Menge von \textit{Variablen }}X = \{x_1, x_2, ..., x_n\},$$
 	$$ \text{einer Menge von \textit{Domänen }}D = \{D_1, D_2, ..., D_n\} $$
 	$$ \text{und einer Menge von \textit{Bedingungen }}C = \{C_1, C_2, ..., C_k\}. $$
-	Für jede Variable $ x_i \in X$ beschreibt die Domäne $ D_i \in D$ die Menge ihrer möglichen Wertzuweisungen.
-	Eine Bedingung $C_{i,j} \in C$ spezifiert für je zwei unterschiedliche Variablen $x_i, x_j \in X$ eine Relation $R_{C_{i,j}}$ $\subseteq D_v \times D_w$.
+	Für jede Variable $ x_i \in X$ beschreibt ihre Domäne $ D_i \in D$ die Menge ihrer möglichen Wertzuweisungen.
+	Eine Bedingung $C_{i,j} \in C$ spezifiert für je zwei unterschiedliche Variablen $x_i, x_j \in X$ eine Relation $R_{C_{i,j}}$ $\subseteq D_i \times D_j$.
 	Wir nennen ein Wertepaar $(d_i, d_j) \in D_i \times D_j$ für eine vorhandene Bedingung $C_{i,j}$ an die Variablen $x_i,x_j$ \textit{zulässig}, wenn $(d_i,d_j) \in R_{C_{i,j}}$,
 	ansonsten \textit{verletzt} das Wertepaar $(d_i, d_j)$ die Bedingung $C_{i,j}$ und wir nennen $(d_i,d_j)$ \textit{unzulässig}.
 	\\
@@ -783,6 +785,7 @@ Hier orientieren wir uns im Wesentlichen an der oben genannten Konstruktion aus 
 	Das Entscheidungsproblem $$ \textit{Min-Sum}_{(w)F}(G_1, G_2) \leq  \varepsilon $$ ist NP-schwer.
 \end{Satz}
 
+\begin{proof}
 Sei $\langle X,D,C \rangle$ ein beliebiges Binary Constraint Satisfaction Problem.
 \\
 \\
@@ -857,8 +860,9 @@ Wenn $s(e)$ eine $\varepsilon$-Platzierung von $e$ ist, so muss $s(e)$ insbesond
 Dies ergibt sich aus der Vorraussetzung, dass $s$ eine Min-Sum$_{(w)F}$ Zuordnung ist und sich daher unter Berücksichtigung Konstruktion
 von $G_1$ und $G_2$ jede $\varepsilon$-Platzierung von $e$ sich grundsätzlich als 1-Platzierung von $e$ realisieren lässt.
 \\
-Denn die Randpunkte von $s(e)$ lassen sich innerhalb der 1-Bälle versetzen und da alle Kanten von $G_2$ innerhalb von $T_{\varepsilon}(e)$
-per Konstruktion als Geradenstücke innerhalb $T_1(e)$ eingebettet sind, existiert in $G_2$ eine 1-Platzierung von $e$.
+Denn die Randpunkte von $s(e)$ lassen sich so innerhalb der $\varepsilon$-Bälle verschieben, dass sie innerhalb der entsprechenden 1-Bälle liegen
+und da alle Kanten von $G_2$ innerhalb von $T_{\varepsilon}(e)$
+per Konstruktion insbesondere als Geradenstücke innerhalb von $T_1(e)$ liegen, existiert in $G_2$ eine 1-Platzierung von $e$.
 \\
 \\
 Damit ist für eine Kante $\{v_i, v_j\} \in E_1$ ihr Bild $s(\{v_i, v_j\})$ stets eine 1-Platzierung von $\{v_i, v_j\}$. (**)
@@ -877,7 +881,7 @@ Damit ist im Falle des Fréchet-Abstands $\langle X,D,C \rangle$ erfüllbar.
 \\
 Für den schwachen Fréchet-Abstand gilt das Argument, dass wir das Bild einer Kante in $G_1$ unter $s$ eindeutig mit einer Kante in $G_2$ identifizieren können, allgemein nicht.
 
-Dies liegt daran, dass grundsätzlich jedes beliebige Knotenpaar $u_{i,a}, u_{j,b} \in V_2$ mit $u_{i,a} \in B_1(v_i)$, $u_{i,b} \in B_1(v_j)$ eine Kante in $G_2$ haben kann.
+Dies liegt daran, dass grundsätzlich jedes beliebige Knotenpaar $u_{i}, u_{j} \in V_2$ mit $u_{i} \in B_1(v_i)$, $u_{j} \in B_1(v_j)$ eine Kante in $G_2$ haben kann.
 \\
 So existieren einfache Wege in $G_2$ bestehendend aus mindestens 3 Kanten innerhalb von $T_1(\{v_i, v_j\}$, deren Startpunkt in $B_1(v_i)$ und deren Endpunkt in $B_1(v_j)$ liegt.
 Ein solcher Weg $W$ ist dabei - da er bedingt durch die Konstruktion von $G_2$ vollständig innerhalb von $T_1(\{v_i, v_j\}$ liegt - eine schwache 1-Platzierung der Kante $\{v_i, v_j\}$,
@@ -885,37 +889,45 @@ also $\delta_{wF}(\{v_i, v_j\}, W) \leq 1$.
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.6\textwidth]{chapter_4_example.pdf}
-    \caption{TODO: Schreibe Caption, ergänze Bezeichnungen}
+    \includegraphics[width=0.8\textwidth]{chapter_4_example_0.pdf}
+    \caption{Durch die Hervorhebung haben wir das Bild eines Weges $W$ in $G_2$ markiert, welcher zwei 1-Platzierungen schwach miteinander verbindet.
+	Für den schwachen Fréchet-Abstand genügt dabei die Tatsache, dass $W$ vollständig in $T_1(\{v_i,v_j\})$ liegt.
+	Die mit der Kanten-Platzierung assoziierten Knoten $u_{i,a},u_{j,b}$ repräsentieren allerdings offensichtlich keine gültige Wertezuweisung für die Variablen $x_i,x_j$.
+	Im Allgemeinen garantiert uns für den schwachen Fréchet-Abstand somit Min-Sum$_{wF}(G_1,G_2) \leq \varepsilon$ noch keine Lösbarkeit von $\langle X,D,C \rangle$.
+	}
 \end{figure}
 
 Um diesen Fall auszuschließen und ein ähnliches Szenario wie für den Fréchet-Abstand zu gewährleisten, fügen wir mittig auf jeder Kante $\{v_i, v_j\} \in E_1$
-einen zusätzlichen Knoten $v_{ij}$ in $G_1$ ein, so dass $B_1(v_{ij}) \cap B_1(v_i) = B_1(v_{ij}) \cap B_1(v_j) = \emptyset$.
+einen zusätzlichen Knoten $v_{ij}$ in $G_1$ ein, so dass $B_1(v_{ij}) \cap B_1(v_i) = B_1(v_{ij}) \cap B_1(v_j) = \emptyset$ (Abbildung \ref{fig:chapter_4_example_1}).
+Dafür ist es unter Umständen notwendig, initial ein größeres $\varepsilon$ zu wählen, damit die beschriebene Konstruktion (auch für $m_1 \leq 3$) stets gelingt.
 \\
 \\
-Hinweis: Hierfür können wir initial auch $\varepsilon = \max \{m_1, 4\}$ fordern.
-\\
-\\
-Die Kante $\{v_i, v_j\}$ zerfällt dabei in die zwei Kanten $\{v_i, v_{ij}\}$, $\{v_{ij},v_j\}$ und
-jede 1-Platzierung von $\{v_i, v_j\}$ zerfällt dabei zwei 1-Platzierungen der Kanten $\{v_i, v_{ij}\}$ und $\{v_{ij}, v_j$\}.
-\\
-\\
-\\
-\\
-TODO: Ergänze Erklärung, warum das Problem jetzt gelöst ist.
-\\
-\\
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{chapter_4_example_1.pdf}
+    \caption{
+	Die Kante $\{v_i, v_j\}$ zerfällt nach dem Hinzufügen von $v_{ij}$ in die zwei Kanten $\{v_i, v_{ij}\}$, $\{v_{ij},v_j\}$.
+	$s(v_{ij}$ ist hier mit einem roten Kreuz gekennzeichnet.
+	Jede Kante in $G_2$ von $B_1(v_i)$ nach $B_1(v_j)$ induziert eine 1-Platzierung
+	von $v_{ij}$. Da $v_{ij}$ keine Knoten von $G_2$ enthält, ist die Konkatenation der Bilder von $\{v_i,v_{ij}\}$ und $\{v_{ij},v_j\}$
+	unter $s$ eindeutig mit einer Kante in $G_2$ identifizierbar.
+	}
+    \label{fig:chapter_4_example_1}
+\end{figure}
+
 Wir bezeichnen mit $\tilde{G_1}=(\tilde{V_1}, \tilde{E_1})$ den Graphen, den wir durch die oben beschriebene Transformation erhalten.
+\\
 \\
 Gilt nun
 $$ \min_{s: \tilde{G_1} \to G_2} \sum_{e \in E_1} \delta_{wF}(e, s(e)) \leq 2m_1, $$
 so erhalten wir für jede Kante $\{v_i, v_j\} \in E_1$ und ihre Zerlegung $\{v_i, v_{ij}\},\{v_{ij}, v_j\} \in \tilde{E_1}$
-über $s(\{v_i, v_{ij}\},\{v_{ij}, v_j\})$ die eindeutige, assoziierte Kante $\{u_{i,a}, u_{i,b}\} \in E_2$.
+über $s(\{v_i, v_{ij}\})$ und $s(\{v_{ij}, v_j\})$ die eindeutige, assoziierte Kante $\{u_{i,a}, u_{i,b}\} \in E_2$.
 Die durch $\{u_{i,a}, u_{j,b}\} \in E_2$ repräsentierte Wertezuweisung $(d_{i,a}, d_{j,b})$ verletzt dabei nicht die Bedingung an die
-durch $v_i$ und $v_j$ repräsentierten Variablen $x_i, x_j$ und ist damit gültig.
+durch $v_i$ und $v_j$ repräsentierten Variablen $x_i, x_j$, und ist damit gültig.
 \\
 \\
-Damit ist $\langle X,D,C \rangle$ lösbar. \qed
+Damit ist $\langle X,D,C \rangle$ lösbar.
+\end{proof}
 \\
 \\
 \section{Ausblick}
