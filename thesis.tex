@@ -344,7 +344,7 @@ Dies motiviert die Einführung eines weiteren Abstandsmaßes auf Graphen, welche
 \\
 \\
 Zuvor merken wir an, dass im Allgemeinen eine Graph-Zuordnung $\tilde{s}: G_1 \to G_2$, die jede Kante $e \in E_1$ optimal bezüglich des (schwachen)
-Fréchet-Abstands auf $G_2$ abbildet, so dass $\delta_{(w)F}(e, \tilde{s}(e)) \leq \delta_{(w)F}(e, s(e))$, nicht existiert
+Fréchet-Abstands auf $G_2$ abbildet, so dass $\delta_{(w)F}(e, \tilde{s}(e)) \leq \delta_{(w)F}(e, s(e))$, nicht existiert.
 \\
 \\
 TODO: Beispiel
@@ -436,20 +436,27 @@ nicht existieren kann. Dies folgt direkt aus den Definitionen \ref{Definition Gr
 \subsubsection{Zweite Einschränkung} \label {Zweite Einschränkung}
 Da wir hier zur Berechnung der Abstände zwischen einer Kante $\{u,v\} \in E_1$ und ihrem Bild $s(\{u,v\})$ unter einer Graph-Zuordnung $s$ den (schwachen) Fréchet-Abstand verwenden,
 hat die Wahl der Bilder $s(u)$ und $s(v)$, innerhalb der entsprechenden $\varepsilon$-Platzierungen von $u$ und $v$, eine direkte Auswirkung auf die summierten Abstände.
-Anders ausgedrückt: Im Gegensatz zum gerichteten (schwachen) Graph-Abstand ist $\sum_{e \in E_1}\delta_{(w)F}(e, s(e))$ nicht invariant unter dem Freiheitsgrad, den $s$
-bei der Wahl der Bildpunkte in $G_2$, $s(u)$ und $s(v)$ hat.
-\\
-TODO: Dies besser beschreiben
+Anders ausgedrückt: Im Gegensatz zu $\vec{\delta}_{(w)F}(G_1,G_2)$ ist Min-Sum${(w)F}(G_1,G_2)$ nicht invariant unter dem Freiheitsgrad, den $s$
+bei der Wahl der Bildpunkte $s(u)$ und $s(v)$ unter Einhaltung des (schwachen) Fréchet-Abstands hat. Siehe \ref{chapter_3_example_0} für ein konkretes Beispiel.
 \\
 \\
-TODO: Skizze
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=\textwidth]{chapter_3_example_0.pdf}
+	\caption{Die Wahl der Randpunkte $\tilde{s}(u), \tilde{s}(v)$ für das Bild der mittleren Kante $\{u,v\}$ ermöglicht zwar eine $\varepsilon$-Platzierung
+	für den skizzierten Graphen, allerdings ist diese nicht optimal bezüglich des Min-Sum$_{(w)F}$ Abstands .
+	Die (schwachen) Fréchet-Abstände zwischen einer Kante und ihrem Bild betragen unter $\tilde{s}$ jeweils $\varepsilon$.
+	Unter $s$ hingegen wird der Flaschenhals-Abstand von $\varepsilon$ nur durch die Platzierung der mittleren Kante angenommen.
+	Die äußeren Kanten lassen sich so platzieren, dass der (schwache) Fréchet-Abstand $\frac{\varepsilon}{2}$ beträgt.
+	}
+    \label{chapter_3_example_0}
+\end{figure}
 \\
 \\
-TODO: Erläuterung der Skizze
-\\
-\\
-Um dies zu umgehen, werden wir für einen Knoten $u \in E_1$ sein Bild unter einer Graph-Zuordnung für jede seiner $\varepsilon$-Platzierung fixieren.
+Um diesen Freiheitsgrad und die dadurch implizierte Komplexität bezüglich der Berechnung von Min-Sum${(w)F}$ auszuschließen,
+werden wir für einen Knoten $u \in E_1$ sein Bild unter einer Graph-Zuordnung für jede seiner $\varepsilon$-Platzierung fixieren.
 Als Fixpunkt wählen wir dafür einen Punkt in der $\varepsilon$-Platzierung mit minimalem Abstand zu $u$.
+Wir behaupten (ohne Beweis), dass die Berechnung von Min-Sum${(w)F}$ ohne diese Einschränkung NP-schwer ist.
 
 \subsection{Ansätze und Beschreibung eines polynomiellen Algorithmus} \label{Grundidee des Algorithmus}
 Um unter den Einschränkungen \ref{Erste Einschränkung} und \ref{Zweite Einschränkung} an die zu betrachtenden Graph-Zuordnungen von $G_1$ nach $G_2$
@@ -728,6 +735,7 @@ Zur Berechnung von Gleichung (1) betrachten für eine feste Knoten-Platzierung $
 bestehend aus den Knoten-Platzierungen von $v$ sowie deren Nachfahren. Dieser Teilgraph weist somit für jede fixierte Knoten-Platzierung eine Komplexität von $O(m_2^2)$ auf.
 Sofern $v$ nicht die Wurzel ist, gibt es $deg(v)-1$ Nachfahren von $v$. Ferner gilt $|P(v)| \in O(m_2)$. Damit beträgt die Zeitkomplexität für Gleichung (1) für alle
 Knoten-Platzierungen von $v$ insgesamt
+
 \begin{equation}
 	O(deg(v)*m_2^3).
 \end{equation}
@@ -907,7 +915,7 @@ Dafür ist es unter Umständen notwendig, initial ein größeres $\varepsilon$ z
     \includegraphics[width=0.8\textwidth]{chapter_4_example_1.pdf}
     \caption{
 	Die Kante $\{v_i, v_j\}$ zerfällt nach dem Hinzufügen von $v_{ij}$ in die zwei Kanten $\{v_i, v_{ij}\}$, $\{v_{ij},v_j\}$.
-	$s(v_{ij}$ ist hier mit einem roten Kreuz gekennzeichnet.
+	$s(v_{ij})$ ist hier mit einem roten Kreuz gekennzeichnet.
 	Jede Kante in $G_2$ von $B_1(v_i)$ nach $B_1(v_j)$ induziert eine 1-Platzierung
 	von $v_{ij}$. Da $v_{ij}$ keine Knoten von $G_2$ enthält, ist die Konkatenation der Bilder von $\{v_i,v_{ij}\}$ und $\{v_{ij},v_j\}$
 	unter $s$ eindeutig mit einer Kante in $G_2$ identifizierbar.
@@ -928,8 +936,8 @@ durch $v_i$ und $v_j$ repräsentierten Variablen $x_i, x_j$, und ist damit gült
 \\
 Damit ist $\langle X,D,C \rangle$ lösbar.
 \end{proof}
-\\
-\\
+
+
 \section{Ausblick}
 In dieser Arbeit haben wir uns, motiviert durch das Ziel optimale Zuordnungen auf geometrischen Graphen zu untersuchen, mit dem
 Min-Sum$_{(w)F}$ Abstands beschäftigt. Dabei haben wir Komplexität für allgemeine
