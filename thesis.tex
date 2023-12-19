@@ -309,21 +309,25 @@ der entsprechenden Graphen.
 	Wir definieren den \textit{gerichteten Graph-Abstand} $ \vec{\delta}_G $ als
 	$$ \vec{\delta}_G(G_1,G_2) = \inf_{s: G_1 \to G_2} \: \max_{e \in E_1} \delta_F(e, s(e)) $$
 	und den \textit{gerichteten schwachen Graph-Abstand} $ \vec{\delta}_{wG} $ als
-	$$  \vec{\delta}_{wG}(G_1,G_2) = \inf_{s: G_1 \to G_2} \: \max_{e \in E_1} \vec{\delta}_{wF}(e, s(e)), $$
-	wobei s sich über alle Graph-Zuordnungen erstreckt.
+	$$  \vec{\delta}_{wG}(G_1,G_2) = \inf_{s: G_1 \to G_2} \: \max_{e \in E_1} {\delta}_{wF}(e, s(e)), $$
+	wobei $s$ sich über alle Graph-Zuordnungen erstreckt.
 \end{Def}
 
 Im Vergleich zu anderen Abstandsmaßen
-\\
-\\
-(TODO: Referenz hinzufügen)
-\\
-\\
 welche primär die geometrische Ähnlichkeit von $G_1$ und $G_2$ berücksichtigen, hat neben den geometrischen Eigenschaften auch die (abstrakte) Konnektivtät von $G_1$ und $G_2$
-Implikationen für das Ausmaß des gerichteten (schwachen) Graph-Abstands.
+Implikationen für das Ausmaß des gerichteten (schwachen) Graph-Abstands. Siehe dazu Abbildung \ref{chapter_2_example_1} für ein Beispiel.
 \\
 \\
-TODO: Beispiel/Erklärung
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{chapter_2_example_1.pdf}
+	\caption{Skizzieren wir zwei Graphen $G_1,G_2$, so zeichnen wir die Knoten und Kanten von $G_1$ stets in schwarz und die Knoten und Kanten von $G_2$ stets in rot.
+	Aufgrund der Konnektivität von $G_1$ induziert die Zuordnung zweier Kanten von $G_1$ auf $G_2$ das Bild der ausbleibenden Zuordnung für die dritte Kante von $G_1$.
+	Die hervorgehobene rote Kurve sei hier das Bild einer solchen Graph-Zuordnung von $G_1$ nach $G_2$. Damit entspricht $\vec{\delta}_{(w)F}(G_1,G_2)$ gerade dem (schwachen) Fréchet-Abstand
+	zwischen den hervorgehobenen Kurven (hier durch $\varepsilon$ gekennzeichnet). Ferner gilt $\vec{\delta}_{(w)F}(G_2,G_1) = \tilde{\varepsilon}$.
+	}
+    \label{chapter_2_example_1}
+\end{figure}
 \\
 \\
 Ähnlich wie der (schwache) Fréchet-Abstand beschreibt auch der gerichtete (schwache) Graph-Abstand einen Flaschenhals-Abstand.
@@ -344,10 +348,15 @@ Dies motiviert die Einführung eines weiteren Abstandsmaßes auf Graphen, welche
 \\
 \\
 Zuvor merken wir an, dass im Allgemeinen eine Graph-Zuordnung $\tilde{s}: G_1 \to G_2$, die jede Kante $e \in E_1$ optimal bezüglich des (schwachen)
-Fréchet-Abstands auf $G_2$ abbildet, so dass $\delta_{(w)F}(e, \tilde{s}(e)) \leq \delta_{(w)F}(e, s(e))$, nicht existiert.
+Fréchet-Abstands auf $G_2$ abbildet, so dass $\delta_{(w)F}(e, \tilde{s}(e)) \leq \delta_{(w)F}(e, s(e))$, nicht existiert (siehe Abbildung \ref{chapter_2_example_0} für ein Beispiel).
 \\
 \\
-TODO: Beispiel
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{chapter_2_example_0.pdf}
+	\caption{Eine Graph-Zuordnung von $G_1$ (dargestellt in schwarz) nach $G_2$ (dargestellt in rot) kann jeweils nur eine Kante von $G_1$ optimal zuordnen.}
+    \label{chapter_2_example_0}
+\end{figure}
 \\
 \\
 Alternativ bietet es sich an, die summierten (schwachen) Fréchet-Abstände zwischen den Kanten in $G_1$ und ihren Bildern in $G_2$ unter der Graph-Zuordnung zu optimieren.
@@ -413,7 +422,19 @@ der (schwachen) Fréchet-Abstände zwischen den Kanten von $G_1$ und ihren Bilde
 	Synonym für $\varepsilon$-Platzierung eines Knotens bzw. einer Kante benutzen wir mitunter auch die Begriffe \textit{Knoten-Platzierung} und \textit{Kanten-Platzierung}.
 	\\
 	\\
-	TODO: Kurze Erklärung und Beispiele
+	\begin{figure}[htpb]
+	    \centering
+	    \includegraphics[width=0.8\textwidth]{chapter_3_placements_example.pdf}
+		\caption{$B_{\varepsilon}(u)$ enthält zwei $\varepsilon$-Platzierungen von $u$, $p_{u_1}$ und $p_{u_2}$. Analog sind $p_{v_1}$ und $p_{v_2}$
+		die $\varepsilon$-Platzierungen von $v$ innerhalb von $B_{\varepsilon}(v)$. Hierbei sind die Knoten-Platzierungen
+		$(p_{u_1},p_{v_1})$, $(p_{u_2},p_{v_1})$ und $(p_{u_2},p_{v_2})$ voneinander erreichbar.
+		Die schwarzen gepunkteten Geradenstücke haben alle Länge $\varepsilon$ und veranschaulichen, dass $p_{u_1}$ und $p_{v_2}$ lediglich schwach voneinander erreichbar sind.
+		Denn damit der Abstand zwischen $\{u,v\}$ und dem Knoten von $G_2$ innerhalb von $p_{v_1}$ kleiner als $\varepsilon$ bleibt, muss ein Weg $W$ auf
+		der Kante $\{u,v\}$ den $\varepsilon$-Ball um $u$ verlassen. Damit der Abstand zu dem Knoten von $G_2$ innerhalb von $p_{u_2}$ nicht größer als $\varepsilon$ wird,
+		muss $W$ auf $\{u,v\}$ die Orientierung ändern.
+		}
+	    \label{chapter_3_placements_example}
+	\end{figure}
 \end{Def}
 
 \subsubsection{Erste Einschränkung} \label{Erste Einschränkung}
@@ -773,8 +794,8 @@ Hier orientieren wir uns im Wesentlichen an der oben genannten Konstruktion aus 
 	Ein \textit{Binary Constraint Satisfaction Problem} beschreibt folgendes Entscheidungsproblem:
 	\\
 	Gegeben eine Instanz $\langle X,D,C \rangle$ bestehend aus
-	$$ \text{einer Menge von \textit{Variablen }}X = \{x_1, x_2, ..., x_n\},$$
-	$$ \text{einer Menge von \textit{Domänen }}D = \{D_1, D_2, ..., D_n\} $$
+	$$ \text{einer Menge von \textit{Variablen }}X = \{x_1, x_2, ..., x_n\}, $$
+	$$ \text{einer Menge von \textit{Domänen }}D = \{D_1, D_2, ..., D_n\}, $$
 	$$ \text{und einer Menge von \textit{Bedingungen }}C = \{C_1, C_2, ..., C_k\}. $$
 	Für jede Variable $ x_i \in X$ beschreibt ihre Domäne $ D_i \in D$ die Menge ihrer möglichen Wertzuweisungen.
 	Eine Bedingung $C_{i,j} \in C$ spezifiert für je zwei unterschiedliche Variablen $x_i, x_j \in X$ eine Relation $R_{C_{i,j}}$ $\subseteq D_i \times D_j$.
