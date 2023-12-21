@@ -18,6 +18,7 @@
 \usepackage{setspace}       % Damit kann ich Leerzeilen im Dokument einfügen.
 \usepackage{graphicx}       % Einbinden von externen Bildern
 \usepackage{hyperref}
+\usepackage{float}
 % insbesondere beim Inhaltsverzeichnis nötig, da dieses sonst zu
 % gequetscht aussieht.
 
@@ -178,7 +179,10 @@ Für den Vergleich von eingebetteten Graphen existieren dabei bereits einige bek
 \\
 Einige Abstandsmaße erfassen z.B. beim Vergleich von eingebetteten Graphen lediglich die Repräsentation der Graphen im Sinne ihrer Punktmenge im euklidischen Raum berücksichtigen dabei nicht die ihnen
 durch ihre abstrakte Beschreibung ausgewiesene Konnektivität.
+\\
+\\
 TODO: Um Referenzen ergänzen.
+\\
 \\
 Eine zentrale Fragestellung ist dabei, wie man neue Abstandsmaße auf Graphen definieren kann und unter welchen Bedingungen sich diese auch für potentiell komplexe Graphen effizient berechnen lassen.
 \\
@@ -318,7 +322,7 @@ welche primär die geometrische Ähnlichkeit von $G_1$ und $G_2$ berücksichtige
 Implikationen für das Ausmaß des gerichteten (schwachen) Graph-Abstands. Siehe dazu Abbildung \ref{chapter_2_example_1} für ein Beispiel.
 \\
 \\
-\begin{figure}[htpb]
+\begin{figure}[htpb][H]
     \centering
     \includegraphics[width=0.8\textwidth]{chapter_2_example_1.pdf}
 	\caption{Skizzieren wir zwei Graphen $G_1,G_2$, so zeichnen wir die Knoten und Kanten von $G_1$ stets in schwarz und die Knoten und Kanten von $G_2$ stets in rot.
@@ -417,6 +421,7 @@ der (schwachen) Fréchet-Abstände zwischen den Kanten von $G_1$ und ihren Bilde
 	In diesem Fall nennen wir $p_u$ und $p_v$ \textit{schwach voneinander erreichbar}.
 	\\
 	Eine schwache \textit{$\varepsilon$-Platzierung von $G_1$} ist eine Graph-Zuordnung $s: G_1 \to G_2$, so dass $s$ jede Kante $e \in G_1$ auf eine schwache $\varepsilon$-Platzierung von $e$ abbildet.
+	Siehe Abbildung \ref{chapter_3_placements_example} für ein Beispiel.
 	\\
 	\\
 	Synonym für $\varepsilon$-Platzierung eines Knotens bzw. einer Kante benutzen wir mitunter auch die Begriffe \textit{Knoten-Platzierung} und \textit{Kanten-Platzierung}.
@@ -426,13 +431,17 @@ der (schwachen) Fréchet-Abstände zwischen den Kanten von $G_1$ und ihren Bilde
 	    \centering
 	    \includegraphics[width=0.8\textwidth]{chapter_3_placements_example.pdf}
 		\caption{$B_{\varepsilon}(u)$ enthält zwei $\varepsilon$-Platzierungen von $u$, $p_{u_1}$ und $p_{u_2}$. Analog sind $p_{v_1}$ und $p_{v_2}$
-		die $\varepsilon$-Platzierungen von $v$ innerhalb von $B_{\varepsilon}(v)$. Hierbei sind die Knoten-Platzierungen
-		$(p_{u_1},p_{v_1})$, $(p_{u_2},p_{v_1})$ und $(p_{u_2},p_{v_2})$ voneinander erreichbar.
-		Die schwarzen gepunkteten Geradenstücke haben alle Länge $\varepsilon$ und veranschaulichen, dass $p_{u_1}$ und $p_{v_2}$ lediglich schwach voneinander erreichbar sind.
-		Denn damit der Abstand zwischen $\{u,v\}$ und dem Knoten von $G_2$ innerhalb von $p_{v_1}$ kleiner als $\varepsilon$ bleibt, muss ein Weg $W$ auf
-		der Kante $\{u,v\}$ den $\varepsilon$-Ball um $u$ verlassen. Damit der Abstand zu dem Knoten von $G_2$ innerhalb von $p_{u_2}$ nicht größer als $\varepsilon$ wird,
-		muss $W$ auf $\{u,v\}$ die Orientierung ändern.
-		}
+		die $\varepsilon$-Platzierungen von $v$ innerhalb von $B_{\varepsilon}(v)$. Jede Knoten-Platzierung von $G_1$ enthält hier genau einen Knoten von $G_2$.
+		Hierbei sind die Paare von Knoten-Platzierungen
+		$(p_{u_1},p_{v_1})$, $(p_{u_2},p_{v_1})$ und $(p_{u_2},p_{v_2})$ voneinander erreichbar. Die Bilder möglicher Wege, welche die besagten Paare verbinden, könnten z.B. die
+		gezeichneten Kanten in $G_2$ zwischen den (eindeutigen) Knoten innerhalb der entsprechenden Platzierungen sein.
+		\\
+		\\
+		Die schwarz-gepunkteten Geradenstücke haben jeweils Länge $\varepsilon$ und veranschaulichen, dass $p_{u_1}$ und $p_{v_2}$ lediglich schwach voneinander erreichbar sind.
+		Sei $W$ ein Weg auf $\{u,v\}$ von $u$ nach $v$ und $X$ ein Weg auf $G_2$ von $p_{u_1}$ nach $p_{v_2}$. Die initiale Orientierung von $W$ und $X$ ist durch jeweils einen Pfeil gekennzeichnet.
+		Damit der Abstand zwischen $W$ und $X$ kleiner als $\varepsilon$ ist, sobald $X$ den Knoten $p_{v_1}$ erreicht,
+		muss $W$ $\varepsilon$-Ball um $u$ verlassen. Ist $X$ am Knoten bei $p{u_2}$ angekommen ist, muss $W$ zur Einhaltung des $\varepsilon$-Abstands auf $\{u,v\}$ die Orientierung welchseln, da
+		der Abstand zwischen dem Knoten bei $p{u_2}$ und einem beliebigen Punkt auf $\{u,v\}$ außerhalb von $B_{\varepsilon}(u)$ größer als $\varepsilon$ ist.}
 	    \label{chapter_3_placements_example}
 	\end{figure}
 \end{Def}
@@ -459,8 +468,7 @@ Da wir hier zur Berechnung der Abstände zwischen einer Kante $\{u,v\} \in E_1$ 
 hat die Wahl der Bilder $s(u)$ und $s(v)$, innerhalb der entsprechenden $\varepsilon$-Platzierungen von $u$ und $v$, eine direkte Auswirkung auf die summierten Abstände.
 Anders ausgedrückt: Im Gegensatz zu $\vec{\delta}_{(w)F}(G_1,G_2)$ ist Min-Sum${(w)F}(G_1,G_2)$ nicht invariant unter dem Freiheitsgrad, den $s$
 bei der Wahl der Bildpunkte $s(u)$ und $s(v)$ unter Einhaltung des (schwachen) Fréchet-Abstands hat. Siehe \ref{chapter_3_example_0} für ein konkretes Beispiel.
-\\
-\\
+
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=\textwidth]{chapter_3_example_0.pdf}
@@ -472,8 +480,7 @@ bei der Wahl der Bildpunkte $s(u)$ und $s(v)$ unter Einhaltung des (schwachen) F
 	}
     \label{chapter_3_example_0}
 \end{figure}
-\\
-\\
+
 Um diesen Freiheitsgrad und die dadurch implizierte Komplexität bezüglich der Berechnung von Min-Sum${(w)F}$ auszuschließen,
 werden wir für einen Knoten $u \in E_1$ sein Bild unter einer Graph-Zuordnung für jede seiner $\varepsilon$-Platzierung fixieren.
 Als Fixpunkt wählen wir dafür einen Punkt in der $\varepsilon$-Platzierung mit minimalem Abstand zu $u$.
@@ -766,19 +773,27 @@ Mit (2) und der Identität
 \end{equation}
 ergibt sich schließlich die Laufzeitkomplexität von $O(n_1*m_2^3).$
 \end{proof}
+\newpage
 
 \subsection{Ein Beispiel}
-Anhand eines kleinen Beispiels wollen wir den oben beschriebenen Algorithmus nun demonstrieren.
+Anhand eines kleinen Beispiels (siehe Abbildung \ref{min_sum_tree_0}) wollen wir den oben beschriebenen Algorithmus nun demonstrieren.
 
-\begin{figure}[htpb]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{min_sum_tree_0.pdf}
-    \caption{$G_1$ ist in blau und $G_2$ in rot gezeichnet. Der Wurzelknoten für $G_1$, welcher die Bearbeitungsreihenfolge der Knoten von für den Algorithmus bestimmt, ist mit $r$ gekennzeichnet.
-	$G_2$ besteht hier aus 2 disjunkten Bäumen - deren Kanten mit unterschiedlicher Stärke dargestellt sind. Jeder Knoten von $G_1$ hat genau 2 gültige $\varepsilon$-Platzierung,
-	jeweils eine hat aus den entsprechenden Teilgraphen hat von $G_2$. Es ist leicht zu sehen, dass jede Knoten-Platzierung (schwach) gültig ist. TODO: Noch etwas zu den
-	Fixpunkten ergänzen
+    \caption{$G_1$ ist in blau und $G_2$ in rot gezeichnet. Der Wurzelknoten für $G_1$, welcher die Bearbeitungsreihenfolge der Knoten von für den Algorithmus bestimmt,
+	ist mit $r$ gekennzeichnet.
 	}
+    \label{min_sum_tree_0}
 \end{figure}
+
+$G_2$ besteht hier aus 2 disjunkten Bäumen - deren Kanten in Abbildung \ref{min_sum_tree_0} mit unterschiedlicher Stärke dargestellt sind.
+Jeder Knoten von $G_1$ hat dabei genau 2 gültige $\varepsilon$-Platzierung, jeweils eine für jeden der beiden Teilgraphen von $G_2$.
+Es ist leicht zu sehen, dass jede durch die skizzierten $\varepsilon$-Bälle induzierten Knoten-Platzierung (schwach) gültig ist und genau einen Knoten enthält.
+Als Randpunkte der Kanten-Platzierungen fixieren wir hier stets mit Ausnahme des Wurzelknotens $r$ für alle Knoten-Platzierungen die entsprechenden Knoten von $G_2$ innerhalb der Platzierung,
+da diese bereits so eingebettet sind, dass sie die Punkte mit minimalem Abstand zu dem Knoten in $G_1$ haben. Für eine Knoten-Platzierung von $r$ haben wir den Fixpunkt, welcher kein Knoten
+von $G_2$ ist mit einem Kreuz gekennzeichnet. Der Fréchet-Abstand zwischen einer Kante in $G_1$ und einer ihrer Kanten-Platzierungen liegt in $\{1,4\}$.
+Die jeweiligen Abstände sollten aus der Skizze ersichtlich sein.
 
 \section{Komplexität}
 
