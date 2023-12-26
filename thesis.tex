@@ -19,6 +19,7 @@
 \usepackage{graphicx}       % Einbinden von externen Bildern
 \usepackage{hyperref}
 \usepackage{float}
+\usepackage{caption}
 \usepackage{subcaption}
 % insbesondere beim Inhaltsverzeichnis nötig, da dieses sonst zu
 % gequetscht aussieht.
@@ -31,6 +32,7 @@
 
 
 % Globale Festlegungen
+\captionsetup{font=small,labelfont=small}
 \setlength{\topsep}{4ex plus0.5ex minus0.5ex} % Festlegung: Größe der Absätze nach Definition, Theorem, etc.
 \setlength\parindent{0pt} % Festlegung: Kein Einschub nach rechts.
 \setstretch{1.2} % Festlegung: Zeilenabstand ist 1.2 statt 1.
@@ -115,13 +117,11 @@
 		\large Sebastian Koletzko\\
 
 		\vspace{1cm}
-		Datum: 17.12.23
+		Datum: 28.12.23
 
 		\vfill
 
 		\vspace{5cm}
-
-		%\includegraphics[width=0.4\textwidth]{RuhrU}
 
 		\large
 		Fakultät für Mathematik
@@ -148,7 +148,7 @@ Hiermit erkläre ich, dass ich die heute eingereichte Bachelorarbeit selbststän
 Bei der vorliegenden Bachelorarbeit handelt es sich um in Wort und Bild völlig übereinstimmende Exemplare. Ich erkläre weiterhin, dass die vorliegende Arbeit noch nicht im Rahmen eines anderen Prüfungsverfahrens eingereicht wurde.
 \\
 \\
-Witten, den 17.12.23
+Witten, den 28.12.23
 \\
 \\
 Sebastian Koletzko
@@ -326,12 +326,19 @@ Implikationen für das Ausmaß des gerichteten (schwachen) Graph-Abstands. Siehe
 \begin{figure}[htpb][H]
     \centering
     \includegraphics[width=0.8\textwidth]{chapter_2_example_1.pdf}
-	\caption{Skizzieren wir zwei Graphen $G_1,G_2$, so zeichnen wir die Knoten und Kanten von $G_1$ stets in schwarz und die Knoten und Kanten von $G_2$ stets in rot.
+	\caption{
+	Skizzieren wir zwei Graphen $G_1,G_2$, so zeichnen wir die Knoten und Kanten von $G_1$ stets in schwarz und die Knoten und Kanten von $G_2$ stets in rot.
 	Aufgrund der Konnektivität von $G_1$ induziert die Zuordnung zweier Kanten von $G_1$ auf $G_2$ das Bild der ausbleibenden Zuordnung für die dritte Kante von $G_1$.
 	Die stärker gezeichnete rote Kurve sei hier das Bild einer solchen Graph-Zuordnung von $G_1$ nach $G_2$.
 	Der Flaschenhals-Abstand wird hier durch den (schwachen) Fréchet-Abstand zwischen den stärker gezeichneten Kurven angenommen und ist durch $\varepsilon$ gekennzeichnet.
 	Damit ist $\vec{\delta}_{(w)F}(G_1,G_2) = \varepsilon$.
 	Andersherum tritt ein so großer Flaschenhals-Abstand zum Vergleich nicht auf. Es gilt $\vec{\delta}_{(w)F}(G_2,G_1) = \tilde{\varepsilon}$.
+	\\
+	Im Vergleich zu der \textit{Traversal Distance} von $G_1$ und $G_2$ - einem alternativen Abstandsmaß für eingebetteten Graphen - fällt $\vec{\delta}_{(w)F}(G_1,G_2)$ hier
+	aufgrund der jeweiligen Konnektivität von $G_1$ und $G_2$ deutlich größer aus (siehe dazu Akitaya et. al \cite{Akitaya}, Seite 6).
+	\\
+	\\
+	Quelle: In Anlehnung an Akitaya et. al \cite{Akitaya}, Seite 6, Figure 2 (c).
 	}
     \label{chapter_2_example_1}
 \end{figure}
@@ -361,7 +368,11 @@ Fréchet-Abstands auf $G_2$ abbildet, so dass $\delta_{(w)F}(e, \tilde{s}(e)) \l
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\textwidth]{chapter_2_example_0.pdf}
-	\caption{Eine Graph-Zuordnung von $G_1$ nach $G_2$ kann jeweils nur eine Kante von $G_1$ bezüglich des (schwachen) Fréchet-Abstands optimal zuordnen.}
+	\caption{Eine Graph-Zuordnung von $G_1$ nach $G_2$ kann immer nur maximal eine Kante von $G_1$ bezüglich des (schwachen) Fréchet-Abstands optimal zuordnen.
+	\\
+	\\
+	Quelle: In Anlehnung an Figure 2 aus Buchin et. al \cite{Buchin}.
+	}
     \label{chapter_2_example_0}
 \end{figure}
 \\
@@ -445,7 +456,11 @@ der (schwachen) Fréchet-Abstände zwischen den Kanten von $G_1$ und ihren Bilde
 		Sei $W$ ein Weg auf $\{u,v\}$ von $u$ nach $v$ und $X$ ein Weg auf $G_2$ von $p_{u_1}$ nach $p_{v_2}$. Die initiale Orientierung von $W$ und $X$ ist durch jeweils einen Pfeil gekennzeichnet.
 		Damit der Abstand zwischen $W$ und $X$ kleiner als $\varepsilon$ ist, sobald $X$ den Knoten $p_{v_1}$ erreicht,
 		muss $W$ $\varepsilon$-Ball um $u$ verlassen. Ist $X$ am Knoten bei $p{u_2}$ angekommen ist, muss $W$ zur Einhaltung des $\varepsilon$-Abstands auf $\{u,v\}$ die Orientierung welchseln, da
-		der Abstand zwischen dem Knoten bei $p{u_2}$ und einem beliebigen Punkt auf $\{u,v\}$ außerhalb von $B_{\varepsilon}(u)$ größer als $\varepsilon$ ist.}
+		der Abstand zwischen dem Knoten bei $p{u_2}$ und einem beliebigen Punkt auf $\{u,v\}$ außerhalb von $B_{\varepsilon}(u)$ größer als $\varepsilon$ ist.
+		\\
+		\\
+		Quelle: Eigene Darstellung.
+		}
 	    \label{chapter_3_placements_example}
 	\end{figure}
 \end{Def}
@@ -481,6 +496,9 @@ bei der Wahl der Bildpunkte $s(u)$ und $s(v)$ unter Einhaltung des (schwachen) F
 	Die (schwachen) Fréchet-Abstände zwischen einer Kante und ihrem Bild betragen unter $\tilde{s}$ jeweils $\varepsilon$.
 	Unter $s$ hingegen wird der Flaschenhals-Abstand von $\varepsilon$ nur durch die Platzierung der mittleren Kante angenommen.
 	Die äußeren Kanten lassen sich so platzieren, dass der (schwache) Fréchet-Abstand nur $\frac{\varepsilon}{2}$ beträgt.
+	\\
+	\\
+	Quelle: Eigene Darstellung.
 	}
     \label{chapter_3_example_0}
 \end{figure}
@@ -651,9 +669,6 @@ Wir erweitern Schritt 2 des Algorithmus um die Berechnung optimaler Kanten-Platz
 mit Einträgen $(p_v, p_u, \Delta(p_v,p_v))$ für alle $p_v \in P(v)$, $p_u \in P(u)$ die (schwach) voneinander erreichbar sind.
 \\
 \\
-TODO: Laufzeit und Speicher (siehe Mail)
-\\
-\\
 Sofern $L_e$ für alle Knoten in $G_1$ berechnet ist und alle ungültigen Knoten-Platzierungen nach Ausführung von Schritt 3 (\ref{Schritt 3}) bereinigt sind,
 reduziert sich die Konstruktion einer optimalen $\varepsilon$-Platzierung auf eine optimale Gesamt-Auswahl der jeweiligen Paare von Knoten-Platzierungen für jedes Paar adjazenter Knoten in $G_1$.
 So eine Konstruktion ließe sich analog wie im Beweis zu Lemma $\ref{Lemma 1}$ realisieren und eine so ermittelte Graph-Zuordnung ist insbesondere auch eine $\varepsilon$-Platzierung von $G_1$.
@@ -670,7 +685,7 @@ Für einen bereits zugeordneten Teilgraphen könnten wir sein Gewicht unter den 
 minimalste Gewicht einer vollständigen Zuordnung von $G_1$ überschreitet. Nachdem der Algorithmus terminiert, hätten wir so Min-Sum$_{(w)F}(G_1,G_2)$ berechnet.
 \\
 \\
-Allerdings ist trotz der Einschränkungen and die zu betrachteten Graph-Zuordnungen der Möglichkeitenraum im Allgemeinen zu groß
+Allerdings ist trotz der Einschränkungen an die zu betrachteten Graph-Zuordnungen der Möglichkeitenraum im Allgemeinen zu groß
 für einen solchen (brute-force) Ansatz.
 Jeder Knoten in $G_1$ hat potentiell bis zu $m_2$ $\varepsilon$-Platzierungen und für
 zwei benachbarte Knoten in $G_1$ gibt somit bis zu $m_2^2$ Möglichkeiten, die Knoten-Platzierungen zu kombinieren.
@@ -699,13 +714,15 @@ ein Kreis in $H$ würde direkt der Vorraussetzung widersprechen, dass $G$ ein (g
 Da jeder Knoten in $G_1$ bis zu $m_2$ Knoten-Platzierungen hat, gilt $|V_H| \in O(n_1*m_2)$ und $|E_H| \in O(n_1*m_2^2)$.
 \\
 Wir induzieren durch $w_H: E_H \to \mathbb{R}$ mit $w_H(i_{p_v},i_{p_u}) = \Delta(p_v,p_v)$ eine Gewichtung der Kanten von $H$ und
-initialisieren $w(p_v) = 0$ für alle Knoten-Platzierungen in $G_1$.
-Wir werden nun die Knoten-Platzierungen iterativ zuweisen und eine optimale $\varepsilon$-Platzierung von $G_1$ berechnen.
+initialisieren $w(p_v) = 0$ für alle Knoten-Platzierungen.
+Wir werden nun die Knoten-Platzierungen iterativ und greedy einander zuweisen und so eine optimale $\varepsilon$-Platzierung von $G_1$ berechnen.
 Im Gegensatz zu der Konstruktion von Lemma \ref{Lemma 1} berechnen wir $s$ und die Gewichte der Knoten-Platzierungen \textit{bottom-up}.
 Für einen Knoten $v \in V_1$, dessen Nachfahren ausschließlich Blätter in $G_1$ sind, setzen wir
+
 \begin{equation}
 	w(p_v) = \sum_{\text{$u:$ $u$ ist Nachfahre von $v$}} \min_{p_u \in P(u)} w(p_u) + w_H(p_v,p_u) \label{optimal placements}
 \end{equation}
+
 Dabei speichern wir die Zuordnung $s$ welche $w(p_v)$ realisiert für alle $p_v \in P(v)$ und löschen alle Nachfahren von $v$ aus $G_1$,
 nachdem alle Knoten-Platzierungen von $v$ bearbeitet wurden.
 Diese Bearbeitung eines Knotens in $G_1$ bezeichnen wir als einen Iterationsschritt \label{Iterationsschritt}
@@ -721,23 +738,23 @@ den zuletzt bearbeiteten Knoten) optimal zugeordnet ist.
 
 Vor dem ersten Iterationsschritt ist das Gewicht aller Knoten-Platzierungen $0$.
 Wir bezeichnen den aktualisierten Graphen $G_1$ nach dem $i$-ten Iterationsschritt mit $G_1^i$.
-Für einen beliebigen Knoten $v \in V_1$, dessen Nachfahren Blätter in $G_1^0$ sind, wird das Gewicht aller Knoten-Platzierungen nun durch die Berechnung von (\ref{optimal placements})
+Für einen beliebigen Knoten $v \in V_1$, dessen Nachfahren Blätter in $G_1^0$ sind, wird das Gewicht aller Knoten-Platzierungen nun durch die Berechnung von Gleichung (\ref{optimal placements})
 für alle Nachfahren von $v$ minimiert. Insbesondere entspricht $w(v)$ gerade der Summe aller gewichteten Kanten-Platzierungen. Betrachten wir nun $s$ als die Abbildung, die $\min{w(p_v)}: p_v \in P(v)$ realisiert,
 so ist $s$ offensichtlich eine Graph-Zuordnung, die Min-Sum$_{(w)F}(G_v, G_2)$ auf dem Teilgraphen $G_v$ - mit $v$ als Wurzel - einhält.
 \\
 Seien nun alle Teilgraphen in $G_1^i$ für ein beliebiges $i>1$ an allen bereits bearbeiteten Knoten optimal zugeordnet und sei $u \in V_1$ ein Knoten, dessen
-Nachfahren Blätter in $G_1^i$ sind. Die Graph-Abbildung, die $\min{w(p_u)}: p_u \in P(u)$ realsiert, wählt unter Umständen nach der Berechnung von \ref{optimal placements}
+Nachfahren Blätter in $G_1^i$ sind. Die Graph-Zuordnung, die $\min{w(p_u)}: p_u \in P(u)$ realsiert, wählt unter Umständen nach der Berechnung von \ref{optimal placements}
 für einen Nachfahren $\tilde{u}$ von $u$ eine andere Knoten-Platzierung als $\min{w(p_{\tilde{u}}}): p_{\tilde{u}} \in P(\tilde{u})$. Nach Vorraussetzung sind jedoch
-wiederum alle (potentiellen) Nachfahren von $\tilde{u}$ für jede Knoten-Platzierung von $\tilde{u}$ optimal zugeordnet. Insgesamt ist damit die Graph-Abbildung, die $\min{w(p_u)}: p_u \in P(u)$ realisiert,
+wiederum alle (potentiellen) Nachfahren von $\tilde{u}$ für jede Knoten-Platzierung von $\tilde{u}$ optimal zugeordnet. Insgesamt ist damit die Graph-Zuordnung, die $\min{w(p_u)}: p_u \in P(u)$ realisiert,
 optimal in dem geforderten Sinne.
 \\
 \\
-Da es zu Beginn von Schritt 4 weniger als $n_1$ Knoten mindestens einen Nachfahren haben und pro Iteration genau ein Knoten bearbeitet wird,
+Da zu Beginn von Schritt 4 weniger als $n_1$ Knoten mindestens einen Nachfahren haben und pro Iteration genau ein Knoten bearbeitet wird,
 ended Schritt 4 nach $O(n_1)$ Iterationsschritten mit der Berechnung der Wurzel $v_r$ und es gilt nach obiger Argumentation:
 \begin{equation}
 	\min_{p_{v_r} \in P(v_r)}{w(p_{v_r})} = \text{Min-Sum}_{(w)F}(G_1,G_2) \label {last one}
 \end{equation}
-Die Gleichung (\ref{last one}) realisierende Graph-Abbildung ist (nach \ref{Lemma 1}) eine $\varepsilon$-Platzierung von $G_1$.
+Die Gleichung (\ref{last one}) realisierende Graph-Zuordnung ist (nach \ref{Lemma 1}) eine $\varepsilon$-Platzierung von $G_1$.
 \\
 \end{proof}
 
@@ -752,16 +769,23 @@ Insgesamt setzt sich der Algorithmus also aus den folgenden Einzelschritten zusa
 \begin{Satz}
 	Sei $G_1$ ein Baum und sei $\varepsilon \geq \vec{\delta}_{(w)F}(G_1,G_2)$.
 	So lässt sich unter Einhaltung der Einschränkung \ref{Zweite Einschränkung} eine $\varepsilon$-Platzierung $s$ von $G_1$
-	mit einer Laufzeitkomplexität von $O(n_1*m_2^3)$ und einer Speicherkomplexität von $O(n_1*m_2^2)$ berechnen, so dass für jede
+	mit einer polynomiellen Laufzeitkomplexität von $O(n_1*m_2^3) + T_{(w)F}(g_1, g_2)$ und einer polynomiellen Speicherkomplexität von $O(n_1*m_2^2) + S_{(w)F}(g_1, g_2)$ berechnen, so dass für jede
 	andere $\varepsilon$-Platzierung $\tilde{s}$ von $G_1$ gilt:
-	$$\sum_{e \in E_1}\delta{(w)F}(e, s(e)) \leq \sum_{e \in E_1}\delta{(w)F}(e, \tilde{s}(e)).$$
+	$$\sum_{e \in E_1}\delta_{(w)F}(e, s(e)) \leq \sum_{e \in E_1}\delta_{(w)F}(e, \tilde{s}(e)).$$
+	Dabei beschreibt $T_{(w)F}(g_1, g_2)$ die Laufzeitkomplexität und $S_{(w)F}(g_1, g_2)$ die Speicherkomplexität zur Berechnung der minimalen (schwachen) Fréchet-Abstände, in Abhängigkeit
+	der durch $g_1$ und $g_2$ symbolisierten Komplexitäten von $G_1$ und $G_2$.
 \end{Satz}
 
 \begin{proof}
-Die Korrektheit des Algorithmus folgt aus Lemma \ref{Lemma 2}.
+Die Korrektheit des Algorithmus folgt direkt mit Lemma \ref{Lemma 2}.
+Zur Berechnung des minimalen (schwachen) Fréchet-Abstands existieren in der Literatur diverse Algorithmen mit unterschiedlichen polynomiellen Laufzeit - und Speicherkomplexitäten.
+Diese wollen wir hier lediglich referenzieren. Entscheidend für uns ist, das entsprechend Laufzeit - und Speicherkomplexiäten zum Berechnen des Problems tatsächlich polynomiell sind.
+Für den Fréchet-Abstand verweisen wir hierfür konkret auf Alt et. al \cite{Alt2} (Seite 272). Weitere polynomielle Ansätze finden sich zusätzlich in \cite{Ref1} und \cite{Ref2}.
 \\
-TODO: Zeitkomplexität und Speicherkomplexität zur Berechnung von $H$ begründen (siehe Mail).
 \\
+$H$ speichert alle Paare (schwach) voneinander erreichbarer Knoten-Platzierungen sowie die minimalen (schwachen) Fréchet-Abstände zwischen einem sie verbindenden Weg
+und der assoziierten Kante in $G_1$. Für zwei (schwach) voneinander erreichbare Knoten-Platzierungen enthält $H$ eine Kante. Für jeden Knoten in $G_1$ gibt es $O(m_2^2)$ solcher Paare
+und insgesamt liegt die Speicherkomplexität von $H$ für alle Knoten in $G_1$ damit bei $O(n_1*m_2^2)$.
 \\
 Zur Berechnung von Gleichung (1) betrachten für eine feste Knoten-Platzierung $p_v \in P(v)$ den zur Lösung der Gleichung relevanten Teilgraph von $H$,
 bestehend aus den Knoten-Platzierungen von $v$ sowie deren Nachfahren. Dieser Teilgraph weist somit für jede fixierte Knoten-Platzierung eine Komplexität von $O(m_2^2)$ auf.
@@ -784,22 +808,27 @@ Anhand eines kleinen Beispiels (siehe Abbildung \ref{min_sum_tree_0}) wollen wir
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{min_sum_tree_0.pdf}
-    \caption{$G_1$ ist in schwarz und $G_2$ in rot gezeichnet. Der Wurzelknoten für $G_1$, welcher die Bearbeitungsreihenfolge der Knoten für den Algorithmus sowie die Struktur
-	des Suchgraphen $H$ bestimmt, ist mit $r$ gekennzeichnet.
+	\caption{
+	$G_1$ ist in schwarz und $G_2$ in rot gezeichnet. Der Wurzelknoten für $G_1$, welcher die Bearbeitungsreihenfolge der Knoten für den Algorithmus sowie die Struktur
+	des Suchgraphen $H$ bestimmt, ist mit $r$ gekennzeichnet. Die sonstigen Knoten von $G_1$, die keine Blätter sind, sind mit $v_i$ ($1 \leq i \leq 6$) gekennzeichnet.
+	\\
+	\\
+	Quelle: In Anlehnung an Figure 3 aus Buchin et. al \cite{Buchin}.
 	}
     \label{min_sum_tree_0}
 \end{figure}
 
-$G_2$ besteht hier aus 2 disjunkten Bäumen - deren Kanten in Abbildung \ref{min_sum_tree_0} mit unterschiedlicher Stärke dargestellt sind.
-Jeder Knoten von $G_1$ hat dabei genau 2 gültige $\varepsilon$-Platzierung, jeweils eine für jeden der beiden Teilgraphen von $G_2$.
+$G_2$ besteht hier (Abbildung \ref{min_sum_tree_0}) aus 2 disjunkten Teilgraphen - deren Kanten wir mit unterschiedlicher Stärke skizziert haben.
+Wir bezeichnen mit $\widehat{G_2}$ den Teilgraphen von $G_2$, dessen Kanten dick skizziert sind und mit $\widetilde{G_2}$ den Teilgraphen von $G_2$, dessen Kanten dünn skizziert sind.
+Jeder Knoten von $G_1$ hat dabei genau 2 gültige $\varepsilon$-Platzierung, jeweils eine für $\widehat{G_2}$ und $\widetilde{G_2}$.
 Es ist leicht zu sehen, dass jede durch die skizzierten $\varepsilon$-Bälle induzierten Knoten-Platzierung (schwach) gültig ist und genau einen Knoten enthält.
 Als Randpunkte der Kanten-Platzierungen fixieren wir hier stets - mit Ausnahme des Wurzelknotens $r$ - für alle Knoten-Platzierungen die entsprechenden Knoten von $G_2$ innerhalb der Platzierung,
-da diese bereits so eingebettet sind, dass sie die Punkte mit minimalem Abstand zu dem Knoten in $G_1$ haben. Für eine Knoten-Platzierung von $r$ für den dünn gezeichneten Graphen
-haben wir den Fixpunkt, welcher kein Knoten von $G_2$ ist, mit einem Kreuz gekennzeichnet.
+da diese bereits so eingebettet sind, dass sie die Punkte mit minimalem Abstand zu dem Knoten in $G_1$ sind. Für eine Knoten-Platzierung von $r$ innerhalb von $\widetilde{G_2}$
+haben wir den einzigen Fixpunkt, der hier kein Knoten von $G_2$ ist, mit einem roten Kreuz gekennzeichnet.
 Der Fréchet-Abstand zwischen einer Kante in $G_1$ und einer ihrer Kanten-Platzierungen liegt in $\{1,4\}$.
 \\
 \\
-Der Suchgraph $H$ besteht aus 2 gerichteten Bäumen.
+Die Suchstruktur $H$, skizziert in Abbildung \ref{min_sum_tree_1}, besteht aus 2 disjunkten, gerichteten Bäumen.
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -810,9 +839,81 @@ Der Suchgraph $H$ besteht aus 2 gerichteten Bäumen.
 		\centering
 		\includegraphics[width=\linewidth]{min_sum_tree_2.pdf}
 	\end{subfigure}
-	\caption{Eine Skizze von $H$. $p_{r_1}$ kennzeichnet die $\varepsilon$-Platzierung von $r$, welche in dem dünn gezeichneten Teilgraphen von $G_2$ liegt.
-	Analog kennzeichnet $p_{r_2}$ die $\varepsilon$-Platzierung von $r$, welche in dem dick gezeichneten Teilgraphen von $G_2$ liegt.}
+	\caption{
+	Eine Skizze von $H$. Jeder Knoten in $H$ repräsentiert eine Knoten-Platzierung von $G_1$.
+	Dabei repräsentiert $\widehat{p_r}$ die $\varepsilon$-Platzierung von $r$, welche in $\widehat{G_2}$ liegt und analog
+	repräsentiert $\widetilde{p_r}$ die $\varepsilon$-Platzierung von $r$, welche in $\widetilde{G_2}$ liegt.
+	Wir haben $H$ hierbei so skizziert, dass sich die durch $H$ repräsentierten Knoten-Platzierungen aus ihrer Lage ergeben, welche
+	der Einbettung von $G_1$ in Abbildung \ref{min_sum_tree_0} nachempfunden ist.
+	Die Kanten von $H$ sind bereits gewichtet und kennzeichnen die minimalen Kosten - gemäß des (schwachen) Fréchet-Abstands -
+	einer Kanten-Platzierung für eine Auswahl zweier (schwach) voneinander erreichbarer Knoten-Platzierungen.
+	\\
+	\\
+	Quelle: Eigene Darstellung.
+	}
+	\label{min_sum_tree_1}
 \end{figure}
+
+Nun beginnen wir, die Knoten in $G_1$ zu bearbeiten, deren Nachfahren allesamt Blätter sind. Initial sind dies die Knoten $v_1, v_2, v_3$ (siehe Abbildung \ref{min_sum_tree_0}).
+Bei den $\varepsilon$-Platzierungen der Knoten behalten wir die Konvention bei, dass wir für einen Knoten $v_i \in V_1$ mit $\widehat{p_{v_i}}$ die $\varepsilon$-Platzierung von $v_i$ innerhalb
+von $\widehat{G_2}$ und analog mit $\widetilde{p_{v_i}}$ die $\varepsilon$-Platzierung von $v_i$ innerhalb $\widetilde{G_2}$ kennzeichnen. Da das Gewicht aller Knoten-Platzierungen initial auf 0 gesetzt ist,
+sind zur Berechnung der Gewichte der Knoten-Platzierungen von $v_1,v_2,v_3$ lediglich die durch entsprechenden gewichteten Kanten in $H$ zu betrachten (siehe Abbildung \ref{min_sum_tree_iteration_0}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{min_sum_tree_h_0.pdf}
+	\caption{
+		Nachdem die Knoten $v_1,v_2,v_3$ bearbeitet wurden, sind die Gewichte aller ihrer $\varepsilon$-Platzierungen berechnet.
+	}
+	\label{min_sum_tree_iteration_0}
+\end{figure}
+
+Anschließend sind die Knoten $v_4$ und $v_5$ in dem aktualisierten Graphen $G_1^3$ diejenigen Knoten, deren Nachfahren Blätter sind.
+
+$w(\widehat{p_{v_5}})$ berechnet sich z.B. konkret entsprechend der Gleichung (\ref{optimal placements}) über
+\begin{equation} \label{min_sum_weight_example}
+	\begin{split}
+		w(\widehat{p_{v_5}}) & = w(\widehat{p_{v_2}}) + w_H(\widehat{p_{v_5}}, \widehat{p_{v_2}}) + w(\widehat{p_{v_3}}) + w_H(\widehat{p_{v_5}}, \widehat{p_{v_3}}) \\
+		& = 1 + 1 + 1 + 1 \\
+		& = 4
+	\end{split}
+\end{equation}
+
+Da in diesem Beispiel für alle Knoten-Platzierungen jeweils genau eine (schwach) erreichbare Knoten-Platzierung existiert, brauchen wir grundsätzlich - und explizit in in Gleichung (\ref{min_sum_weight_example}) -
+kein Minimum aus mehreren Möglichkeiten berechnen.
+\\
+\\
+Nachdem alle inneren Knoten von $G_1$ bearbeitet wurden, steht nur noch die Bearbeitung des Wurzelknotens $r$ aus.
+Die bis dahin berechneten Gewichte sind in Abbildung \ref{min_sum_tree_h_1} notiert.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{min_sum_tree_h_1.pdf}
+	\caption{
+		Alle berechneten Gewichte von $\varepsilon$-Platzierungen der inneren Knoten ($v_i$) von $G_1$.
+	}
+    \label{min_sum_tree_h_1}
+\end{figure}
+
+Für die $\varepsilon$-Platzierungen von $r$ berechnen wir
+\begin{equation} \label{min_sum_weight_root_hat}
+	\begin{split}
+		w(\widehat{p_{r}}) & = w(\widehat{p_{v_4}}) + w_H(\widehat{p_{r}}, \widehat{p_{v_4}}) + w(\widehat{p_{v_6}}) + w_H(\widehat{p_{r}}, \widehat{p_{v_6}}) \\
+		& = 2 + 1 + 8 + 4 \\
+		& = 15
+	\end{split}
+\end{equation}
+und
+\begin{equation} \label{min_sum_weight_root_tilde}
+	\begin{split}
+		w(\widetilde{p_{r}}) & = w(\widetilde{p_{v_4}}) + w_H(\widetilde{p_{r}}, \widetilde{p_{v_4}}) + w(\widetilde{p_{v_6}}) + w_H(\widetilde{p_{r}}, \widetilde{p_{v_6}}) \\
+		& = 8 + 4 + 17 + 1 \\
+		& = 30
+	\end{split}
+\end{equation}
+
+Damit ist Min-Sum$_{(w)F}(G_1,G_2) = 15$ und die Graph-Zuordnung $s$, die $w(\widetilde{p_{r}}) = 15$ realisiert, ist eine Min-Sum$_{(w)F}$ Zuordnung.
+In unserem Beispiel ist das Bild von $s$ gerade $\widehat{G_2}$.
 
 \newpage
 \section{Komplexität}
@@ -962,7 +1063,7 @@ also $\delta_{wF}(\{v_i, v_j\}, W) \leq 1$.
 \end{figure}
 
 Um diesen Fall auszuschließen und ein ähnliches Szenario wie für den Fréchet-Abstand zu gewährleisten, fügen wir mittig auf jeder Kante $\{v_i, v_j\} \in E_1$
-einen zusätzlichen Knoten $v_{ij}$ in $G_1$ ein, so dass $B_1(v_{ij}) \cap B_1(v_i) = B_1(v_{ij}) \cap B_1(v_j) = \emptyset$ (Abbildung \ref{fig:chapter_4_example_1}).
+einen zusätzlichen Knoten $v_{ij}$ in $G_1$ ein, so dass $B_1(v_{ij}) \cap B_1(v_i) = B_1(v_{ij}) \cap B_1(v_j) = \emptyset$ (siehe dazu Abbildung \ref{fig:chapter_4_example_1}).
 Dafür ist es unter Umständen notwendig, initial ein größeres $\varepsilon$ zu wählen, damit die beschriebene Konstruktion (auch für $m_1 \leq 3$) stets gelingt.
 \\
 \\
@@ -971,10 +1072,13 @@ Dafür ist es unter Umständen notwendig, initial ein größeres $\varepsilon$ z
     \includegraphics[width=0.8\textwidth]{chapter_4_example_1.pdf}
     \caption{
 	Die Kante $\{v_i, v_j\}$ zerfällt nach dem Hinzufügen von $v_{ij}$ in die zwei Kanten $\{v_i, v_{ij}\}$, $\{v_{ij},v_j\}$.
-	$s(v_{ij})$ ist hier mit einem roten Kreuz gekennzeichnet.
-	Jede Kante in $G_2$ von $B_1(v_i)$ nach $B_1(v_j)$ induziert eine 1-Platzierung
-	von $v_{ij}$. Da $v_{ij}$ keine Knoten von $G_2$ enthält, ist die Konkatenation der Bilder von $\{v_i,v_{ij}\}$ und $\{v_{ij},v_j\}$
+	$s(v_{ij})$ ist in der Abbildung durch ein rotes Kreuz gekennzeichnet.
+	Jede Kante in $G_2$ von $B_1(v_i)$ nach $B_1(v_j)$ induziert eine eindeutige 1-Platzierung
+	des Knotens $v_{ij}$. Da $B_1(v_{ij})$ keine Knoten von $G_2$ enthält, ist die Konkatenation der Bilder von $\{v_i,v_{ij}\}$ und $\{v_{ij},v_j\}$
 	unter $s$ eindeutig mit einer Kante in $G_2$ identifizierbar.
+	\\
+	\\
+	Quelle: Eigene Darstellung
 	}
     \label{fig:chapter_4_example_1}
 \end{figure}
@@ -993,6 +1097,7 @@ durch $v_i$ und $v_j$ repräsentierten Variablen $x_i, x_j$, und ist damit gült
 Damit ist $\langle X,D,C \rangle$ lösbar.
 \end{proof}
 
+\newpage
 
 \section{Ausblick}
 In dieser Arbeit haben wir uns, motiviert durch das Ziel optimale Zuordnungen auf geometrischen Graphen zu untersuchen, mit dem
@@ -1029,6 +1134,18 @@ damit einen kleinen Einblick in den Raum der offenen Möglichkeiten gewagt.
 	\bibitem{Alt}
 		Hemlut Alt, Michael Godau. Computing the Fréchet distance between two polygonal curves.
 		\textit{Int. Journal of Computational Geometry and Applications,} 5:75-91, 1995.
+
+	\bibitem{Alt2}
+		Helmut Alt, Alon Efrat, Günter Rote, and Carola Wenk. Matching planar maps.
+		\textit{Journal of Algorithms, 49(2):262 – 283, 2003.}
+
+	\bibitem{Ref1}
+		Gudmundsson, J., Seybold, M. P., & Wong, S. (2023). Map matching queries on realistic input graphs under the Fréchet distance.
+		\textit{In Proceedings of the 2023 Annual ACM-SIAM Symposium on Discrete Algorithms (SODA) (pp. 1464-1492). Society for Industrial and Applied Mathematics.}
+
+	\bibitem{Ref2}
+		Buchin, K., Buchin, M., Gudmundsson, J., Popov, A., & Wong, S. (2023, April). Map Matching Queries Under Fréchet Distance on Low-Density Spanners.
+		\textit{In The 39th European Workshop on Computational Geometry.}
 \end{thebibliography}
 
 % Symbolverzeichnis definieren
