@@ -19,6 +19,7 @@
 \usepackage{graphicx}       % Einbinden von externen Bildern
 \usepackage{hyperref}
 \usepackage{float}
+\usepackage{subcaption}
 % insbesondere beim Inhaltsverzeichnis nötig, da dieses sonst zu
 % gequetscht aussieht.
 
@@ -204,12 +205,12 @@ Abschließend beschäftigen wir uns in Kapitel 4 mit der Komplexität des Maßes
 Wir betrachten hier $ \mathbb{R}^n $ grundsätzlich als metrischen Raum, versehen mit der euklidischen Norm.
 
 \begin{Def}
-	Ein \textit{Weg} ist eine stetige Abbildung $ \phi: [0,1] \to \mathbb{R}^n $ von einem geschlossenen Intervall $[0,1]$ nach $\mathbb{R}^n$.
-	Das Bild von $I$ unter $\phi$ nennen wir \textit{Kurve}.
+	Ein \textit{Weg} ist eine stetige Abbildung $ W: [0,1] \to \mathbb{R}^n $ von einem geschlossenen Intervall $[0,1]$ nach $\mathbb{R}^n$.
+	Das Bild von $I$ unter $W$ nennen wir auch die \textit{Kurve} von W.
 	\\
 	\\
-	Wir bezeichnen $\phi(0)$ als den \textit{Startpunkt}, $\phi(1)$ als den \textit{Endpunkt} und die Menge
-	$\{\phi(0), \phi(1)\}$ als die \textit{Randpunkte} des Weges. Dabei ist grundsätzlich $\phi(a) \neq \phi(b)$ anzunehmen.
+	Wir bezeichnen $W(0)$ als den \textit{Startpunkt}, $W(1)$ als den \textit{Endpunkt} und die Menge
+	$\{W(0), W(1)\}$ als die \textit{Randpunkte} des Weges. Dabei ist grundsätzlich $W(a) \neq W(b)$ anzunehmen.
 	\\
 	\\
 	Ein \textit{einfacher Weg} ist ein Weg, welcher injektiv (auf $[0,1]$) ist.
@@ -327,8 +328,10 @@ Implikationen für das Ausmaß des gerichteten (schwachen) Graph-Abstands. Siehe
     \includegraphics[width=0.8\textwidth]{chapter_2_example_1.pdf}
 	\caption{Skizzieren wir zwei Graphen $G_1,G_2$, so zeichnen wir die Knoten und Kanten von $G_1$ stets in schwarz und die Knoten und Kanten von $G_2$ stets in rot.
 	Aufgrund der Konnektivität von $G_1$ induziert die Zuordnung zweier Kanten von $G_1$ auf $G_2$ das Bild der ausbleibenden Zuordnung für die dritte Kante von $G_1$.
-	Die hervorgehobene rote Kurve sei hier das Bild einer solchen Graph-Zuordnung von $G_1$ nach $G_2$. Damit entspricht $\vec{\delta}_{(w)F}(G_1,G_2)$ gerade dem (schwachen) Fréchet-Abstand
-	zwischen den hervorgehobenen Kurven (hier durch $\varepsilon$ gekennzeichnet). Ferner gilt $\vec{\delta}_{(w)F}(G_2,G_1) = \tilde{\varepsilon}$.
+	Die stärker gezeichnete rote Kurve sei hier das Bild einer solchen Graph-Zuordnung von $G_1$ nach $G_2$.
+	Der Flaschenhals-Abstand wird hier durch den (schwachen) Fréchet-Abstand zwischen den stärker gezeichneten Kurven angenommen und ist durch $\varepsilon$ gekennzeichnet.
+	Damit ist $\vec{\delta}_{(w)F}(G_1,G_2) = \varepsilon$.
+	Andersherum tritt ein so großer Flaschenhals-Abstand zum Vergleich nicht auf. Es gilt $\vec{\delta}_{(w)F}(G_2,G_1) = \tilde{\varepsilon}$.
 	}
     \label{chapter_2_example_1}
 \end{figure}
@@ -358,7 +361,7 @@ Fréchet-Abstands auf $G_2$ abbildet, so dass $\delta_{(w)F}(e, \tilde{s}(e)) \l
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\textwidth]{chapter_2_example_0.pdf}
-	\caption{Eine Graph-Zuordnung von $G_1$ (dargestellt in schwarz) nach $G_2$ (dargestellt in rot) kann jeweils nur eine Kante von $G_1$ optimal zuordnen.}
+	\caption{Eine Graph-Zuordnung von $G_1$ nach $G_2$ kann jeweils nur eine Kante von $G_1$ bezüglich des (schwachen) Fréchet-Abstands optimal zuordnen.}
     \label{chapter_2_example_0}
 \end{figure}
 \\
@@ -390,6 +393,7 @@ Damit widmen wir uns nun dem Abstandsmaß, welches für uns im weiteren Verlauf 
 
 \end{Def}
 
+\newpage
 \section{Ein polynomieller Algorithmus}
 
 In diesem Kapitel werden wir zur Berechnung des Min-Sum$_{(w)F}$ Graph-Abstands den Algorithmus aus [1] unter Berücksichtigung einiger relevanter
@@ -476,15 +480,15 @@ bei der Wahl der Bildpunkte $s(u)$ und $s(v)$ unter Einhaltung des (schwachen) F
 	für den skizzierten Graphen, allerdings ist diese nicht optimal bezüglich des Min-Sum$_{(w)F}$ Abstands .
 	Die (schwachen) Fréchet-Abstände zwischen einer Kante und ihrem Bild betragen unter $\tilde{s}$ jeweils $\varepsilon$.
 	Unter $s$ hingegen wird der Flaschenhals-Abstand von $\varepsilon$ nur durch die Platzierung der mittleren Kante angenommen.
-	Die äußeren Kanten lassen sich so platzieren, dass der (schwache) Fréchet-Abstand $\frac{\varepsilon}{2}$ beträgt.
+	Die äußeren Kanten lassen sich so platzieren, dass der (schwache) Fréchet-Abstand nur $\frac{\varepsilon}{2}$ beträgt.
 	}
     \label{chapter_3_example_0}
 \end{figure}
 
-Um diesen Freiheitsgrad und die dadurch implizierte Komplexität bezüglich der Berechnung von Min-Sum${(w)F}$ auszuschließen,
-werden wir für einen Knoten $u \in E_1$ sein Bild unter einer Graph-Zuordnung für jede seiner $\varepsilon$-Platzierung fixieren.
-Als Fixpunkt wählen wir dafür einen Punkt in der $\varepsilon$-Platzierung mit minimalem Abstand zu $u$.
-Wir behaupten (ohne Beweis), dass die Berechnung von Min-Sum${(w)F}$ ohne diese Einschränkung NP-schwer ist.
+Um diesen Freiheitsgrad und die dadurch implizierte Komplexität bezüglich der Berechnung von Min-Sum$_{(w)F}(G_1,G_2)$ auszuschließen,
+werden wir für einen Knoten $u \in V_1$ sein Bild unter einer Graph-Zuordnung für jede seiner $\varepsilon$-Platzierung fixieren.
+Als Fixpunkt wählen wir dafür einen Punkt innherhalb der $\varepsilon$-Platzierung mit minimalem Abstand zu $u$.
+Wir behaupten (ohne Beweis), dass die Berechnung von Min-Sum$_{(w)F}(G_1,G_2)$ ohne eine solche Einschränkung im Allgmeinen NP-schwer ist.
 
 \subsection{Ansätze und Beschreibung eines polynomiellen Algorithmus} \label{Grundidee des Algorithmus}
 Um unter den Einschränkungen \ref{Erste Einschränkung} und \ref{Zweite Einschränkung} an die zu betrachtenden Graph-Zuordnungen von $G_1$ nach $G_2$
@@ -779,10 +783,9 @@ ergibt sich schließlich die Laufzeitkomplexität von $O(n_1*m_2^3).$
 Anhand eines kleinen Beispiels (siehe Abbildung \ref{min_sum_tree_0}) wollen wir den oben beschriebenen Algorithmus nun demonstrieren.
 
 \begin{figure}[H]
-    \centering
     \includegraphics[width=\textwidth]{min_sum_tree_0.pdf}
-    \caption{$G_1$ ist in blau und $G_2$ in rot gezeichnet. Der Wurzelknoten für $G_1$, welcher die Bearbeitungsreihenfolge der Knoten von für den Algorithmus bestimmt,
-	ist mit $r$ gekennzeichnet.
+    \caption{$G_1$ ist in schwarz und $G_2$ in rot gezeichnet. Der Wurzelknoten für $G_1$, welcher die Bearbeitungsreihenfolge der Knoten für den Algorithmus sowie die Struktur
+	des Suchgraphen $H$ bestimmt, ist mit $r$ gekennzeichnet.
 	}
     \label{min_sum_tree_0}
 \end{figure}
@@ -790,11 +793,28 @@ Anhand eines kleinen Beispiels (siehe Abbildung \ref{min_sum_tree_0}) wollen wir
 $G_2$ besteht hier aus 2 disjunkten Bäumen - deren Kanten in Abbildung \ref{min_sum_tree_0} mit unterschiedlicher Stärke dargestellt sind.
 Jeder Knoten von $G_1$ hat dabei genau 2 gültige $\varepsilon$-Platzierung, jeweils eine für jeden der beiden Teilgraphen von $G_2$.
 Es ist leicht zu sehen, dass jede durch die skizzierten $\varepsilon$-Bälle induzierten Knoten-Platzierung (schwach) gültig ist und genau einen Knoten enthält.
-Als Randpunkte der Kanten-Platzierungen fixieren wir hier stets mit Ausnahme des Wurzelknotens $r$ für alle Knoten-Platzierungen die entsprechenden Knoten von $G_2$ innerhalb der Platzierung,
-da diese bereits so eingebettet sind, dass sie die Punkte mit minimalem Abstand zu dem Knoten in $G_1$ haben. Für eine Knoten-Platzierung von $r$ haben wir den Fixpunkt, welcher kein Knoten
-von $G_2$ ist mit einem Kreuz gekennzeichnet. Der Fréchet-Abstand zwischen einer Kante in $G_1$ und einer ihrer Kanten-Platzierungen liegt in $\{1,4\}$.
-Die jeweiligen Abstände sollten aus der Skizze ersichtlich sein.
+Als Randpunkte der Kanten-Platzierungen fixieren wir hier stets - mit Ausnahme des Wurzelknotens $r$ - für alle Knoten-Platzierungen die entsprechenden Knoten von $G_2$ innerhalb der Platzierung,
+da diese bereits so eingebettet sind, dass sie die Punkte mit minimalem Abstand zu dem Knoten in $G_1$ haben. Für eine Knoten-Platzierung von $r$ für den dünn gezeichneten Graphen
+haben wir den Fixpunkt, welcher kein Knoten von $G_2$ ist, mit einem Kreuz gekennzeichnet.
+Der Fréchet-Abstand zwischen einer Kante in $G_1$ und einer ihrer Kanten-Platzierungen liegt in $\{1,4\}$.
+\\
+\\
+Der Suchgraph $H$ besteht aus 2 gerichteten Bäumen.
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{min_sum_tree_1.pdf}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{min_sum_tree_2.pdf}
+	\end{subfigure}
+	\caption{Eine Skizze von $H$. $p_{r_1}$ kennzeichnet die $\varepsilon$-Platzierung von $r$, welche in dem dünn gezeichneten Teilgraphen von $G_2$ liegt.
+	Analog kennzeichnet $p_{r_2}$ die $\varepsilon$-Platzierung von $r$, welche in dem dick gezeichneten Teilgraphen von $G_2$ liegt.}
+\end{figure}
 
+\newpage
 \section{Komplexität}
 
 \subsubsection{NP-Schwerheit von Min-Sum$_{(w)F}$}
