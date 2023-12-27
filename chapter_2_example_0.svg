@@ -26,9 +26,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.9827809"
-     inkscape:cx="174.50239"
-     inkscape:cy="89.268562"
+     inkscape:zoom="2.6044095"
+     inkscape:cx="174.31974"
+     inkscape:cy="89.463657"
      inkscape:window-width="1920"
      inkscape:window-height="1136"
      inkscape:window-x="0"
@@ -90,5 +90,13 @@
        id="path39-62-75-8"
        d="m 87.823952,120.92681 c 0.51412,-0.20148 0.76751,-0.78146 0.56603,-1.29557 -0.20147,-0.5141 -0.78146,-0.76749 -1.29557,-0.56601 -0.5141,0.20147 -0.76749,0.78146 -0.56601,1.29557 0.20147,0.5141 0.78145,0.76749 1.29555,0.56601"
        style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.33324" />
+    <path
+       style="fill:#ff0000;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.5;paint-order:stroke fill markers;fill-opacity:1;stroke-opacity:1;stroke-dasharray:none"
+       d="m 46.956889,124.62003 40.526531,0.16672"
+       id="path3" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="m 87.473758,119.9573 40.877902,0.13981"
+       id="path4" />
   </g>
 </svg>
