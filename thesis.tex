@@ -163,45 +163,34 @@ Sebastian Koletzko
 Die geometrische Graphentheorie ist ein Zweig der Graphentheorie, die sich dem Studium von Graphen verschreibt, deren Knoten und Kanten wir mit geometrischen Objekten identifizieren
 und ist verwandt mit der topologischen Graphentheorie.
 
-Graphen, denen eine konkrete Darstellung ihrer Knoten und Kanten - zum Beispielim euklidischen Raum - zugewiesen wird, bezeichnen wir als eingebettete Graphen.
+Graphen, denen eine konkrete Darstellung ihrer Knoten und Kanten - zum Beispiel im euklidischen Raum - zugewiesen wird, bezeichnen wir als eingebettete Graphen.
 \\
 \\
-In dieser Arbeit wollen wir uns mit geometrischen Graphen beschäftigen. Hierbei handelt es sich um Graphen,
-bei denen eine Kante jeweils als ein Geradenstück in der euklidischen Ebene eingebettet wird.
-Geometrische Graphen eignen sich insbesondere zur Repräsentation von Netzwerken wie zum Beispiel Straßennetzen.
+In dieser Arbeit wollen wir uns speziell mit geometrischen Graphen beschäftigen. Hierbei handelt es sich um eingebettene Graphen,
+bei denen eine Kante jeweils durch ein Geradenstück in der euklidischen Ebene repräsentiert wird.
+Geometrische Graphen eignen sich dadurch insbesondere zur Repräsentation beziehungsweise zur Darstellung von Netzwerken wie beispielsweise Straßennetzen.
+Wir wollen geometrisdche Graphen miteinander vergleichen, um Aussagen über die Güte der Repräsentation des Netzwerkes treffen zu können.
 \\
-Wir wollen solche Graphen miteinander vergleichen, um Aussagen über die Güte der Repräsentation des Netzwerkes treffen zu können.
-Inbesondere wollen wir geometrische Graphen bezüglich ihrer jeweiligen Repräsentation/Rekonstruktion eines Netzwerks miteinander vergleichen.
-Wir interessieren uns dabei für die Ähnlichkeit zweier geometrischer Graphen. Für uns bedeutet Ähnlichkeit primär die geometrische Ähnlichkeit gegeben durch die
-Einbettung der Graphen in die Ebene, insbesondere aber auch ohne dabei ihre inherente Konnektivität außer Acht zu lassen.
-Zum Vergleich zweier Graphen beziehungsweise zwei geometrischer Objekte stößt man in der Literatur unweigerlich auf das Konzept eines Abstandsmaßes zwischen Graphen.
-Unter einem Abstandsmaß verstehen im Allgemeinen eine reellwertige Zuordung zum Vergleich zweier geometrischer Objekte wie zum Beispiel zum Vergleich von zwei Kurven im euklidischen Raum.
-Für den Vergleich von eingebetteten Graphen existieren dabei bereits einige bekannte Abstandsmaße.
-\\
-Einige Abstandsmaße erfassen zum Beispiel beim Vergleich von eingebetteten Graphen lediglich die Repräsentation der Graphen im Sinne ihrer Punktmenge im euklidischen Raum berücksichtigen dabei nicht die ihnen
-durch ihre abstrakte Beschreibung ausgewiesene Konnektivität.
-\\
-\\
-TODO: Um Referenzen ergänzen.
+Zum Vergleich zweier eingebetteter Graphen stößt man in der Literatur auf das Konzept eines Abstandsmaßes zwischen Graphen.
+Unter einem Abstandsmaß verstehen im Allgemeinen eine reellwertige Zuordung zum Vergleich zweier geometrischer Objekte in einem Anschauuungsraum wie zum Beispiel der euklidischen Ebene.
+Für den Vergleich von geometrischen Graphen existieren dabei bereits einige bekannte Abstandsmaße in der Literatur.
+Diese haben allgemein unterschiedlichste Eigenschaften in der Art und Weise, wie sie den Abstand zwischen geometrischen Graphen bemessen und welche Eigenschaften der Graphen und ihrer Beziehung
+zueinander in welchem Maße konkret zum berechneten Abstand zwischen ihnen beitragen.
 \\
 \\
 Eine zentrale Fragestellung ist dabei, wie man neue Abstandsmaße auf Graphen definieren kann und unter welchen Bedingungen sich diese auch für potentiell komplexe Graphen effizient berechnen lassen.
 \\
-Dabei interessieren wir uns insbesondere auch für die mathematischen Eigenschaften eines Abstandsmaßes sowie seiner implizierten 'Notion' der Ähnlichkeit auf die zu vergleichenden Objekte.
+Dabei interessieren wir uns insbesondere auch für die mathematischen Eigenschaften eines Abstandsmaßes sowie der inhärenten Implikationen und Anschauungen bezüglich des Abstands der zu vergleichenden Graphen.
 \\
-Um die Ählichkeit zweier eingebetter Graphen insbesondere in Bezug auf die Konnektivität des Graphen zu beschreiben, haben Akitaya et al. \cite{Akitaya} neue Abstandsmaße eingeführt und ihre Eigenschaften untersucht.
-\\
-Besonderheit bei diesen Abstandmaßen ist, dass sie auf einer stetigen Zuordnung zwischen den zu vergleichenden Graphen basieren.
-\\
-
-Mit diesem Abstandsmaß wollen wir uns in dieser Arbeit hauptsächlich beschäftigen.
-In Kapitel 2 fassen wir dazu zunächst die Notation und die zentralen Begriffe aus \cite{Akitaya} zusammen, welche den Grundstein für die Auseinandersetzung mit dem neuen Abstandsmaß bilden.
-In Kapitel 3 werden wir ein weiteres Abstandsmaß auf Graphen motivieren und einführen. Anschließend werden wir uns mit den Bedingungen und einem Ansatz beschäftigen, um dieses Abstandsmaß
-in Polynomialzeit berechnen zu können.
-Abschließend beschäftigen wir uns in Kapitel 4 mit der Komplexität des besagten Maßes für allgemeine Graphen.
+Wir werden dazu zunächst ein Abstandsmaß betrachten, welches erstmalig durch Aktiaya et. al \cite{Akitaya} eingeführt und untersucht wurde. Dieses hat die Besonderheit, dass neben der geometrischen Ähnlichkeit
+der Graphen auf Basis ihrer jeweiligen Einbettungen auch ihre individuelle Konnektivtät einen bedeutenden Einfluss auf das Ausmaß ihrer gemessenen Abstände nimmt.
+Dafür etablieren wir initial in Kapitel \ref{Kapitel 2} die nötigen Begriffe und
+motivieren anschließend die Einführung eines weiteren Abstandsmaßes, mit welchem wir uns für den Rest der Arbeit im Detail beschäftigen werden. Dieses Maß liefert und ein weiteres Kriterium, um genauere Aussagen
+über die Ähnlichkeit von geometrischen Graphen treffen zu können.
+Dabei befasst sich Kapitel \ref{Kapitel 3} mit der algorithmischen Herleitung und Berechnung dieses Abstandsmaßes auf Bäumen und Kapitel \ref{Kapitel 4} mit seiner Komplexität für allgemeine, geometrische Graphen.
 \newpage
 
-\section{Grundlagen}
+\section{Grundlagen} \label{Kapitel 2}
 Wir betrachten hier $ \mathbb{R}^n $ grundsätzlich als metrischen Raum, versehen mit der euklidischen Norm.
 
 \begin{Def}
@@ -406,7 +395,7 @@ Damit widmen wir uns nun dem Abstandsmaß, welches für uns im weiteren Verlauf 
 \end{Def}
 
 \newpage
-\section{Ein polynomieller Algorithmus}
+\section{Ein polynomieller Algorithmus} \label{Kapitel 3}
 
 In diesem Kapitel werden wir zur Berechnung des Min-Sum$_{(w)F}$ Abstands den Algorithmus aus \cite{Buchin} unter Berücksichtigung einiger relevanter
 Begriffe und Ergebnisse aus \cite{Akitaya} herleiten und diesen Algorithmus schließlich anhand eines konkreten Beispiels demonstrieren.
@@ -923,7 +912,7 @@ Damit ist Min-Sum$_{(w)F}(G_1,G_2) = 15$ und die Graph-Zuordnung $s$, die $w(\wi
 In unserem Beispiel ist das Bild von $s$ gerade $\widehat{G_2}$.
 
 \newpage
-\section{Komplexität}
+\section{Komplexität} \label{Kapitel 4}
 
 \subsubsection{NP-Schwerheit von Min-Sum$_{(w)F}$}
 
