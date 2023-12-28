@@ -163,15 +163,15 @@ Sebastian Koletzko
 Die geometrische Graphentheorie ist ein Zweig der Graphentheorie, die sich dem Studium von Graphen verschreibt, deren Knoten und Kanten wir mit geometrischen Objekten identifizieren
 und ist verwandt mit der topologischen Graphentheorie.
 
-Graphen, denen eine konkrete Darstellung ihrer Knoten und Kanten - zum Beispiel im euklidischen Raum - zugewiesen wird, bezeichnen wir als eingebettete Graphen.
+Graphen, denen eine konkrete Darstellung ihrer Knoten und Kanten - zum Beispiel im euklidischen Raum - zugewiesen wird, bezeichnen wir auch als eingebettete Graphen.
 \\
 \\
 In dieser Arbeit wollen wir uns speziell mit geometrischen Graphen beschäftigen. Hierbei handelt es sich um eingebettene Graphen,
-bei denen eine Kante jeweils durch ein Geradenstück in der euklidischen Ebene repräsentiert wird.
-Geometrische Graphen eignen sich dadurch insbesondere zur Darstellung von Netzwerken wie beispielsweise Straßennetzen.
-In diesem Sinne wollen geometrische Graphen miteinander vergleichen, um im Anwendungsfall Aussagen über die Güte der durch den Graphen gegebenen Repräsentation des Netzwerkes treffen zu können.
+bei denen ein Knoten jeweils als ein Punkt und eine zu zwei Punkten inzidente Kante jeweils als (die Punkte verbindendes) Geradenstück in der euklidischen Ebene eingebettet wird.
+Geometrische Graphen eignen sich insbesondere zur Darstellung von Netzwerken wie beispielsweise Straßennetzen.
+Wir wollen geometrische Graphen miteinander vergleichen, um im Anwendungsfall konkrete Aussagen über die Güte der durch den Graphen beschriebenen Repräsentation eines bestimmten Netzwerkes treffen zu können.
 \\
-Zum Vergleich zweier eingebetteter Graphen stößt man in der Literatur auf das Konzept des Abstandsmaßes zwischen Graphen.
+Zum Vergleich zweier eingebetteter Graphen existieren bereits diverse Ansätze und so stößt man in der Literatur unter Anderem auf das Konzept eines Abstandsmaßes zwischen Graphen.
 Unter einem Abstandsmaß verstehen wir im Allgemeinen eine reellwertige Zuordung zum Vergleich zweier geometrischer Objekte in einem Anschauuungsraum wie zum Beispiel der euklidischen Ebene.
 Für den Vergleich von geometrischen Graphen existieren dabei bereits einige bekannte Abstandsmaße in der Literatur.
 Diese haben allgemein unterschiedlichste Eigenschaften in der Art und Weise, wie sie den Abstand zwischen geometrischen Graphen bemessen und welche Eigenschaften der Graphen und ihrer Beziehung
@@ -179,13 +179,12 @@ zueinander in welchem Maße konkret zum berechneten Abstand zwischen ihnen beitr
 \\
 \\
 Eine zentrale Fragestellung ist dabei, wie man neue Abstandsmaße auf Graphen definieren kann und unter welchen Bedingungen sich diese auch für potentiell komplexe Graphen effizient berechnen lassen.
+Die metrischen Eigenschaften eines Abstandsmaßes finden dabei in dieser Ausarbeitung zwar keine besondere Erwähnung, sind aber grundsätzlich ein fundamentales Betrachtungskriterium.
 \\
-Dabei interessieren wir uns insbesondere auch für die mathematischen Eigenschaften eines Abstandsmaßes sowie der inhärenten Implikationen und Anschauungen bezüglich des Abstands der zu vergleichenden Graphen.
-\\
-Wir werden dazu zunächst ein Abstandsmaß betrachten, welches erstmalig durch Aktiaya et. al \cite{Akitaya} eingeführt und untersucht wurde. Dieses hat die Besonderheit, dass neben der geometrischen Ähnlichkeit
-der Graphen auf Basis ihrer jeweiligen Einbettungen auch ihre individuelle Konnektivtät einen bedeutenden Einfluss auf das Ausmaß ihrer gemessenen Abstände nimmt.
+Wir werden zunächst ein Abstandsmaß betrachten, welches erstmalig durch Aktiaya et. al \cite{Akitaya} eingeführt und untersucht wurde. Dieses hat die Besonderheit, dass neben der geometrischen Ähnlichkeit
+der Graphen auf Basis ihrer konkreten Einbettungen auch ihre jeweilige (abstrakte) Konnektivtät einen bedeutenden Einfluss auf das Ausmaß ihrer Abstände nimmt.
 Dafür etablieren wir initial in Kapitel \ref{Kapitel 2} die nötigen Begriffe und
-motivieren anschließend die Einführung eines weiteren Abstandsmaßes, mit welchem wir uns für den Rest der Arbeit im Detail beschäftigen werden. Dieses Maß liefert und ein weiteres Kriterium, um genauere Aussagen
+motivieren anschließend die Einführung eines weiteren Abstandsmaßes, mit welchem wir uns für den Rest der Arbeit im Detail beschäftigen werden. Dieses Maß liefert uns einen weiteren Betrachtungswinkel, um weitere Aussagen
 über die Ähnlichkeit von geometrischen Graphen treffen zu können.
 Dabei befasst sich Kapitel \ref{Kapitel 3} mit der algorithmischen Herleitung und Berechnung dieses Abstandsmaßes auf Bäumen und Kapitel \ref{Kapitel 4} mit seiner Komplexität für allgemeine, geometrische Graphen.
 \newpage
@@ -324,7 +323,7 @@ Abbildung \ref{frechet_example} liefert ein paar Beispiele für den (schwachen) 
 	    In Abbdilung $(d)$ kennzeichnet die längere gestrichelte Linie den Fréchet-Abstand und die kürzere gestrichelte Linie den schwachen Fréchet-Abstand der beiden Kurven.
 	    \\
 	    \\
-	    Quelle: Eigene Darstellung
+	    Quelle: In Anlehnung an Alt et. al \cite{Alt}, Seite 83, Figure 7 und eigene Darstellung.
     }
     \label{frechet_example}
 \end{figure}
@@ -1166,14 +1165,16 @@ auf Bäumen ohne die notwendige Einschränkung (aus \ref{Zweite Einschränkung})
 Formale Beweise dieser Annahmen stehen dabei noch aus.
 \\
 \\
-Allgemein beschreibt der Min-Sum-Graph-Abstand$_{dist}$ eine ganze Klasse von Abstandsmaßen auf Graphen, deren Mitglieder sich durch die Wahl
+Allgemein beschreibt der Min-Sum$_{dist}$ Abstand eine ganze Klasse von Abstandsmaßen auf Graphen, deren Mitglieder sich durch die Wahl
 eines geeigneten Abstandsmaßes für die Gewichtung der Kanten-Zuordnungen unterscheiden.
-Grundsätzlich sind die Eigenschaften des Min-Sum-Graph-Abstands unter anderen Abstandsmaßen zu betrachten. Hier bietet sich zum Beispiel der
-diskrete Fréchet-Abstand als geeigneter Kandidat an. Wir behaupten, dass wir aufgrund seiner inherenten Eigenschaft die in $\ref{Zweite Einschränkung}$
-geforderten Fixpunkte zur Gewährleistung einer polynomiellen Laufzeit der Berechnung nicht benötigen.
+Grundsätzlich ließen sich also die Eigenschaften des Min-Sum$_{dist}$ Abstands unter der Verwendung von anderen Abstandsmaßen zu betrachten.
+Hier bietet sich zum Beispiel für geometrische Graphen insbesondere der
+diskrete Fréchet-Abstand (siehe dazu zum Beispiel Aronov et. al \cite{Aronov}) als möglicher Kandidat an. Wir behaupten, dass wir aufgrund seiner
+inherenten Eigenschaft die in $\ref{Zweite Einschränkung}$ geforderten Fixpunkte zur Gewährleistung einer polynomiellen Laufzeit der Berechnung nicht benötigen.
+Eine formale Auseinandersetzung mit diesem Ansatz steht dabei allerdings noch aus.
 \\
 \\
-Wir haben bei unserer Betrachtung des Min-Sum$_{(w)F}$ Abstands bisher nur ein Mitglied dieser oben beschriebenen Klasse genauer betrachtet und
+Letzlich haben wir bei unserer Betrachtung des Min-Sum$_{(w)F}$ Abstands nur ein Mitglied dieser oben beschriebenen Klasse betrachtet und
 damit ledglich einen kleinen Exkurs in den Raum der offenen Möglichkeiten gewagt.
 \newpage\null\thispagestyle{empty}\newpage
 %   Eventuell eine Leerseite vor der Literaturangabe, falls diese sonst auf einer Rückseite angegeben würde. (Seitennummer muss ungerade sein!)
@@ -1202,9 +1203,14 @@ damit ledglich einen kleinen Exkurs in den Raum der offenen Möglichkeiten gewag
 	\bibitem{Ref2}
 		Kevin Buchin, Maike Buchin, Joachim Gudmundsson, Aleksandr Popov, Sampson Wong. Map Matching Queries Under Fréchet Distance on Low-Density Spanners.
 		\textit{In The 39th European Workshop on Computational Geometry, 2023.}
+
 	\bibitem{Karp}
-		Karp, Richard M. Reducibility among combinatorial problems.
+		Richard M. Karp, Reducibility among combinatorial problems.
 		\textit{Springer Berlin Heidelberg, 2010.}
+
+	\bibitem{Aronov}
+		Boris Aronov, Sariel Har-Peled, Christian Knauer, Yusu Wang, and Carola Wenk. Fréchet distance for curves, Revisited.
+		\textit{In Proc. 14th Annu. European Sympos. Algorithms (ESA), pages 52–63, 2006.}
 
 \end{thebibliography}
 
