@@ -326,7 +326,7 @@ des (schwachen) Fréchet-Abstands eingerichtet sind.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{frechet_example.pdf}
+    \includegraphics[width=0.8\textwidth]{assets/frechet_example.pdf}
     \caption{
 	    Beispiele für den (schwachen) Fréchet-Abstand zwischen jeweils einer in rot und einer in schwarz gezeichneten Kurve. Die gestrichelten Linien repräsentieren dabei die (schwachen)
 	    Fréchet-Abstände zwischen den Kurven. Für Die Abbildungen $(a),(b),(c)$ ist der Fréchet-Abstand und der schwache Fréchet-Abstand identisch.
@@ -358,7 +358,7 @@ Implikationen für das konkrete Ausmaß des gerichteten (schwachen) Graph-Abstan
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{chapter_2_example_1.pdf}
+    \includegraphics[width=0.8\textwidth]{assets/chapter_2_example_1.pdf}
     \caption{
 	    Skizzieren wir zwei Graphen $G_1,G_2$, so zeichnen wir die Knoten und Kanten von $G_1$ stets in schwarz und die Knoten und Kanten von $G_2$ stets in rot.
 	    Aufgrund der Konnektivität von $G_1$ induziert die Zuordnung zweier Kanten von $G_1$ auf $G_2$ das Bild der ausbleibenden Zuordnung für die dritte Kante von $G_1$.
@@ -401,7 +401,7 @@ Abbildung \ref{chapter_2_example_0} für ein konkretes Beispiel.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{chapter_2_example_0.pdf}
+    \includegraphics[width=0.8\textwidth]{assets/chapter_2_example_0.pdf}
 	\caption{Eine Graph-Zuordnung von $G_1$ nach $G_2$ kann hier immer nur genau eine einzige Kante von $G_1$ bezüglich des (schwachen) Fréchet-Abstands optimal zuordnen.
 	Für die beiden Kanten von $G_1$ sind die Bilder ihrer optimalen Zuordnungen dick gezeichnet. Allerdings existiert offensichtlich keine Graph-Zuordnung,
 	die beiden lokal optimalen Kanten-Zuordnungen simultan realisieren kann.
@@ -477,7 +477,7 @@ der (schwachen) Fréchet-Abstände zwischen den Kanten von $G_1$ und ihren Bilde
 
 	\begin{figure}[H]
 	    \centering
-	    \includegraphics[width=0.8\textwidth]{chapter_3_placements_example.pdf}
+	    \includegraphics[width=0.8\textwidth]{assets/chapter_3_placements_example.pdf}
 		\caption{$B_{\varepsilon}(u)$ enthält zwei $\varepsilon$-Platzierungen von $u$, $p_{u_1}$ und $p_{u_2}$. Analog sind $p_{v_1}$ und $p_{v_2}$
 		die $\varepsilon$-Platzierungen von $v$ innerhalb von $B_{\varepsilon}(v)$. Jede Knoten-Platzierung enthält hier genau einen Knoten von $G_2$.
 		Hierbei sind die Paare von Knoten-Platzierungen
@@ -522,7 +522,7 @@ bei der Wahl der Bildpunkte $s(u)$ und $s(v)$ unter Einhaltung des (schwachen) F
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{chapter_3_example_0.pdf}
+    \includegraphics[width=\textwidth]{assets/chapter_3_example_0.pdf}
 	\caption{Die Wahl der Randpunkte $\tilde{s}(u), \tilde{s}(v)$ für das Bild der mittleren Kante $\{u,v\}$ ermöglicht zwar eine
 	(schwache) $\varepsilon$-Platzierung
 	für den skizzierten Graphen $G_1$, allerdings ist diese nicht optimal bezüglich des Min-Sum$_{(w)F}$ Abstands.
@@ -851,7 +851,7 @@ ergibt sich schließlich die Laufzeitkomplexität von $O(n_1 \cdot m_2^3).$
 Anhand eines kleinen Beispiels (siehe Abbildung \ref{min_sum_tree_0}) wollen wir den oben beschriebenen Algorithmus nun demonstrieren.
 
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{min_sum_tree_0.pdf}
+	\includegraphics[width=\textwidth]{assets/min_sum_tree_0.pdf}
 	\caption{
 	$G_1$ ist in schwarz und $G_2$ in rot gezeichnet. Der Wurzelknoten für $G_1$, welcher die Bearbeitungsreihenfolge der Knoten für den Algorithmus sowie die Struktur
 	des Suchgraphen $H$ bestimmt, ist mit $r$ gekennzeichnet. Die sonstigen Knoten von $G_1$, die keine Blätter sind, sind mit $v_i$ ($1 \leq i \leq 6$) gekennzeichnet.
@@ -879,11 +879,11 @@ Die Suchstruktur $H$, skizziert in Abbildung \ref{min_sum_tree_1}, besteht aus 2
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{min_sum_tree_1.pdf}
+		\includegraphics[width=\linewidth]{assets/min_sum_tree_1.pdf}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{min_sum_tree_2.pdf}
+		\includegraphics[width=\linewidth]{assets/min_sum_tree_2.pdf}
 	\end{subfigure}
 	\caption{
 	Eine Skizze von $H$. Jeder Knoten in $H$ repräsentiert genau eine Knoten-Platzierung.
@@ -907,7 +907,7 @@ sind zur Berechnung der Gewichte der Knoten-Platzierungen von $v_1,v_2,v_3$ ledi
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{min_sum_tree_h_0.pdf}
+	\includegraphics[width=0.8\linewidth]{assets/min_sum_tree_h_0.pdf}
 	\caption{
 		Nachdem die Knoten $v_1,v_2,v_3$ bearbeitet wurden, sind die Gewichte aller ihrer $\varepsilon$-Platzierungen berechnet.
 	}
@@ -934,7 +934,7 @@ Die bis dahin berechneten Gewichte der Knoten-Platzierungen sind in Abbildung \r
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.8\textwidth]{min_sum_tree_h_1.pdf}
+	\includegraphics[width=.8\textwidth]{assets/min_sum_tree_h_1.pdf}
 	\caption{
 		Alle berechneten Gewichte von $\varepsilon$-Platzierungen der inneren Knoten ($v_i$) von $G_1$.
 	}
@@ -1024,7 +1024,7 @@ Für ein kleines Beispiel der beschriebenen Konstruktion referenzieren wir auf A
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{chapter_4_construction.pdf}
+	\includegraphics[width=\linewidth]{assets/chapter_4_construction.pdf}
 	\caption{
 		Eine Einbettung von $G_1$ und $G_2$ nach oben beschriebener Konstruktion. Zugrunde liegt die Instanz $\langle X,D,C \rangle$ mit: $X=\{x_1,x_2,x_3\}$,
 		$D_1=\{d_{1,a},d_{1,b}\}$, $D_2=\{d_{2,a},d_{2,b},d_{2,c}\}$, $D_3=\{d_{3,a}\}$ und den Bedingungen $C_{1,2},C_{1,3},C_{2,3}$ mit den Relationen
@@ -1120,7 +1120,7 @@ schwache 1-Platzierung der Kante $\{v_i, v_j\}$ realisierbar und damit ist $\del
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{chapter_4_example_0.pdf}
+    \includegraphics[width=0.8\textwidth]{assets/chapter_4_example_0.pdf}
     \caption{Durch die Hervorhebung haben wir das Bild eines Weges $W$ in $G_2$ markiert, welcher zwei 1-Platzierungen schwach miteinander verbindet.
 	Für den schwachen Fréchet-Abstand genügt dabei die Tatsache, dass $W$ vollständig in $T_1(\{v_i,v_j\})$ liegt.
 	Die mit der Kanten-Platzierung assoziierten Knoten $u_{i,a},u_{j,b}$ repräsentieren allerdings offensichtlich keine gültige Wertezuweisung für die Variablen $x_i,x_j$.
@@ -1140,7 +1140,7 @@ Dafür ist es unter Umständen notwendig, initial ein größeres $\varepsilon$ z
 \\
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{chapter_4_example_1.pdf}
+    \includegraphics[width=0.8\textwidth]{assets/chapter_4_example_1.pdf}
     \caption{
 	Die Kante $\{v_i, v_j\}$ zerfällt nach dem Hinzufügen von $v_{ij}$ in die zwei Kanten $\{v_i, v_{ij}\}$, $\{v_{ij},v_j\}$.
 	Ein mögliches Bild von $v_{ij}$ unter $s$ ist in der Abbildung durch ein rotes Kreuz gekennzeichnet.
